@@ -42,3 +42,23 @@
 - also use a few smaller files (and github cobol kind of trash peobably)
 - remove simmilar cobol source files 
 - Check for equivalence in stdout output and output files
+
+Rerun on dataset to be sure it works and we do not have duplicates
+
+
+
+
+1. Generate the bigger dataset set file size limit smaller to like 60
+2. Rerun the pipeline
+3. Build the benchmarking tool
+    - For each file in the testcases dic
+    - setup the files
+    - some object that inherits from converterbase with method convert(code or filepath, outputpath) is passed to the testcaserunner
+    - the testcase runner uses that object to convert the cobol file
+    - then compilation
+    - run the java file
+    - check the outputs (outputs stdout, outfiles) for equivalence (same but without whitespace maybe)
+    - Keep track somewhere
+    - Display results over all testcases
+    - Code readability metrics
+4. Fix the code, cleanup repo, make workflow as easy as possible
