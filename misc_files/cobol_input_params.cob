@@ -1,0 +1,31 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. COMMAND-LINE-ARGUMENTS.
+       ENVIRONMENT DIVISION.
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       01 WS-ARGS-COUNT      PIC 9(4) COMP.
+       01 WS-ARG             PIC X(100).
+       01 WS-ARG-INDEX       PIC 9(4) COMP.
+       
+       LINKAGE SECTION.
+       01 LS-ARGS.
+          05 LS-ARG-LENGTH   PIC 9(4) COMP.
+          05 LS-ARG-VALUE    PIC X(100).
+       PROCEDURE DIVISION.
+           PERFORM DISPLAY-ARGS
+           PERFORM DISPLAY-SPECIFIC-ARG
+           STOP RUN.
+           STOP RUN.
+
+       DISPLAY-ARGS.
+           ACCEPT WS-ARGS-COUNT FROM ARGUMENT-NUMBER
+           DISPLAY "Total arguments: " WS-ARGS-COUNT
+           PERFORM VARYING WS-ARG-INDEX FROM 1 BY 1
+                   UNTIL WS-ARG-INDEX > WS-ARGS-COUNT
+               ACCEPT WS-ARG FROM ARGUMENT-VALUE
+               DISPLAY "Argument " WS-ARG-INDEX ": " WS-ARG
+           END-PERFORM.
+
+       DISPLAY-SPECIFIC-ARG.
+           MOVE 3 TO WS-ARG-INDEX
+           DISPLAY "Third argument: " WS-ARG.
