@@ -1,8 +1,0 @@
-/path/to/input/file                                                                                                                    
-RDW file:                                                                                                                             
-/path/to/output/file                                                                                                                    
-RDW file:                                                                                                                             
-C:\data\transactions                                                                                                                  
-RDW file:                                                                                                                             
-/data/logs                                                                                                                            
-RDW file:

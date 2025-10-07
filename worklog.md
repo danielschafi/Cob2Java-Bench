@@ -46,10 +46,11 @@
 Rerun on dataset to be sure it works and we do not have duplicates
 
 
-
-
-1. Generate the bigger dataset set file size limit smaller to like 60
+1. Generate the bigger dataset set file size limit smaller to like 60 -> done
 2. Rerun the pipeline
+    - excluding short files
+    - rewrite_file_paths
+    - remove near duplicates and duplicates
 3. Build the benchmarking tool
     - For each file in the testcases dic
     - setup the files
@@ -62,3 +63,14 @@ Rerun on dataset to be sure it works and we do not have duplicates
     - Display results over all testcases
     - Code readability metrics
 4. Fix the code, cleanup repo, make workflow as easy as possible
+
+
+
+
+# TODO
+- after sample io generation check if it runs
+- when there are no io files we need to copy the cob file to the testcase dir too. -> Done
+- Check how much sense the outputs make
+- also use a few smaller files (and github cobol kind of trash peobably)
+- remove simmilar cobol source files 
+- Check for equivalence in stdout output and output files

@@ -1,6 +1,22 @@
 import os
 import re
 from pathlib import Path
+from dotenv import load_dotenv
+import logging
+
+load_dotenv()
+
+logger = logging.getLogger(__name__)
+logging.basicConfig(
+    filename=str(
+        Path(os.getcwd())
+        / (os.environ.get("LOG_DIR") or "logs")
+        / (Path(__file__).stem + ".log")
+    ),
+    level=logging.INFO,
+    format="%(asctime)s %(levelname)-8s %(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S",
+)
 
 
 def replace_all_paths_with_filenames(source_dir):
@@ -8,10 +24,10 @@ def replace_all_paths_with_filenames(source_dir):
         cobol_file_path = os.path.join(source_dir, cobol_file)
 
         if cobol_file.endswith(".cob"):
-            print(f"Processing {cobol_file}...")
+            logger.info(f"Processing {cobol_file}...")
             rename_files_in_cobol(cobol_file_path, index)
 
-    print("Renaming and restructuring complete.")
+    logger.info("Renaming and restructuring complete.")
 
 
 def rename_files_in_cobol(cobol_file, cobol_index):
@@ -24,7 +40,7 @@ def rename_files_in_cobol(cobol_file, cobol_index):
 
     for match in found_file_paths:
         filename = os.path.basename(match.replace("\\", "/"))
-        print("replacing:\t", match, "\twith:\t", Path(filename).name)
+        logger.info(f"replacing:\t{match}\twith:\t{Path(filename).name}")
         # Normalize Windows and Unix paths to extract the filename
 
         new_path = Path(filename).name
@@ -36,7 +52,7 @@ def rename_files_in_cobol(cobol_file, cobol_index):
 
 
 def main():
-    source_dir = "/home/schafhdaniel@edu.local/cobolToJava/data/cobol_theStack/gt100"
+    source_dir = os.environ.get("DATA_DIR", "src_data")
     replace_all_paths_with_filenames(source_dir)
 
 

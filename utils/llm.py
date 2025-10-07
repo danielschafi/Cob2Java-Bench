@@ -16,7 +16,11 @@ gen_config = GenerationConfig(
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(
-    filename=Path(os.getcwd()) / (os.environ.get("LOG_DIR") or "logs") / "app.log",
+    filename=str(
+        Path(os.getcwd())
+        / (os.environ.get("LOG_DIR") or "logs")
+        / (Path(__file__).stem + ".log")
+    ),
     level=logging.INFO,
     format="%(asctime)s %(levelname)-8s %(message)s",
     datefmt="%Y-%m-%d %H:%M:%S",

@@ -1,6 +1,8 @@
 # custom
 logs
+short_files/*
 .venv
+gt100
 # testcases/failed
 
 codeTransOceanNiche

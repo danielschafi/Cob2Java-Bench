@@ -1,8 +1,0 @@
-C:\data\file1.txt0010
-C:\data\file2.txt0025
-C:\data\file3.txt0100
-C:\data\file4.txt0050
-C:\data\file5.txt0075
-C:\data\file6.txt0030
-C:\data\file7.txt0040
-C:\data\file8.txt0060

@@ -2,19 +2,23 @@ from pathlib import Path
 import subprocess
 import json
 import os
-import logging
 from dotenv import load_dotenv
 import shutil
+import logging
 
+load_dotenv()
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(
-    filename=Path(os.getcwd()) / (os.environ.get("LOG_DIR") or "logs") / "app.log",
+    filename=str(
+        Path(os.getcwd())
+        / (os.environ.get("LOG_DIR") or "logs")
+        / (Path(__file__).stem + ".log")
+    ),
     level=logging.INFO,
     format="%(asctime)s %(levelname)-8s %(message)s",
     datefmt="%Y-%m-%d %H:%M:%S",
 )
-load_dotenv()
 
 """
 - Run the test cases in the test case folder
