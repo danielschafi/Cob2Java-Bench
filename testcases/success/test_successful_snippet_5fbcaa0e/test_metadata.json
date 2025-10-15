@@ -1,0 +1,15 @@
+{
+    "cobol_file": {
+        "file_name": "successful_snippet_5fbcaa0e.cob",
+        "content": "       identification division.\n       program-id. inspect-example.\n       \n       data division.\n       \n       working-storage section.\n       \n       77 random-string            pic x(6) value \"123ABC\".\n       \n       procedure division.\n       \n           display random-string\n      *> 123ABC\n           \n           perform inspect-1.\n           display \"inspect 1 : \" random-string\n      *> ******\n\n       move \"123123123\" to random-string\n       \n           perform inspect-2.\n           display \"inspect 2 : \" random-string\n      *> 333123\n           \n           perform inspect-3.\n           display \"inspect 3 : \" random-string\n      *> 334444\n           \n           perform inspect-4.\n           display \"inspect 4 : \" random-string\n      *> 334344\n           \n           perform inspect-5.\n           display \"inspect 5 : \" random-string\n      *> 444344\n           \n           perform inspect-6.\n           display \"inspect 6 : \" random-string\n      *> 222322\n\n           goback.\n\n       inspect-1.\n           inspect random-string\n                replacing characters by \"*\"\n           .\n\n       inspect-2.\n           inspect random-string\n                replacing characters by \"3\" before initial \"3\"\n           .\n\n       inspect-3.\n           inspect random-string\n                replacing characters by \"4\" after \"33\"\n           .\n       \n       inspect-4.\n           inspect random-string\n                replacing first \"4\" by \"3\"\n                after initial \"4\"\n           .\n       \n       inspect-5.\n           inspect random-string\n                replacing leading \"3\" by \"4\".\n           .\n       \n       inspect-6.\n           inspect random-string\n                replacing all \"4\" by \"2\"\n                          all \"2\" by \"3\"\n           .\n"
+    },
+    "input_files": [],
+    "output_files": [],
+    "input_output_files": [],
+    "sysin_file": null,
+    "code_file": "successful_snippet_5fbcaa0e.cob",
+    "compiled_file": "successful_snippet_5fbcaa0e",
+    "expected_output": "123ABC\ninspect 1 : ******\ninspect 2 : 333123\ninspect 3 : 334444\ninspect 4 : 334344\ninspect 5 : 444344\ninspect 6 : 222322\n",
+    "expected_output_files": [],
+    "expected_input_output_files": []
+}

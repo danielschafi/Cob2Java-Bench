@@ -7,10 +7,12 @@ from typing import Dict, List, Tuple, Optional
 from dataclasses import dataclass
 from utils import llm
 from dotenv import load_dotenv
+import logging
+import numpy as np
+
 
 load_dotenv()
 
-import logging
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(
@@ -49,6 +51,16 @@ class SampleContentGenerator:
             + list(self.cobol_directory.glob("*.cob"))
             + list(self.cobol_directory.glob("*.cobol"))
         )
+        np.random.shuffle(cobol_files)
+
+        # dont process the files that are already in testcases
+        logger.info(f"before filtering, found {len(cobol_files)} cobol files")
+        files_already_in_testcases = os.listdir(self.test_cases_dir)
+        cobol_files = [
+            f for f in cobol_files if "test_" + f.stem not in files_already_in_testcases
+        ]
+
+        logger.info(f"after filtering, found {len(cobol_files)} cobol files")
 
         sample_content = None
         for cobol_file in cobol_files:
@@ -613,11 +625,9 @@ class SampleContentGenerator:
 
 
 if __name__ == "__main__":
-    cobol_directory = Path(
-        "/home/schafhdaniel@edu.local/cobolToJava/data/cobol_theStack/gt100"
-    )
+    cobol_directory = Path(os.environ.get("DATA_DIR", "src_data"))
     assert cobol_directory.exists(), f"Directory {cobol_directory} does not exist."
-    output_directory = Path(os.environ.get("TEST_DIR", "testcases"))
+    output_directory = Path(os.environ.get("TESTS_DIR", "testcases"))
     output_directory.mkdir(parents=True, exist_ok=True)
 
     contentGenerator = SampleContentGenerator(cobol_directory, output_directory)

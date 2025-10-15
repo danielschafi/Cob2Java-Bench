@@ -111,6 +111,9 @@ class CobolOutputCapture:
         if sysin_file:
             sysin_file = sysin_file.get("file_name")
 
+        output_files = metadata.get("output_files", [])
+        input_output_files = metadata.get("input_output_files", [])
+
         code_file = Path(testcase_dir) / cob_file
         compiled_file = Path(testcase_dir) / Path(cob_file).stem
         logger.info(f"\tcode: {code_file}")
@@ -128,7 +131,43 @@ class CobolOutputCapture:
             )
             self.add_to_metadata("expected_output", output, testcase_dir)
             logger.info(f"\tCaptured output for '{cob_file}' and updated metadata.")
+
+            # files that are expected to be created by the cobol program
+            expected_output_files = []
+            if output_files:
+                for out_file in output_files:
+                    file = Path(testcase_dir) / out_file
+                    if not file.exists():
+                        logger.error(f"\tExpected output file '{file}' does not exist.")
+                        return False
+                    else:
+                        logger.info(f"\tFound expected output file: {file}")
+                        content = file.read_text()
+                        expected_output_files.append(
+                            {"file_name": out_file, "content": content}
+                        )
+            self.add_to_metadata(
+                "expected_output_files", expected_output_files, testcase_dir
+            )
+
+            expected_input_output_files = []
+            if input_output_files:
+                for io_file in input_output_files:
+                    file = Path(testcase_dir) / io_file
+                    if not file.exists():
+                        logger.error(f"\tExpected output file '{file}' does not exist.")
+                        return False
+                    else:
+                        logger.info(f"\tFound expected input/output file: {file}")
+                        content = file.read_text()
+                        expected_input_output_files.append(
+                            {"file_name": io_file, "content": content}
+                        )
+            self.add_to_metadata(
+                "expected_input_output_files", expected_input_output_files, testcase_dir
+            )
             return True
+
         else:
             logger.error(f"\tFailed to capture output for '{cob_file}'.")
             return False

@@ -1,0 +1,18 @@
+{
+    "cobol_file": {
+        "file_name": "successful_snippet_e04c4e83.cob",
+        "content": "       IDENTIFICATION DIVISION.\n       PROGRAM-ID. Date-Format.\n\n       DATA DIVISION.\n       WORKING-STORAGE SECTION.\n\n       01  Days-Area.\n           03  Days-Data.\n               05  FILLER PIC X(9) VALUE \"Monday\".\n               05  FILLER PIC X(9) VALUE \"Tuesday\".\n               05  FILLER PIC X(9) VALUE \"Wednesday\".\n               05  FILLER PIC X(9) VALUE \"Thursday\".\n               05  FILLER PIC X(9) VALUE \"Friday\".\n               05  FILLER PIC X(9) VALUE \"Saturday\".\n               05  FILLER PIC X(9) VALUE \"Sunday\".\n\n           03  Days-Values REDEFINES Days-Data.\n               05  Days-Table PIC X(9) OCCURS 7 TIMES.\n\n       01  Months-Area.\n           03  Months-Data.\n               05  FILLER PIC X(9) VALUE \"January\".\n               05  FILLER PIC X(9) VALUE \"February\".\n               05  FILLER PIC X(9) VALUE \"March\".\n               05  FILLER PIC X(9) VALUE \"April\".\n               05  FILLER PIC X(9) VALUE \"May\".\n               05  FILLER PIC X(9) VALUE \"June\".\n               05  FILLER PIC X(9) VALUE \"July\".\n               05  FILLER PIC X(9) VALUE \"August\".\n               05  FILLER PIC X(9) VALUE \"September\".\n               05  FILLER PIC X(9) VALUE \"October\".\n               05  FILLER PIC X(9) VALUE \"November\".\n               05  FILLER PIC X(9) VALUE \"December\".\n              \n           03  Months-Values REDEFINES Months-Data.\n               05  Months-Table PIC X(9) OCCURS 12 TIMES.\n\n       01  Current-Date-Str.\n           03  Current-Year     PIC X(4).\n           03  Current-Month    PIC X(2).\n           03  Current-Day      PIC X(2).\n\n       01  Current-Day-Of-Week  PIC 9.\n\n       PROCEDURE DIVISION.\n           MOVE FUNCTION CURRENT-DATE (1:8) TO Current-Date-Str\n           \n           DISPLAY Current-Year \"-\" Current-Month \"-\" Current-Day\n\n           ACCEPT Current-Day-Of-Week FROM DAY-OF-WEEK\n           DISPLAY\n               FUNCTION TRIM(\n                   Days-Table (FUNCTION NUMVAL(Current-Day-Of-Week)))\n               \", \"\n               FUNCTION TRIM(\n                   Months-Table (FUNCTION NUMVAL(Current-Month)))\n               \" \"\n               Current-Day\n               \", \"\n               Current-Year\n           END-DISPLAY\n\n           GOBACK\n           .\n"
+    },
+    "input_files": [],
+    "output_files": [],
+    "input_output_files": [],
+    "sysin_file": {
+        "file_name": "sysin.txt",
+        "content": "1\n2\n3\n4\n5\n6\n7\n0"
+    },
+    "code_file": "successful_snippet_e04c4e83.cob",
+    "compiled_file": "successful_snippet_e04c4e83",
+    "expected_output": "2025-10-09\nThursday, October 09, 2025\n",
+    "expected_output_files": [],
+    "expected_input_output_files": []
+}

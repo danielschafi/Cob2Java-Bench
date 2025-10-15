@@ -1,0 +1,18 @@
+{
+    "cobol_file": {
+        "file_name": "successful_snippet_0196f803.cob",
+        "content": "identification division.\nprogram-id. bogo-sort-program.\ndata division.\nworking-storage section.\n01  array-to-sort.\n    05 item-table.\n        10 item          pic 999\n            occurs 10 times.\n01  randomization.\n    05 random-seed       pic 9(8).\n    05 random-index      pic 9.\n01  flags-counters-etc.\n    05 array-index       pic 99.\n    05 adjusted-index    pic 99.\n    05 temporary-storage pic 999.\n    05 shuffles          pic 9(8)\n        value zero.\n    05 sorted            pic 9.\n01  numbers-without-leading-zeros.\n    05 item-no-zeros     pic z(4).\n    05 shuffles-no-zeros pic z(8).\nprocedure division.\ncontrol-paragraph.\n    accept random-seed from time.\n    move function random(random-seed) to item(1).\n    perform random-item-paragraph varying array-index from 2 by 1\n    until array-index is greater than 10.\n    display 'BEFORE SORT:' with no advancing.\n    perform show-array-paragraph varying array-index from 1 by 1\n    until array-index is greater than 10.\n    display ''.\n    perform shuffle-paragraph through is-it-sorted-paragraph\n    until sorted is equal to 1.\n    display 'AFTER SORT: ' with no advancing.\n    perform show-array-paragraph varying array-index from 1 by 1\n    until array-index is greater than 10.\n    display ''.\n    move shuffles to shuffles-no-zeros.\n    display shuffles-no-zeros ' SHUFFLES PERFORMED.'\n    stop run.\nrandom-item-paragraph.\n    move function random to item(array-index).\nshow-array-paragraph.\n    move item(array-index) to item-no-zeros.\n    display item-no-zeros with no advancing.\nshuffle-paragraph.\n    perform shuffle-items-paragraph,\n    varying array-index from 1 by 1\n    until array-index is greater than 10.\n    add 1 to shuffles.\nis-it-sorted-paragraph.\n    move 1 to sorted.\n    perform item-in-order-paragraph varying array-index from 1 by 1,\n    until sorted is equal to zero\n    or array-index is equal to 10.\nshuffle-items-paragraph.\n    move function random to random-index.\n    add 1 to random-index giving adjusted-index.\n    move item(array-index) to temporary-storage.\n    move item(adjusted-index) to item(array-index).\n    move temporary-storage to item(adjusted-index).\nitem-in-order-paragraph.\n    add 1 to array-index giving adjusted-index.\n    if item(array-index) is greater than item(adjusted-index)\n    then move zero to sorted.\n"
+    },
+    "input_files": [],
+    "output_files": [],
+    "input_output_files": [],
+    "sysin_file": {
+        "file_name": "sysin.txt",
+        "content": "00001234\n00005678\n00009101\n00012345\n00015678\n00019101\n00022345\n00025678"
+    },
+    "code_file": "successful_snippet_0196f803.cob",
+    "compiled_file": "successful_snippet_0196f803",
+    "expected_output": "BEFORE SORT:                                         \nAFTER SORT:                                          \n       1 SHUFFLES PERFORMED.\n",
+    "expected_output_files": [],
+    "expected_input_output_files": []
+}

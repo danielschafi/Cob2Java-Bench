@@ -74,3 +74,8 @@ Rerun on dataset to be sure it works and we do not have duplicates
 - also use a few smaller files (and github cobol kind of trash peobably)
 - remove simmilar cobol source files 
 - Check for equivalence in stdout output and output files
+
+- some outputs inputs generated may not make much sense
+- Remove files that contain accept from command line
+
+ast vergleichen

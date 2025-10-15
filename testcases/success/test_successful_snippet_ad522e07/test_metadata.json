@@ -1,0 +1,18 @@
+{
+    "cobol_file": {
+        "file_name": "successful_snippet_ad522e07.cob",
+        "content": "       IDENTIFICATION DIVISION.\n\n       PROGRAM-ID.LCM.\n\n       ENVIRONMENT DIVISION.\n\n       DATA DIVISION.\n\n       WORKING-STORAGE SECTION.\n\n       01 ARRAY.\n       02 A PIC 9(5) OCCURS 10 TIMES.\n       77 N PIC 9(2) VALUE 2.\n       77 I PIC 9(2).\n       77 J PIC 9(2).\n       77 Q PIC 9(3).\n       77 R PIC 9(3).\n       77 K PIC 9(5).\n       77 B PIC 9(3) VALUE 0.\n       77 C PIC 9(3) VALUE 0.\n       77 D PIC 9(3) VALUE 0.\n       77 P PIC Z(5)9.\n       01 num PIC 999 VALUE 0.\n       01 num2 PIC 999 VALUE 0.\n       01 chickens PIC 999 VALUE 0.\n       01 dogs PIC 999 VALUE 0.\n       01 total PIC 999 VALUE 0.\n       01 result PIC 99 VALUE 0.\n       01 result1 PIC 999 VALUE 0.\n       01 result2 PIC 999 VALUE 0.\n       01 count1 PIC 999 VALUE 0.\n\n       PROCEDURE DIVISION.\n\n       MAIN-PARA.\n           DISPLAY \"ENTER \" N \" NUMBERS\".\n           PERFORM X-PARA VARYING I FROM 1 BY 1 UNTIL I > N.\n           PERFORM Y-PARA VARYING I FROM B BY 1 UNTIL C = N.\n           MOVE K TO P.\n           DISPLAY \"THE LCM IS \" P.\n\n           DISPLAY \"Enter Number of Head\".\n           ACCEPT num.\n           DISPLAY \"Enter number of legs\".\n           ACCEPT num2.\n           PERFORM headleg-PARA.\n           if count1 equals 2 DISPLAY \"NONE\"\n           STOP RUN.\n\n       X-PARA.\n           ACCEPT A(I).\n           IF (B < A(I))\n           MOVE A(I) TO B.\n\n       Y-PARA.\n           MOVE 0 TO C.\n           COMPUTE D = D + 1.\n           PERFORM Z-PARA VARYING J FROM 1 BY 1 UNTIL J > N.\n\n       Z-PARA.\n           COMPUTE K = B * D.\n           DIVIDE K BY A(J) GIVING Q REMAINDER R.\n           IF (R = 0)\n           COMPUTE C = C + 1.\n\n       headleg-PARA.\n           PERFORM VARYING chickens FROM 0 BY 1 UNTIL chickens >= num\n           COMPUTE dogs = num - chickens\n           COMPUTE result =2 * chickens\n           COMPUTE result1 =4 * dogs\n           COMPUTE result2 = result + result1\n           IF result2 EQUALS num2\n               DISPLAY \"[\", chickens,\",\",dogs,\"]\"\n               SET count1 to 1\n           ELSE IF count1 equals to 1 set count1 to 1\n           else set count1 to 2\n           END-IF\n           END-PERFORM.\n"
+    },
+    "input_files": [],
+    "output_files": [],
+    "input_output_files": [],
+    "sysin_file": {
+        "file_name": "sysin.txt",
+        "content": "00100200000000000000000000000000000000000000000000\n00200400000000000000000000000000000000000000000000\n00300600000000000000000000000000000000000000000000\n00400800000000000000000000000000000000000000000000\n00501000000000000000000000000000000000000000000000\n00601200000000000000000000000000000000000000000000\n00701400000000000000000000000000000000000000000000\n00801600000000000000000000000000000000000000000000"
+    },
+    "code_file": "successful_snippet_ad522e07.cob",
+    "compiled_file": "successful_snippet_ad522e07",
+    "expected_output": "ENTER 02 NUMBERS\nTHE LCM IS    200\nEnter Number of Head\nEnter number of legs\nNONE\n",
+    "expected_output_files": [],
+    "expected_input_output_files": []
+}

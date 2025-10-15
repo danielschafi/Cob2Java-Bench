@@ -3,7 +3,8 @@ logs
 short_files/*
 .venv
 gt100
-# testcases/failed
+testcases copy
+testcases/failed
 
 codeTransOceanNiche
 src_data/*

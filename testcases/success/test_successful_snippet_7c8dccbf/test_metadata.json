@@ -1,0 +1,24 @@
+{
+    "cobol_file": {
+        "file_name": "successful_snippet_7c8dccbf.cob",
+        "content": "IDENTIFICATION DIVISION.\nPROGRAM-ID. PLUS5NUMBERS.\n\nENVIRONMENT DIVISION.\n      INPUT-OUTPUT SECTION.\n       FILE-CONTROL.\n           SELECT IN-FILE ASSIGN TO \"numbers.txt\"\n           ACCESS MODE IS SEQUENTIAL\n           ORGANIZATION IS LINE SEQUENTIAL.\n           SELECT OUT-FILE ASSIGN TO \"newNumbers.txt\"\n           ACCESS MODE IS SEQUENTIAL\n           ORGANIZATION IS LINE SEQUENTIAL.\n\nDATA DIVISION.\n\nFILE SECTION.\n\nFD IN-FILE.\n01 IN-RECORD.\n      05 ORIGINAL-NUMBER   PIC 9(5).\n\nFD OUT-FILE.\n01 OUT-RECORD.\n      05 OUT-NUMBER        PIC 9(5).\n\nWORKING-STORAGE SECTION.\n       77 RESULT        PIC 9(5).\n       77 NE-RESULT     PIC ZZZZ9.\n       01 FS            PIC 99.\n\n01 SWITCHES.\n      05 EOF-SWITCH        PIC X VALUE \"N\".\n\n01 COUNTERS.\n      05 REC-COUNTER       PIC 9(3) VALUE ZERO.\n\n\nPROCEDURE DIVISION.\n\n000-MAIN.\n\n           PERFORM 100-INITIALIZE.\n           PERFORM 200-PROCESS-RECORDS\n           UNTIL EOF-SWITCH = \"Y\".\n           PERFORM 300-TERMINATE.\n\n100-INITIALIZE.\n\n           OPEN INPUT IN-FILE.\n           OPEN EXTEND OUT-FILE.\n           READ IN-FILE\n               AT END\n                   MOVE \"Y\" to EOF-SWITCH\n           END-READ.\n\n200-PROCESS-RECORDS.\n           COMPUTE RESULT = ORIGINAL-NUMBER + 5.\n\n           MOVE RESULT to NE-RESULT.\n\n           MOVE NE-RESULT TO OUT-NUMBER.\n           WRITE OUT-RECORD.\n\n           DISPLAY NE-RESULT.\n\n           READ IN-FILE\n               AT END\n                   MOVE \"Y\" to EOF-SWITCH\n           END-READ.\n\n\n300-TERMINATE.\n\n           CLOSE IN-FILE.\n           CLOSE OUT-FILE.\n           STOP RUN.\n"
+    },
+    "input_files": [
+        {
+            "file_name": "numbers.txt",
+            "content": "12345N001\n23456N002\n34567N003\n45678N004\n56789N005\n67890N006\n78901N007\n89012N008\n90123N009\n01234N010"
+        },
+        {
+            "file_name": "newNumbers.txt",
+            "content": "00001N001\n00002N002\n00003N003\n00004N004\n00005N005\n00006N006\n00007N007\n00008N008\n00009N009\n00010N010"
+        }
+    ],
+    "output_files": [],
+    "input_output_files": [],
+    "sysin_file": null,
+    "code_file": "successful_snippet_7c8dccbf.cob",
+    "compiled_file": "successful_snippet_7c8dccbf",
+    "expected_output": "12350\n40015\n23461\n40025\n34572\n40035\n45683\n40045\n56794\n40055\n67895\n40065\n78906\n40075\n89017\n40085\n90128\n40095\n 1239\n40105\n",
+    "expected_output_files": [],
+    "expected_input_output_files": []
+}

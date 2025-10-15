@@ -1,0 +1,18 @@
+{
+    "cobol_file": {
+        "file_name": "successful_snippet_3e11a75b.cob",
+        "content": "      \n      \n      \n      \n      \n      \n       >>SOURCE FORMAT IS FREE\n       identification division.\n       program-id. quakes.\n\n       environment division.\n       configuration section.\n       repository.\n           function all intrinsic.\n\n       input-output section.\n       file-control.\n           select quake-data\n           assign to command-filename\n           organization is line sequential\n           status is quake-fd-status\n           .\n\n       data division.\n       file section.\n       fd quake-data record varying depending on line-length.\n           01 data-line       pic x(32768).\n\n       working-storage section.\n       01 quake-fd-status pic xx.\n          88 ok values \"00\", \"01\", \"02\", \"03\", \"04\",\n                       \"05\", \"06\", \"07\", \"08\", \"09\".\n          88 no-more value \"10\".\n          88 io-error value high-value.\n\n       01 line-length usage binary-long.\n\n       01 date-time pic x(10).\n       01 quake pic x(20).\n       01 magnitude pic 99v99.\n\n       01 command-filename pic x(80).\n        \n       procedure division.\n       show-big-ones.\n\n       accept command-filename from command-line\n       if command-filename equal spaces then\n           move \"data.txt\" to command-filename\n       end-if\n\n       open input quake-data\n       perform status-check\n       if io-error then\n           display trim(command-filename) \" not found\" upon syserr\n           goback\n       end-if\n\n       read quake-data\n       perform status-check\n       perform until no-more or io-error\n           unstring data-line delimited by all spaces\n              into date-time quake magnitude\n           end-unstring\n\n           if magnitude greater than 6\n               display date-time space quake space magnitude\n           end-if\n\n           read quake-data\n           perform status-check\n       end-perform\n\n       close quake-data\n       perform status-check\n       goback.\n      \n\n       status-check.\n       if not ok and not no-more then   \n           display \"io error: \" quake-fd-status upon syserr\n           set io-error to true\n       end-if\n       .\n\n       end program quakes.\n"
+    },
+    "input_files": [],
+    "output_files": [],
+    "input_output_files": [],
+    "sysin_file": {
+        "file_name": "sysin.txt",
+        "content": "datafile1.txt                                                                     \ndatafile2.txt                                                                     \ndatafile3.txt                                                                     \ndatafile4.txt                                                                     \ndatafile5.txt                                                                     \ndatafile6.txt                                                                     \ndatafile7.txt                                                                     \ndatafile8.txt"
+    },
+    "code_file": "successful_snippet_3e11a75b.cob",
+    "compiled_file": "successful_snippet_3e11a75b",
+    "expected_output": "",
+    "expected_output_files": [],
+    "expected_input_output_files": []
+}
