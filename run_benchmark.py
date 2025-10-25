@@ -7,16 +7,13 @@ import json
 import subprocess
 import time
 import numpy as np
-from sympy import public
-import lizard
-import torch
-from transformers import AutoTokenizer, AutoModelForCausalLM
 from converters.baseConverter import BaseCob2JavaConverter
 from java_halstead_metrics_calculator import JavaHalsteadCalculator
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import Levenshtein
-
+from tqdm import tqdm
+import pandas as pd
 
 load_dotenv()
 logger = logging.getLogger(__name__)
@@ -447,8 +444,9 @@ class Testcase:
                 logger.info(f"\tDeleted file '{file}'.")
 
     def run(self):
-        logger.info("=" * 40)
+        logger.info("=" * 120)
         logger.info(f"Running testcase in {self.testcase_dir}")
+        logger.info("=" * 120)
 
         self.setup()
 
@@ -491,6 +489,7 @@ class Cob2JavaBenchmark:
         ]
 
         self.metrics = {}
+        self.curr_testcase_index = 0
 
     def aggregate_metrics(self):
         aggregated = {}
@@ -512,9 +511,6 @@ class Cob2JavaBenchmark:
                     else:
                         aggregated[k + "_min"] = round(float(min(v)), 4)
                         aggregated[k + "_max"] = round(float(max(v)), 4)
-
-                    aggregated[k + "_min"] = round(float(min(v)), 4)
-                    aggregated[k + "_max"] = round(float(max(v)), 4)
                     aggregated[k + "_std"] = round(float(np.std(v)), 4)
             else:
                 aggregated[k] = v
@@ -544,8 +540,13 @@ class Cob2JavaBenchmark:
         timer_start = time.time()
         self.num_testcases = len(self.testcases)
         logger.info(f"Running benchmark on {self.num_testcases} testcases.")
-        for testcase in self.testcases:
+        for testcase in tqdm(self.testcases):
             try:
+                self.curr_testcase_index += 1
+                logger.info(
+                    f"Starting testcase {self.curr_testcase_index}/{self.num_testcases}"
+                )
+
                 results = testcase.run()
 
                 # just append all results to the metrics dict, we aggregate them later
@@ -555,6 +556,11 @@ class Cob2JavaBenchmark:
                         self.metrics[k] = []
 
                     self.metrics[k].append(v)
+
+                    pd.DataFrame(self.metrics).to_csv(
+                        self.conversions_dest_dir
+                        / "intermediate_per_testcase_results.csv"
+                    )
 
             except Exception as e:
                 logger.error(f"Error running testcase in {testcase.testcase_dir}: {e}")

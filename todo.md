@@ -1,14 +1,15 @@
 # Cob2Java-Bench ToDo's
 
 ## Current Run
-[ ] Wait for results of AST assisted conversion
-    [] Compare results with conversion without AST, maybe we can already make some conclusions
+[x] Wait for results of AST assisted conversion
+    [x] Compare results with conversion without AST, maybe we can already make some conclusions
+    - With ast actually worse, probably because it is too much text and it cant actually use all that information so its just confusion for the llm. Or because programm paradigms are different 
 
 ## Better Experiment Logging
-[ ] Before that add saving of every conversions results to a dataframe, export to csv so we can do other things with it, aggregate it differently 
-[ ] Export the metrics json after every testcase (aggregated?) so that we can keep track
-[ ] In the logs add counter x out of n testcases run...  e with running error, g with generation error, c with compile error
-[ ] Should similarity 
+[x] Before that add saving of every conversions results to a dataframe, export to csv so we can do other things with it, aggregate it differently 
+[x] Export the metrics json after every testcase (aggregated?) so that we can keep track
+[x] In the logs add counter x out of n testcases run...  e with running error, g with generation error, c with compile error
+
 
 ## Other LLM to improve input data and conversion quality
 [x] Get Claude Credits
