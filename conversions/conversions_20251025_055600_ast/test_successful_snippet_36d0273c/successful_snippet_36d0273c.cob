@@ -1,0 +1,60 @@
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. INVESTIMENTO.
+      *********************************************
+      * AREA DE COMENTARIOS - REMARKS
+      * AUTHOR  = LUIS FERNANDO LAZANHA
+      * OBJETIVO: INVESTIMENTO FIANANCEIRO
+      * UTILIZAR PERFORM - UNTIL
+      * DATA    = 26/06/2021
+      *********************************************
+       ENVIRONMENT DIVISION.
+       CONFIGURATION SECTION.
+       SPECIAL-NAMES.
+           DECIMAL-POINT IS COMMA.
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       77 WRK-VALOR    PIC 9(06)V99  VALUE ZEROS.
+       77 WRK-ACUM     PIC 9(08)V99  VALUE ZEROS.
+       77 WRK-MESES    PIC 9(03)     VALUE 1.
+       77 WRK-TAXA     PIC 9(04)V99  VALUE ZEROS.
+       77 WRK-ACUM-ED PIC $Z.ZZ9,99  VALUE ZEROS.
+
+       PROCEDURE DIVISION.
+       0001-PRINCIPAL.
+           PERFORM 0050-INICIAR.
+           PERFORM 0100-INICIAR.
+           IF WRK-VALOR > 0
+               PERFORM 0200-PROCESSAR UNTIL WRK-VALOR = 0
+           ELSE
+               DISPLAY 'O VALOR DEVE SER !=0'
+           END-IF.
+           PERFORM 0300-FINALIZAR.
+
+           STOP RUN.
+
+       0050-INICIAR.
+           DISPLAY 'DIGITE UM VALOR DE TAXA MENSAL: '
+           ACCEPT WRK-TAXA.
+
+       0100-INICIAR.
+           DISPLAY 'DIGITE UM VALOR DE INVESTIMENTO: '
+           ACCEPT WRK-VALOR.
+
+       0200-PROCESSAR.
+           ADD 1 TO WRK-MESES.
+           ADD WRK-VALOR TO WRK-ACUM.
+           COMPUTE WRK-ACUM = WRK-ACUM * (WRK-TAXA / 100 + 1).
+           MOVE WRK-ACUM TO WRK-ACUM-ED.
+           PERFORM 0100-INICIAR.
+
+       0300-FINALIZAR.
+           DISPLAY '-------------------'.
+           ADD -1 TO WRK-MESES
+           DISPLAY 'QUANTIDADE DE INVESTIMENTOS: ' WRK-MESES
+           IF WRK-ACUM > 0
+               DISPLAY 'ACUMULADO: R' WRK-ACUM-ED
+           ELSE
+               DISPLAY 'FINAL DO PROCESSAMENTO'
+           END-IF.
+
+           STOP RUN.

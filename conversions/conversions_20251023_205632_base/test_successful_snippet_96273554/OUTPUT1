@@ -1,0 +1,214 @@
+       IDENTIFICATION DIVISION.         
+                                        
+       PROGRAM-ID. GRICE.               
+                                        
+       ENVIRONMENT DIVISION.            
+                                        
+       CONFIGURATION SECTION.           
+                                        
+       SPECIAL-NAMES.                   
+                                        
+           SYMBOLIC CHARACTERS FULL-STOP
+ IS 76.                                 
+       INPUT-OUTPUT SECTION.            
+                                        
+       FILE-CONTROL.                    
+                                        
+           SELECT OUTPUT-FILE ASSIGN TO 
+OUTPUT1.                                
+       DATA DIVISION.                   
+                                        
+               "       FILE SECTION.                    .                      "
+                                        
+               "       ML-3.                            .                      "
+                                        
+               "                                        .                      "
+                                        
+               "                                        .                      "
+                                        
+               "       FD  OUTPUT-FILE                  .                      "
+                                        
+               "           MOVE SOURCE-FACSIMILE (20) TO.                      "
+                                        
+               "                                        .                      "
+                                        
+               " OUTPUT-RECORD.                         .                      "
+                                        
+               "           RECORDING MODE F             .                      "
+                                        
+               "           WRITE OUTPUT-RECORD.         .                      "
+                                        
+               "                                        .                      "
+                                        
+               "                                        .                      "
+                                        
+               "           LABEL RECORDS OMITTED.       .                      "
+                                        
+               "           MOVE SOURCE-FACSIMILE-ONE (SU.                      "
+                                        
+               "                                        .                      "
+                                        
+               "B-X) TO FILLER-DATA.                    .                      "
+                                        
+               "       01  OUTPUT-RECORD                .                      "
+                                        
+               "           MOVE FILLER-IMAGE TO OUTPUT-R.                      "
+                                        
+               "     PIC X(80).                         .                      "
+                                        
+               "ECORD.                                  .                      "
+                                        
+               "       WORKING-STORAGE SECTION.         .                      "
+                                        
+               "           WRITE OUTPUT-RECORD.         .                      "
+                                        
+               "                                        .                      "
+                                        
+               "                                        .                      "
+                                        
+               "       01  SUB-X                        .                      "
+                                        
+               "           MOVE SOURCE-FACSIMILE (20) TO.                      "
+                                        
+               "     PIC S9(4) COMP.                    .                      "
+                                        
+               " OUTPUT-RECORD.                         .                      "
+                                        
+               "       01  SOURCE-FACSIMILE-AREA.       .                      "
+                                        
+               "           WRITE OUTPUT-RECORD.         .                      "
+                                        
+               "                                        .                      "
+                                        
+               "                                        .                      "
+                                        
+               "           02  SOURCE-FACSIMILE-DATA.   .                      "
+                                        
+               "           MOVE SOURCE-FACSIMILE-TWO (SU.                      "
+                                        
+               "                                        .                      "
+                                        
+               "B-X) TO FILLER-DATA.                    .                      "
+                                        
+               "               03  FILLER               .                      "
+                                        
+               "           MOVE FILLER-IMAGE TO OUTPUT-R.                      "
+                                        
+               "     PIC X(40) VALUE                    .                      "
+                                        
+               "ECORD.                                  .                      "
+                                        
+               "           02  SOURCE-FACSIMILE-TABLE RE.                      "
+                                        
+               "           WRITE OUTPUT-RECORD.         .                      "
+                                        
+               "DEFINES                                 .                      "
+                                        
+               "                                        .                      "
+                                        
+               "                   SOURCE-FACSIMILE-DATA.                      "
+                                        
+               "           IF  SUB-X < 68               .                      "
+                                        
+               ".                                       .                      "
+                                        
+               "                                        .                      "
+                                        
+               "               03  SOURCE-FACSIMILE OCCU.                      "
+                                        
+               "               ADD 1 TO SUB-X           .                      "
+                                        
+               "RS 68.                                  .                      "
+                                        
+               "                                        .                      "
+                                        
+               "                   04  SOURCE-FACSIMILE-.                      "
+                                        
+               "               GO TO ML-3.              .                      "
+                                        
+               "ONE  PIC X(40).                         .                      "
+                                        
+               "                                        .                      "
+                                        
+               "                   04  SOURCE-FACSIMILE-.                      "
+                                        
+               "           MOVE 21 TO SUB-X.            .                      "
+                                        
+               "TWO  PIC X(40).                         .                      "
+                                        
+               "                                        .                      "
+                                        
+               "       01  FILLER-IMAGE.                .                      "
+                                        
+               "       ML-4.                            .                      "
+                                        
+               "                                        .                      "
+                                        
+               "                                        .                      "
+                                        
+               "           02  FILLER                   .                      "
+                                        
+               "           MOVE SOURCE-FACSIMILE (SUB-X).                      "
+                                        
+               "     PIC X(15) VALUE SPACES.            .                      "
+                                        
+               " TO OUTPUT-RECORD.                      .                      "
+                                        
+               "           02  FILLER                   .                      "
+                                        
+               "           WRITE OUTPUT-RECORD.         .                      "
+                                        
+               "     PIC X     VALUE QUOTE.             .                      "
+                                        
+               "                                        .                      "
+                                        
+               "           02  FILLER-DATA              .                      "
+                                        
+               "           IF  SUB-X < 68               .                      "
+                                        
+               "     PIC X(40).                         .                      "
+                                        
+               "                                        .                      "
+                                        
+               "           02  FILLER                   .                      "
+                                        
+               "               ADD 1 TO SUB-X           .                      "
+                                        
+               "     PIC X     VALUE QUOTE.             .                      "
+                                        
+               "                                        .                      "
+                                        
+               "           02  FILLER                   .                      "
+                                        
+               "               GO TO ML-4.              .                      "
+                                        
+               "     PIC X     VALUE FULL-STOP.         .                      "
+                                        
+               "                                        .                      "
+                                        
+               "           02  FILLER                   .                      "
+                                        
+               "       ML-99.                           .                      "
+                                        
+               "     PIC X(22) VALUE SPACES.            .                      "
+                                        
+               "                                        .                      "
+                                        
+               "       PROCEDURE DIVISION.              .                      "
+                                        
+               "           CLOSE OUTPUT-FILE.           .                      "
+                                        
+               "                                        .                      "
+                                        
+               "                                        .                      "
+                                        
+               "       MAIN-LINE SECTION.               .                      "
+                                        
+               "           STOP RUN.                    .                      "
+                                        
+               "                                        .                      "
+                                        
+               "                                        .                      "
+                                        
+               "       ML-1.                            .                      "
+                                        

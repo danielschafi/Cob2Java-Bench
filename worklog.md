@@ -66,6 +66,10 @@ Rerun on dataset to be sure it works and we do not have duplicates
 
 
 
+how to get static code analysis 
+- maintainability index
+- Healstead measures
+
 
 # TODO
 - after sample io generation check if it runs
@@ -79,3 +83,10 @@ Rerun on dataset to be sure it works and we do not have duplicates
 - Remove files that contain accept from command line
 
 ast vergleichen
+
+
+- for java runs catch unicode decode errors like in capture outputs
+
+
+
+progress bar x / num_tescases completed

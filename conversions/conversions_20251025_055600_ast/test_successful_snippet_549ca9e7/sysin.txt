@@ -1,0 +1,8 @@
+PROCESS-TYPE1 NB-FOLDS-X1                                                                             
+PROCESS-TYPE2 NB-FOLDS-X2                                                                             
+PROCESS-TYPE3 NB-FOLDS-X3                                                                             
+PROCESS-TYPE4 NB-FOLDS-X4                                                                             
+PROCESS-TYPE5 NB-FOLDS-X5                                                                             
+PROCESS-TYPE6 NB-FOLDS-X6                                                                             
+PROCESS-TYPE7 NB-FOLDS-X7                                                                             
+PROCESS-TYPE8 NB-FOLDS-X8

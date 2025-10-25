@@ -1,0 +1,8 @@
+01John Doe      0
+01Jane Smith    0
+01Alice Johnson 0
+01Bob Brown     0
+01Charlie White 0
+01David Black   0
+01Eve Green     0
+01F1Pressed     1

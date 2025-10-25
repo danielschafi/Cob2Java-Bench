@@ -1,0 +1,6 @@
+Enter a message: This is a test message for the COBOL program                                                                  
+Enter a message: Another test message                                                                                            
+Enter a message: Short msg                                                                                                      
+Enter a message: This is a longer message to test the maximum length of the input field in the COBOL program                      
+Enter a message: Testing with different lengths                                                                                   
+Enter a message: Final test message

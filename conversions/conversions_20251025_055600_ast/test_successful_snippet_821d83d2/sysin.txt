@@ -1,0 +1,9 @@
+TEST    
+TEST    
+LOAD    
+LOAD    
+INIT    
+INIT    
+BACKUP  
+BACKUP  
+EOF

@@ -3,3 +3,7 @@ torch
 datasets
 accelerate
 thefuzz
+lizard
+Levenshtein
+scikit-learn
+anthropic

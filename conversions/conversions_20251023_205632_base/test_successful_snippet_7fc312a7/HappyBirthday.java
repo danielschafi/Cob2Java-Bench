@@ -1,0 +1,87 @@
+import java.util.concurrent.TimeUnit;
+
+public class HappyBirthday {
+    public static void main(String[] args) {
+        try {
+            System.out.println("***************************************************");
+            TimeUnit.NANOSECONDS.sleep(80000000);
+            System.out.println("*                                                 *");
+            TimeUnit.NANOSECONDS.sleep(80000000);
+            System.out.println("*                                                 *");
+            TimeUnit.NANOSECONDS.sleep(80000000);
+            System.out.println("*                 Happy Birthday!                 *");
+            TimeUnit.NANOSECONDS.sleep(80000000);
+            System.out.println("*                                                 *");
+            TimeUnit.NANOSECONDS.sleep(80000000);
+            System.out.println("*                                                 *");
+            TimeUnit.NANOSECONDS.sleep(80000000);
+            System.out.println("***************************************************");
+            TimeUnit.NANOSECONDS.sleep(80000000);
+            System.out.println("CCCLLfffffffLLLLLfffffffftttttttfLLLCCCCLLLCLLLLLCC");
+            TimeUnit.NANOSECONDS.sleep(80000000);
+            System.out.println("tt11111111ttffffffLCCCCCLLLfft111tfLLLLLLLfftfLLLLL");
+            TimeUnit.NANOSECONDS.sleep(80000000);
+            System.out.println("1111111tfffffttfCG0GGCCLLLCCLfLLfffLfffLLfft11fLLLf");
+            TimeUnit.NANOSECONDS.sleep(80000000);
+            System.out.println("tttftttfffftttCGGGLffffffffLfLLLLLLLffffttffftfffff");
+            TimeUnit.NANOSECONDS.sleep(80000000);
+            System.out.println("ffffffftttttLGCCCfttttt1tffffffLfffLftt111tffffffff");
+            TimeUnit.NANOSECONDS.sleep(80000000);
+            System.out.println("tttttttttttfCffft11111tfLCCGGCLfLffLLLfttttttttttff");
+            TimeUnit.NANOSECONDS.sleep(80000000);
+            System.out.println("LLLffffttttCLfLftttfffLCGGGG00GLLCLLCLLffffffffffff");
+            TimeUnit.NANOSECONDS.sleep(80000000);
+            System.out.println("LLLLLLfftttCLGCCCCCGGGGGGGGGG00GLCCCCLLLLLLLLLLLLLL");
+            TimeUnit.NANOSECONDS.sleep(80000000);
+            System.out.println("LLLLLLLLLLLCLGCCCCCCGGGGGGGGGG0GGCLCCCCLLLLLLfffLLL");
+            TimeUnit.NANOSECONDS.sleep(80000000);
+            System.out.println("GCCLLLLCLLfLfLCCGGGGCCCCGGGGGG0000CCCGCLLLLLLLLLLLL");
+            TimeUnit.NANOSECONDS.sleep(80000000);
+            System.out.println("GGCCCLLLLfffLLGCCCLLLLLLftt1tffCG00CCLCLLCCCLCCGGGC");
+            TimeUnit.NANOSECONDS.sleep(80000000);
+            System.out.println("CLLLLLLLLLLLLCCt11111fLLt11tfLLCG00GGCCLLLCLfLLLLLL");
+            TimeUnit.NANOSECONDS.sleep(80000000);
+            System.out.println("LLLLfffLffLLfCCfttttffGGCCCCCGGGG00GG0CLLLftttfffft");
+            TimeUnit.NANOSECONDS.sleep(80000000);
+            System.out.println("LfLLLCCCCCLLCCGGGCCCLLG00GCLCCCGGGGGCLLLLLLLLLLCLLL");
+            TimeUnit.NANOSECONDS.sleep(80000000);
+            System.out.println("ffLLCCCCCCCCLLCCCCCLfLCGGGCLLLLLCCGGG0GLLLfffffffLL");
+            TimeUnit.NANOSECONDS.sleep(80000000);
+            System.out.println("LLLLLLfLLLLLLLLCLLffLLtttffLLffLCLCGGG@80000GG0GLLL");
+            TimeUnit.NANOSECONDS.sleep(80000000);
+            System.out.println("LLLLLLfLLLLLCCCLLffffffttffLCLffLLCGGL88888@8@88@88");
+            TimeUnit.NANOSECONDS.sleep(80000000);
+            System.out.println("LLLLLLLLLLffLLLfffftfLLLffLCCCLffLLGCL88880808808@@");
+            TimeUnit.NANOSECONDS.sleep(80000000);
+            System.out.println("LLLLLLLLLLLLLLLC08GftfLCCCCCLLffffLCLC888888000G088");
+            TimeUnit.NANOSECONDS.sleep(80000000);
+            System.out.println("fffLLLLLLCCLCG888880CttttttttttffLLLLG088880800G088");
+            TimeUnit.NANOSECONDS.sleep(80000000);
+            System.out.println("ffffffLLLLCG888800800LfftttttttffLffCLfLCG0G000G000");
+            TimeUnit.NANOSECONDS.sleep(80000000);
+            System.out.println("LLLffLLLC08@8000008000CLttffffffffLCCLLLLC00000GG00");
+            TimeUnit.NANOSECONDS.sleep(80000000);
+            System.out.println("fffLLLC08@880000008880GGCffffffffCGCCGCCGG00000GG00");
+            TimeUnit.NANOSECONDS.sleep(80000000);
+            System.out.println("LLLLC08@88880000000GCLfLGGCCCCLfCGGGGGCGGG000000GGG");
+            TimeUnit.NANOSECONDS.sleep(80000000);
+            System.out.println("CCC0888888880000000CCCCLLCCCCCGGCG000GGGGGG00000GGG");
+            TimeUnit.NANOSECONDS.sleep(80000000);
+            System.out.println("***************************************************");
+            TimeUnit.NANOSECONDS.sleep(80000000);
+            System.out.println("*                                                 *");
+            TimeUnit.NANOSECONDS.sleep(80000000);
+            System.out.println("*                                                 *");
+            TimeUnit.NANOSECONDS.sleep(80000000);
+            System.out.println("*                 Happy Birthday!                 *");
+            TimeUnit.NANOSECONDS.sleep(80000000);
+            System.out.println("*                                                 *");
+            TimeUnit.NANOSECONDS.sleep(80000000);
+            System.out.println("*                                                 *");
+            TimeUnit.NANOSECONDS.sleep(80000000);
+            System.out.println("***************************************************");
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+    }
+}
