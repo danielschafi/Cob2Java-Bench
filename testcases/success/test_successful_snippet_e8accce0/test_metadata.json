@@ -1,0 +1,20 @@
+{
+    "cobol_file": {
+        "file_name": "successful_snippet_e8accce0.cob",
+        "content": "       IDENTIFICATION DIVISION.\n       PROGRAM-ID. AOC-2020-03-2.\n       AUTHOR. ANNA KOSIERADZKA.\n      \n       ENVIRONMENT DIVISION.\n       INPUT-OUTPUT SECTION.\n       FILE-CONTROL.\n           SELECT INPUTFILE ASSIGN TO \"d3.input\"\n           ORGANIZATION IS LINE SEQUENTIAL.\n           \n       DATA DIVISION.\n       FILE SECTION.\n         FD INPUTFILE.\n         01 INPUTRECORD PIC X(31).\n       WORKING-STORAGE SECTION.\n         01 FILE-STATUS PIC 9 VALUE 0.\n         01 WS-ARR-LEN PIC 9(3) VALUE 323.\n         01 WS-ARRAY PIC X(31) OCCURS 1 to 500 DEPENDING ON WS-ARR-LEN.\n         01 WS-TREES-PRODUCT PIC 9(20) VALUE 1.\n\n       LOCAL-STORAGE SECTION.\n         01 TREES UNSIGNED-INT VALUE 0.\n         01 X UNSIGNED-INT VALUE 1.\n         01 Y UNSIGNED-INT VALUE 1.\n         01 DELTA-X UNSIGNED-INT VALUE 1.\n         01 DELTA-Y UNSIGNED-INT VALUE 1.\n         01 MAP-WIDTH  UNSIGNED-INT VALUE 31.\n\n       PROCEDURE DIVISION.\n       001-MAIN.\n           OPEN INPUT INPUTFILE.\n           PERFORM 002-READ UNTIL FILE-STATUS = 1.\n           CLOSE INPUTFILE.\n           PERFORM 004-PROCESS-DELTAS.\n           DISPLAY WS-TREES-PRODUCT.\n           STOP RUN.\n\n       002-READ.\n           READ INPUTFILE\n               AT END MOVE 1 TO FILE-STATUS\n               NOT AT END PERFORM 003-WRITE-TO-ARRAY\n           END-READ.\n       \n       003-WRITE-TO-ARRAY.\n           MOVE INPUTRECORD TO WS-ARRAY(X)\n           ADD 1 to X.\n\n       004-PROCESS-DELTAS.\n           PERFORM 005-PROCESS-DELTAS-PAIR.\n           MOVE 3 TO DELTA-Y.\n           PERFORM 005-PROCESS-DELTAS-PAIR.\n           MOVE 5 TO DELTA-Y.\n           PERFORM 005-PROCESS-DELTAS-PAIR.\n           MOVE 7 TO DELTA-Y.\n           PERFORM 005-PROCESS-DELTAS-PAIR.\n           MOVE 2 TO DELTA-X.\n           MOVE 1 TO DELTA-Y.\n           PERFORM 005-PROCESS-DELTAS-PAIR.\n          \n       005-PROCESS-DELTAS-PAIR.\n           MOVE 1 TO X.\n           MOVE 1 TO Y.\n           MOVE 0 TO TREES.\n           PERFORM 006-LOOP UNTIL X >= WS-ARR-LEN.\n           COMPUTE WS-TREES-PRODUCT = WS-TREES-PRODUCT * TREES.\n           \n       006-LOOP.\n           ADD DELTA-X TO X.\n           ADD DELTA-Y TO Y.\n           COMPUTE Y = FUNCTION MOD(Y, MAP-WIDTH).\n           IF Y = 0 THEN \n               MOVE MAP-WIDTH TO Y\n           END-IF.\n           IF WS-ARRAY(X)(Y:1) = '#' THEN \n              ADD 1 TO TREES\n           END-IF.\n"
+    },
+    "input_files": [
+        {
+            "file_name": "d3.input",
+            "content": "..#..#....#.###...#.#.#.##....\n...##.#.....#.#.......#.......#\n.....##...###..#..............#\n.......#.##....#.#.#...........\n........#....#.......##.....#..\n..#.##.....#..#...........#....\n.#..#...##..#..#......#.....#..\n.........#.#..#.#.....#..#.....\n...#...#..........#.....##.....\n....#......#.#....#.......##...\n#.#..#.#..#....#.....#.........\n.#........#.#.#..#.............\n.....##....#....##.............\n..#.#......#.##...#.#..........\n...#.....#.....#.#.............\n#.....#.#.....#.#.....#........\n..##...........##....#.........\n....#.....#..#.#...#.#.........\n.#.....#.#.#..#................\n.......#...#..#................\n#...#.#........#...#.....#.....\n...#.....##.#.#..#.............\n##.#.....#.............#.......\n.#....#..#.#..#.#..............\n.........#...#.#...#...........\n.#.#.......#..#................\n...#...#.#...#.................\n.....#.#.......#.#.............\n#....#..#..#...#...............\n.#.#............#..#...........\n...#.#..#.#...................."
+        }
+    ],
+    "output_files": [],
+    "input_output_files": [],
+    "sysin_file": null,
+    "code_file": "successful_snippet_e8accce0.cob",
+    "compiled_file": "successful_snippet_e8accce0",
+    "expected_output": "00000000000000002240\n",
+    "expected_output_files": [],
+    "expected_input_output_files": []
+}

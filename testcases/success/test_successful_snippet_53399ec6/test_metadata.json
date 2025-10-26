@@ -1,0 +1,15 @@
+{
+    "cobol_file": {
+        "file_name": "successful_snippet_53399ec6.cob",
+        "content": "       IDENTIFICATION DIVISION.\n       PROGRAM-ID.  MERTENS.\n\n       DATA DIVISION.\n       WORKING-STORAGE SECTION.\n       01 VARIABLES.\n          03 M             PIC S99 OCCURS 1000 TIMES.\n          03 N             PIC 9(4).\n          03 K             PIC 9(4).\n          03 V             PIC 9(4).\n          03 IS-ZERO       PIC 99 VALUE 0.\n          03 CROSS-ZERO    PIC 99 VALUE 0.\n\n       01 OUTPUT-FORMAT.\n          03 OUT-ITEM. \n             05 OUT-NUM    PIC -9.\n             05 FILLER     PIC X VALUE SPACE.\n          03 OUT-LINE      PIC X(30) VALUE SPACES.\n          03 OUT-PTR       PIC 99 VALUE 4.\n\n       PROCEDURE DIVISION.\n       BEGIN.\n           PERFORM GENERATE-MERTENS.\n           PERFORM WRITE-TABLE.\n           PERFORM COUNT-ZEROES.\n           STOP RUN.\n\n       GENERATE-MERTENS.\n           MOVE 1 TO M(1).\n           PERFORM MERTENS-OUTER-LOOP VARYING N FROM 2 BY 1\n               UNTIL N IS GREATER THAN 1000.\n    \n       MERTENS-OUTER-LOOP.\n           MOVE 1 TO M(N).\n           PERFORM MERTENS-INNER-LOOP VARYING K FROM 2 BY 1\n               UNTIL K IS GREATER THAN N.\n\n       MERTENS-INNER-LOOP.\n           DIVIDE N BY K GIVING V.\n           SUBTRACT M(V) FROM M(N).\n\n       WRITE-TABLE.\n           DISPLAY \"The first 99 Mertens numbers are: \"\n           PERFORM WRITE-ITEM VARYING N FROM 1 BY 1\n               UNTIL N IS GREATER THAN 99.\n  \n       WRITE-ITEM.\n           MOVE M(N) TO OUT-NUM.\n           STRING OUT-ITEM DELIMITED BY SIZE INTO OUT-LINE\n               WITH POINTER OUT-PTR.\n           IF OUT-PTR IS EQUAL TO 31,\n               DISPLAY OUT-LINE,\n               MOVE 1 TO OUT-PTR.\n\n       COUNT-ZEROES.\n           PERFORM TEST-N-ZERO VARYING N FROM 2 BY 1\n               UNTIL N IS GREATER THAN 1000.\n           DISPLAY \"M(N) is zero \" IS-ZERO \" times.\".\n           DISPLAY \"M(N) crosses zero \" CROSS-ZERO \" times.\".\n\n       TEST-N-ZERO.\n           IF M(N) IS EQUAL TO ZERO,\n               ADD 1 TO IS-ZERO,\n               SUBTRACT 1 FROM N GIVING K,\n               IF M(K) IS NOT EQUAL TO ZERO,\n                   ADD 1 TO CROSS-ZERO.\n"
+    },
+    "input_files": [],
+    "output_files": [],
+    "input_output_files": [],
+    "sysin_file": null,
+    "code_file": "successful_snippet_53399ec6.cob",
+    "compiled_file": "successful_snippet_53399ec6",
+    "expected_output": "The first 99 Mertens numbers are: \n    1  0 -1 -1 -2 -1 -2 -2 -2 \n-1 -2 -2 -3 -2 -1 -1 -2 -2 -3 \n-3 -2 -1 -2 -2 -2 -1 -1 -1 -2 \n-3 -4 -4 -3 -2 -1 -1 -2 -1  0 \n 0 -1 -2 -3 -3 -3 -2 -3 -3 -3 \n-3 -2 -2 -3 -3 -2 -2 -1  0 -1 \n-1 -2 -1 -1 -1  0 -1 -2 -2 -1 \n-2 -3 -3 -4 -3 -3 -3 -2 -3 -4 \n-4 -4 -3 -4 -4 -3 -2 -1 -1 -2 \n-2 -1 -1  0  1  2  2  1  1  1 \nM(N) is zero 92 times.\nM(N) crosses zero 59 times.\n",
+    "expected_output_files": [],
+    "expected_input_output_files": []
+}

@@ -1,0 +1,18 @@
+{
+    "cobol_file": {
+        "file_name": "successful_snippet_9964c336.cob",
+        "content": "       *> Try POH\n       *> author: Leonardone @ NEETSDKASU\n       *> \u2193 1\u884c\u3042\u305f\u308a\u306e\u5b57\u6570\u306e\u76ee\u5b89\n       *>==============================================================$\n       IDENTIFICATION DIVISION.\n       PROGRAM-ID. MAIN.\n       ENVIRONMENT DIVISION.\n       CONFIGURATION SECTION.\n       REPOSITORY.\n              FUNCTION ALL INTRINSIC.\n       DATA DIVISION.\n       WORKING-STORAGE SECTION.\n       01 ANSWER-VALUES.\n              05 INT-N   PIC 999.\n              05 STR-TS  PIC X(20).\n              05 INT-T   PIC 999.\n              05 STR-S   PIC XXX.\n              05 INT-H   PIC 999 VALUE IS 0.\n              05 INT-X   PIC 999 VALUE IS 0.\n              05 INT-Y   PIC 999.\n              05 INT-P   PIC 999 VALUE IS 24.\n              05 INT-I   PIC 999.\n              05 INT-Z   PIC ZZ9.\n       PROCEDURE DIVISION.\n       MAIN-ROUTINE SECTION.\n       000-MAIN.\n              \n              ACCEPT INT-N.\n              \n              PERFORM WITH TEST BEFORE\n              VARYING INT-I FROM 1 BY 1 UNTIL INT-I > INT-N\n                     ACCEPT STR-TS\n                     UNSTRING STR-TS DELIMITED BY \" \" INTO INT-T STR-S\n                     IF INT-X > 0 THEN\n                            MOVE INT-T TO INT-Y\n                            SUBTRACT INT-H FROM INT-Y\n                            IF INT-Y >= INT-X THEN\n                                   ADD INT-X TO INT-P\n                                   MOVE 0 TO INT-X\n                            ELSE\n                                   ADD INT-Y TO INT-P\n                                   SUBTRACT INT-Y FROM INT-X\n                            END-IF\n                     END-IF\n                     MOVE INT-T TO INT-H\n                     IF STR-S = \"out\" THEN\n                            ADD 3 TO INT-X\n                     ELSE\n                            ADD 5 TO INT-X\n                     END-IF\n              END-PERFORM.\n              \n              IF INT-X > 0 THEN\n                     MOVE 24 TO INT-Y\n                     SUBTRACT INT-H FROM INT-Y\n                     IF INT-Y >= INT-X THEN\n                            ADD INT-X TO INT-P\n                     ELSE\n                            ADD INT-Y TO INT-P\n                     END-IF\n              END-IF.\n              \n              MOVE INT-P TO INT-Z.\n              DISPLAY TRIM(INT-Z).\n              \n       END PROGRAM MAIN.\n"
+    },
+    "input_files": [],
+    "output_files": [],
+    "input_output_files": [],
+    "sysin_file": {
+        "file_name": "sysin.txt",
+        "content": "005\n001 out\n003 in\n007 out\n012 in\n015 out"
+    },
+    "code_file": "successful_snippet_9964c336.cob",
+    "compiled_file": "successful_snippet_9964c336",
+    "expected_output": "43\n",
+    "expected_output_files": [],
+    "expected_input_output_files": []
+}

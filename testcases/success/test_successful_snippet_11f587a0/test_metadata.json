@@ -1,0 +1,20 @@
+{
+    "cobol_file": {
+        "file_name": "successful_snippet_11f587a0.cob",
+        "content": "       IDENTIFICATION DIVISION.\n       PROGRAM-ID. AOC-2020-04-1.\n       AUTHOR. ANNA KOSIERADZKA.\n      \n       ENVIRONMENT DIVISION.\n       INPUT-OUTPUT SECTION.\n       FILE-CONTROL.\n           SELECT INPUTFILE ASSIGN TO \"d4.input\"\n           ORGANIZATION IS LINE SEQUENTIAL.\n           \n       DATA DIVISION.\n       FILE SECTION.\n         FD INPUTFILE\n         RECORD IS VARYING IN SIZE FROM 1 to 99\n         DEPENDING ON REC-LEN.\n         01 INPUTRECORD PIC X(99).\n       WORKING-STORAGE SECTION.\n         01 FILE-STATUS PIC 9 VALUE 0.\n         01 REC-LEN PIC 9(2) COMP.\n         01 WS-ROW PIC X(16) OCCURS 8 TIMES.\n         01 WS-CHAR PIC X.\n\n       LOCAL-STORAGE SECTION.\n         01 CORRECT-PASSPORTS UNSIGNED-INT VALUE 0.\n         01 FOUND-FIELDS UNSIGNED-INT VALUE 0.\n         01 STRING-PTR UNSIGNED-INT VALUE 1.\n         01 I UNSIGNED-INT VALUE 1.\n\n       PROCEDURE DIVISION.\n       001-MAIN.\n           OPEN INPUT INPUTFILE.\n           PERFORM 002-READ UNTIL FILE-STATUS = 1.\n           CLOSE INPUTFILE.\n           PERFORM 004-NEXT-PASSPORT.\n           DISPLAY CORRECT-PASSPORTS.\n           STOP RUN.\n\n       002-READ.\n            READ INPUTFILE\n                AT END MOVE 1 TO FILE-STATUS\n                NOT AT END PERFORM 003-PROCESS-RECORD\n            END-READ.\n       \n       003-PROCESS-RECORD.\n           IF REC-LEN = 0 THEN\n              PERFORM 004-NEXT-PASSPORT\n           ELSE \n              PERFORM 005-PROCESS-ROW\n           END-IF.\n          \n       004-NEXT-PASSPORT.\n           IF FOUND-FIELDS = 7 THEN \n              ADD 1 TO CORRECT-PASSPORTS\n           END-IF.\n           MOVE 0 TO FOUND-FIELDS.\n           \n       005-PROCESS-ROW.\n           MOVE 1 TO STRING-PTR.\n           PERFORM VARYING I FROM 1 BY 1 UNTIL I > 8\n             UNSTRING INPUTRECORD DELIMITED BY SPACE INTO WS-ROW(I)\n             WITH POINTER STRING-PTR\n           END-PERFORM.\n           \n           PERFORM VARYING I FROM 1 BY 1 UNTIL I > 8\n              MOVE WS-ROW(I)(1:1) TO WS-CHAR\n              IF NOT WS-CHAR ='c' AND NOT WS-CHAR = ' ' THEN\n                 ADD 1 TO FOUND-FIELDS\n              END-IF\n           END-PERFORM.\n"
+    },
+    "input_files": [
+        {
+            "file_name": "d4.input",
+            "content": "ecl:gry pid:860033327 eyr:2020 hcl:#fffffd byr:1937 iyr:2017 hgt:183cm\n\niyr:2013 ecl:amb cid:350 eyr:2023 pid:028048884 hcl:#cfa07d byr:1929\n\nhcl:#ae17e1 iyr:2013 eyr:2024 ecl:brn pid:760753108 byr:1931 hgt:179cm\n\nhcl:#cfa07d eyr:2025 pid:166559648 iyr:2011 ecl:brn hgt:59in\n\npid:545868362 eyr:2029 ecl:blu hcl:#888785 hgt:164cm byr:1974 iyr:2019\n\neyr:2027 ecl:grn pid:837186594 iyr:2020 hcl:#b6652a byr:1946 hgt:170cm\n\niyr:2010 hgt:158cm hcl:#b6652a ecl:blu byr:1944 eyr:2021 pid:093154719\n\nbyr:1952 iyr:2014 pid:756932371 hgt:174cm ecl:hzl hcl:#623a2f eyr:2030 cid:141\n\necl:amb hcl:#a97842 byr:1965 pid:307925873 eyr:2028 iyr:2016 hgt:193cm\n\nhgt:185cm byr:1993 ecl:oth iyr:2015 eyr:2022 pid:896056539 hcl:#a97842"
+        }
+    ],
+    "output_files": [],
+    "input_output_files": [],
+    "sysin_file": null,
+    "code_file": "successful_snippet_11f587a0.cob",
+    "compiled_file": "successful_snippet_11f587a0",
+    "expected_output": "0000000008\n",
+    "expected_output_files": [],
+    "expected_input_output_files": []
+}

@@ -1,0 +1,18 @@
+{
+    "cobol_file": {
+        "file_name": "successful_snippet_d4a95737.cob",
+        "content": "      *================================================================*\n       IDENTIFICATION                                  DIVISION.\n      *================================================================*\n       PROGRAM-ID. \"007-Tabuada\".\n       AUTHOR. \"LUCAS KURATA\".\n      *================================================================*\n       ENVIRONMENT                                     DIVISION.\n      *=================================================================\n      *-----------------------------------------------------------------\n       CONFIGURATION                          SECTION.\n      *-----------------------------------------------------------------\n\n       SPECIAL-NAMES.\n\n\n      *-----------------------------------------------------------------\n       INPUT-OUTPUT                           SECTION.\n      *=================================================================\n\n      *=================================================================\n      *-----------------------------------------------------------------\n       FILE-CONTROL.\n      *=================================================================\n       DATA                                            DIVISION.\n      *=================================================================\n      *-----------------------------------------------------------------\n       FILE                                   SECTION.\n      *-----------------------------------------------------------------\n      *-----------------------------------------------------------------\n       WORKING-STORAGE                     SECTION.\n       77 WRK-USUARIO                  PIC 9(2) VALUE ZEROS.\n       77 WRK-NUM1                     PIC 9(2) VALUE ZEROS.\n       77 WRK-RESULTADO                PIC 9(2) VALUE ZEROS.\n       77 WRK-REPETICAO                PIC 9(1) VALUE ZEROS.\n       77 WRK-NUM2                     PIC 9(2) VALUE ZEROS.\n       77 WRK-INC                      PIC 9(2) VALUE ZEROS.\n\n      *=================================================================\n       PROCEDURE                                       DIVISION.\n      *=================================================================\n           DISPLAY 'Digite o numero desejado: '\n           ACCEPT WRK-NUM1\n           PERFORM UNTIL WRK-REPETICAO EQUAL 1\n               IF WRK-NUM1 GREATER 0 AND WRK-NUM1 LESS 11\n                   COMPUTE WRK-RESULTADO EQUAL WRK-NUM1 * WRK-NUM2\n                   DISPLAY WRK-NUM1 ' * ' WRK-NUM2 ' = ' WRK-RESULTADO\n                   ADD 1 TO WRK-NUM2\n                   IF WRK-NUM2 EQUAL 11\n                       ADD 1 TO WRK-REPETICAO\n                   END-IF\n                   IF WRK-NUM1 LESS 0 OR WRK-NUM1 GREATER 10\n                       DISPLAY 'Erro, tente novamente!'\n                       ADD 1 TO WRK-REPETICAO\n                   END-IF\n               END-IF\n\n\n\n\n           END-PERFORM\n\n           STOP RUN.\n"
+    },
+    "input_files": [],
+    "output_files": [],
+    "input_output_files": [],
+    "sysin_file": {
+        "file_name": "sysin.txt",
+        "content": "05"
+    },
+    "code_file": "successful_snippet_d4a95737.cob",
+    "compiled_file": "successful_snippet_d4a95737",
+    "expected_output": "Digite o numero desejado: \n05 * 00 = 00\n05 * 01 = 05\n05 * 02 = 10\n05 * 03 = 15\n05 * 04 = 20\n05 * 05 = 25\n05 * 06 = 30\n05 * 07 = 35\n05 * 08 = 40\n05 * 09 = 45\n05 * 10 = 50\n",
+    "expected_output_files": [],
+    "expected_input_output_files": []
+}

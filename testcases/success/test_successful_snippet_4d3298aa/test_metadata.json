@@ -1,0 +1,20 @@
+{
+    "cobol_file": {
+        "file_name": "successful_snippet_4d3298aa.cob",
+        "content": "       IDENTIFICATION DIVISION.\n       PROGRAM-ID. MD5.\n       AUTHOR.  Bill Gunshannon\n       INSTALLATION.  Home.\n       DATE-WRITTEN.  16 December 2021.\n      ************************************************************\n      ** Program Abstract:\n      **   Use the md5sum utility and pass the HASH back using\n      **     a temp file.  Not elegant, but it works.\n      ************************************************************\n       \n       \n       ENVIRONMENT DIVISION.\n       \n       INPUT-OUTPUT SECTION.\n       FILE-CONTROL.\n            SELECT Tmp-MD5 ASSIGN TO \"MD5\"\n                 ORGANIZATION IS LINE SEQUENTIAL.\n\n\n       DATA DIVISION.\n\n       FILE SECTION.\n       \n       FD  Tmp-MD5\n           DATA RECORD IS MD5-Rec.\n       01  MD5-Rec       PIC X(32).\n\n       \n       WORKING-STORAGE SECTION.\n       \n       01 Eof                   PIC X     VALUE 'F'.\n       01 Str1.\n          05  Pre-cmd   PIC X(8)\n              VALUE 'echo -n '.\n          05  Str1-complete.\n              10  Str1-Part1  PIC X(26)\n                  VALUE  'The quick brown fox jumps'.\n              10  Str1-Part2  PIC X(19)\n                  VALUE  ' over the lazy dog'.\n          05  Post-cmd    PIC X(20)\n              VALUE  ' | md5sum > MD5'.\n       01  Str1-MD5          PIC X(32).\n       \n       \n       PROCEDURE DIVISION.\n       \n       Main-Program.\n\n           DISPLAY Str1-complete.\n           PERFORM Get-MD5.\n           DISPLAY Str1-MD5.\n\n           STOP RUN.\n\n       Get-MD5.\n       \n           CALL \"SYSTEM\" USING Str1.\n           OPEN INPUT Tmp-MD5.\n           READ Tmp-MD5 INTO Str1-MD5.\n           CLOSE Tmp-MD5.\n           CALL \"CBL_DELETE_FILE\" USING 'MD5'.\n"
+    },
+    "input_files": [
+        {
+            "file_name": "MD5",
+            "content": "9f86d148998466d0b024add5b1049e31\n5d41402abc4b2a76b9719d911017c592\n098f6bcd4621d373cade4e832627b4f6\ne4d909c290d0fb1ca068ffaddf22cbd0\nd8578edf8458ce06fbc5bb76a58c5ca4\n25d55ad283aa400af464c76d713c07ad\n8277e0910d750195b448797616e091ad\n7fc56270e7a70fa81a5935b72eacbe29"
+        }
+    ],
+    "output_files": [],
+    "input_output_files": [],
+    "sysin_file": null,
+    "code_file": "successful_snippet_4d3298aa.cob",
+    "compiled_file": "successful_snippet_4d3298aa",
+    "expected_output": "The quick brown fox jumps  over the lazy dog \n9e107d9d372bb6826bd81d3542a419d6\n",
+    "expected_output_files": [],
+    "expected_input_output_files": []
+}

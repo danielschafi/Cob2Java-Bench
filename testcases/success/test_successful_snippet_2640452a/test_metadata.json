@@ -1,0 +1,20 @@
+{
+    "cobol_file": {
+        "file_name": "successful_snippet_2640452a.cob",
+        "content": "       IDENTIFICATION DIVISION.\n       PROGRAM-ID. AOC-2020-12-1.\n       AUTHOR ANNA KOSIERADZKA.\n      \n       ENVIRONMENT DIVISION.\n       INPUT-OUTPUT SECTION.\n       FILE-CONTROL.\n           SELECT INPUTFILE ASSIGN TO \"d12.input\"\n           ORGANIZATION IS LINE SEQUENTIAL.\n           \n       DATA DIVISION.\n       FILE SECTION.\n         FD INPUTFILE\n         RECORD IS VARYING IN SIZE FROM 1 to 99\n         DEPENDING ON REC-LEN.\n         01 INPUTRECORD.\n           05 INPUT-ACTION PIC X.\n           05 INPUT-ARG PIC 9(3).\n         \n       WORKING-STORAGE SECTION.\n         01 FILE-STATUS PIC 9 VALUE 0.\n         01 REC-LEN PIC 9(2) COMP.\n         01 CURR-DIR PIC X VALUE 'E'.\n         01 DIR PIC X VALUE 'E'.\n         01 DX PIC S9 VALUE 1.\n         01 DY PIC S9 VALUE 0.\n         01 X PIC S9(6) VALUE 0.\n         01 Y PIC S9(6) VALUE 0.\n         01 N PIC S9(6) VALUE 0.\n         01 ARG PIC S9(3) VALUE 0.\n\n       PROCEDURE DIVISION.\n       001-MAIN.\n           OPEN INPUT INPUTFILE.\n           PERFORM 002-READ UNTIL FILE-STATUS = 1.\n           CLOSE INPUTFILE.\n           COMPUTE N = FUNCTION ABS(X) + FUNCTION ABS(Y).\n           DISPLAY N.\n           STOP RUN.\n\n       002-READ.\n            READ INPUTFILE\n                AT END MOVE 1 TO FILE-STATUS\n                NOT AT END PERFORM 003-PROCESS-RECORD\n            END-READ.\n       \n       003-PROCESS-RECORD.\n           COMPUTE ARG = FUNCTION NUMVAL(INPUT-ARG)\n           PERFORM 004-COMPUTE-DIRECTION.\n           PERFORM 005-COMPUTE-DELTAS.\n           PERFORM 008-NAVIGATE.\n           \n       004-COMPUTE-DIRECTION.\n           IF INPUT-ACTION = 'N' OR INPUT-ACTION = 'S' \n              OR INPUT-ACTION = 'E' OR INPUT-ACTION = 'W' THEN \n                  MOVE INPUT-ACTION TO DIR\n                  EXIT PARAGRAPH\n           END-IF.\n           IF INPUT-ACTION = 'F' THEN\n              MOVE CURR-DIR TO DIR\n              EXIT PARAGRAPH\n           END-IF.\n           COMPUTE N = ARG / 90.\n           IF INPUT-ACTION = 'R' THEN\n              PERFORM 006-ROTATE-RIGHT N TIMES\n           ELSE \n               PERFORM 007-ROTATE-LEFT N TIMES\n           END-IF.\n           MOVE CURR-DIR TO DIR.\n           \n      * N -> E -> S -> W     \n       006-ROTATE-RIGHT.\n           EVALUATE CURR-DIR\n            WHEN 'N'\n               MOVE 'E' TO CURR-DIR\n            WHEN 'E'\n               MOVE 'S' TO CURR-DIR\n            WHEN 'S'\n               MOVE 'W' TO CURR-DIR\n            WHEN 'W'\n               MOVE 'N' TO CURR-DIR\n           END-EVALUATE.\n\n      * N -> W -> S -> E\n       007-ROTATE-LEFT.\n           EVALUATE CURR-DIR\n            WHEN 'N'\n               MOVE 'W' TO CURR-DIR\n            WHEN 'W'\n               MOVE 'S' TO CURR-DIR\n            WHEN 'S'\n               MOVE 'E' TO CURR-DIR\n            WHEN 'E'\n               MOVE 'N' TO CURR-DIR\n           END-EVALUATE.\n\n       005-COMPUTE-DELTAS.\n           EVALUATE DIR\n            WHEN 'N'\n               MOVE -1 TO DX\n               MOVE 0 TO DY\n            WHEN 'W'\n               MOVE 0 TO DX\n               MOVE -1 TO DY\n            WHEN 'S'\n               MOVE 1 TO DX\n               MOVE 0 TO DY\n            WHEN 'E'\n               MOVE 0 TO DX\n               MOVE 1 TO DY\n           END-EVALUATE.\n\n       008-NAVIGATE.\n           IF INPUT-ACTION = 'L' OR INPUT-ACTION = 'R' THEN\n              EXIT PARAGRAPH\n           END-IF.\n           COMPUTE X = X + DX * ARG.\n           COMPUTE Y = Y + DY * ARG.\n"
+    },
+    "input_files": [
+        {
+            "file_name": "d12.input",
+            "content": "F10\nN3\nF7\nR90\nF11\nL90\nW5\nR180\nF25\nL270\nE12"
+        }
+    ],
+    "output_files": [],
+    "input_output_files": [],
+    "sysin_file": null,
+    "code_file": "successful_snippet_2640452a.cob",
+    "compiled_file": "successful_snippet_2640452a",
+    "expected_output": "+000009\n",
+    "expected_output_files": [],
+    "expected_input_output_files": []
+}

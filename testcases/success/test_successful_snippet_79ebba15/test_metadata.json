@@ -1,0 +1,15 @@
+{
+    "cobol_file": {
+        "file_name": "successful_snippet_79ebba15.cob",
+        "content": "        >>SOURCE FORMAT FREE\n*> This code is dedicated to the public domain\n*> This is GNUCOBOL 2.0\nidentification division.\nprogram-id. insertionsort.\nenvironment division.\nconfiguration section.\nrepository. function all intrinsic.\ndata division.\nworking-storage section.\n01  filler.\n    03  a pic 99.\n    03  a-lim pic 99 value 10.\n    03  array occurs 10 pic 99.\n\n01  filler.\n    03  s pic 99.\n    03  o pic 99.\n    03  o1 pic 99.\n    03  sorted-len pic 99.\n    03  sorted-lim pic 99 value 10.\n    03  sorted-array occurs 10 pic 99.\n\nprocedure division.\nstart-insertionsort.\n\n    *> fill the array\n    compute a = random(seconds-past-midnight)\n    perform varying a from 1 by 1 until a > a-lim\n        compute array(a) = random() * 100\n    end-perform\n\n    *> display the array\n    perform varying a from 1 by 1 until a > a-lim\n        display space array(a) with no advancing\n    end-perform\n    display  space 'initial array'\n\n    *> sort the array\n    move 0 to sorted-len\n    perform varying a from 1 by 1 until a > a-lim\n        *> find the insertion point\n        perform varying s from 1 by 1\n        until s > sorted-len\n        or array(a) <= sorted-array(s)\n            continue\n        end-perform\n\n        *>open the insertion point\n        perform varying o from sorted-len by -1\n        until o < s\n            compute o1 = o + 1\n            move sorted-array(o) to sorted-array(o1)\n        end-perform\n\n        *> move the array-entry to the insertion point\n        move array(a) to sorted-array(s)\n\n        add 1 to sorted-len\n    end-perform\n\n    *> display the sorted array\n    perform varying s from 1 by 1 until s > sorted-lim\n        display space sorted-array(s) with no advancing\n    end-perform\n    display space 'sorted array'\n\n    stop run\n    .\nend program insertionsort.\n"
+    },
+    "input_files": [],
+    "output_files": [],
+    "input_output_files": [],
+    "sysin_file": null,
+    "code_file": "successful_snippet_79ebba15.cob",
+    "compiled_file": "successful_snippet_79ebba15",
+    "expected_output": " 05 03 04 55 14 63 13 52 53 59 initial array\n 03 04 05 13 14 52 53 55 59 63 sorted array\n",
+    "expected_output_files": [],
+    "expected_input_output_files": []
+}

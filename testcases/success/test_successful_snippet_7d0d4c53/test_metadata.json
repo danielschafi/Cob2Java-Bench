@@ -1,0 +1,32 @@
+{
+    "cobol_file": {
+        "file_name": "successful_snippet_7d0d4c53.cob",
+        "content": "       IDENTIFICATION DIVISION.\n       PROGRAM-ID. PG3.\n       ENVIRONMENT DIVISION.\n       CONFIGURATION SECTION.\n           SPECIAL-NAMES.\n               DECIMAL-POINT IS COMMA.\n       INPUT-OUTPUT SECTION.\n      ***\n      *** DEFINE OS ARQUIVOS DE ENTRADA E SAIDA\n      ***\n       FILE-CONTROL.\n           SELECT ARQCAD ASSIGN TO \"CADASTR.DAT\"\n             ORGANIZATION IS SEQUENTIAL\n             ACCESS MODE IS SEQUENTIAL\n             FILE STATUS IS ST-ALU.\n           SELECT CADHOMEM ASSIGN TO \"CADHOME.DAT\"\n           ORGANIZATION IS SEQUENTIAL\n             ACCESS MODE IS SEQUENTIAL\n             FILE STATUS IS ST-HOM.\n           SELECT CADMULHE  ASSIGN TO \"CADMULH.DAT\"\n             ORGANIZATION IS SEQUENTIAL\n             ACCESS MODE IS SEQUENTIAL\n             FILE STATUS IS ST-MUL.\n       DATA DIVISION.\n       FILE SECTION.\n       FD  ARQCAD.\n       01  REG-ALUNO.\n            05  MATRIC.\n                10  CO-ANO     PIC  9(02).\n                10  CO-NUMERO  PIC  9(03).\n                10  CO-DIGITO  PIC  9(01).\n            05  NOME    PIC  X(30).\n            05  SEXO    PIC  X(01).\n            05  NOTA-PROVA  PIC  9(02)V99.\n        FD  CADHOMEM.\n        01  REG-CADH.\n            05  MATRICH.\n                10  CO-ANOH     PIC  9(02).\n                10  CO-NUMEROH  PIC  9(03).\n                10  CO-DIGITOH  PIC  9(01).\n            05  NOMEH    PIC  X(30).\n            05  SEXOH    PIC  X(01).\n            05  NOTA-PROVAH  PIC  9(02)V99.\n       FD  CADMULHE.\n       01  REG-CADM.\n            05  MATRICM.\n                10  CO-ANOM     PIC  9(02).\n                10  CO-NUMEROM  PIC  9(03).\n                10  CO-DIGITOM  PIC  9(01).\n            05  NOMEM    PIC  X(30).\n            05  SEXOM    PIC  X(01).\n            05  NOTA-PROVAM  PIC  9(02)V99.\n       WORKING-STORAGE SECTION.\n       01 WS-DADOS.\n           02  FIM-ARQ      PIC 9(01).\n           02  ST-ALU       PIC X(02).\n           02  ST-HOM       PIC X(02).\n           02  ST-MUL       PIC X(02).\n           02  MEDIA-M      PIC 9(02)V99.\n           02  MEDIA-H      PIC 9(02)V99.\n           02  TOTALH       PIC 9(02).\n           02  TOTALM       PIC 9(02).\n           02  TOTPRH       PIC 9(04)V99.\n           02  TOTPRM       PIC 9(04)V99.\n           02  EDICAO-M     PIC Z9,99.\n           02  EDICAO-H     PIC Z9,99.\n       PROCEDURE DIVISION.\n       INICIO.\n           PERFORM ABRE-ARQ.\n           MOVE ZEROS TO WS-DADOS.\n           PERFORM PROCESSO.\n           PERFORM FINALIZA.\n           STOP RUN.\n       ABRE-ARQ.\n           OPEN INPUT ARQCAD.\n           IF ST-ALU NOT EQUAL '00'\n              DISPLAY 'ERRO DE ABERTURA - CAD ALUNO' ST-ALU\n              STOP RUN.\n           OPEN OUTPUT CADHOMEM.\n           IF ST-HOM NOT EQUAL '00'\n              DISPLAY 'ERRO DE ABERTURA - CAD HOMEM' ST-HOM.\n           OPEN OUTPUT CADMULHE.\n           IF ST-MUL NOT EQUAL '00'\n              DISPLAY 'ERRO DE ABERTURA - CAD MULHE' ST-MUL.\n       PROCESSO.\n           READ ARQCAD AT END MOVE 1 TO FIM-ARQ.\n           PERFORM LER-ARQ UNTIL FIM-ARQ = 1.\n           PERFORM MOSTRA-TOTAL.\n       LER-ARQ.\n           IF SEXO = \"F\"\n              PERFORM GRAVA-MULHER\n           ELSE\n              PERFORM GRAVA-HOMEM.\n           READ ARQCAD  AT END MOVE 1 TO FIM-ARQ.\n       GRAVA-MULHER.\n           ADD       1     TO TOTALM.\n           ADD NOTA-PROVA  TO TOTPRM.\n           MOVE REG-ALUNO  TO REG-CADM.\n           WRITE REG-CADM.\n       GRAVA-HOMEM.\n           ADD       1     TO TOTALH.\n           ADD NOTA-PROVA  TO TOTPRH.\n           MOVE REG-ALUNO  TO REG-CADH.\n           WRITE REG-CADH.\n       MOSTRA-TOTAL.\n           COMPUTE MEDIA-M = TOTPRM / TOTALM.\n           COMPUTE MEDIA-H = TOTPRH / TOTALH.\n           MOVE MEDIA-M TO EDICAO-M.\n           MOVE MEDIA-H TO EDICAO-H.\n           DISPLAY ' MEDIA FINAL SEM EDICAO MULHER =' MEDIA-M.\n           DISPLAY ' MEDIA FINAL SEM EDICAO HOMEM  =' MEDIA-H.\n           DISPLAY ' MEDIA FINAL MULHER =' EDICAO-M.\n           DISPLAY ' MEDIA FINAL HOMEM  =' EDICAO-H.\n       FINALIZA.\n           CLOSE ARQCAD\n                 CADHOMEM\n                 CADMULHE.\n"
+    },
+    "input_files": [
+        {
+            "file_name": "CADASTR.DAT",
+            "content": "23001451Carlos Eduardo Santos        M0875\n23002342Maria Aparecida Silva        F0925\n23003213Jo\u00e3o Pedro Oliveira          M0780\n23004584Ana Carolina Ferreira        F0895\n23005125Roberto Carlos Souza         M0650\n23006896Juliana Cristina Lima        F0910\n23007237Fernando Augusto Costa       M0825\n23008568Patricia Helena Alves        F0755\n23009129Marcos Antonio Ribeiro       M0880\n23010450Beatriz Fernanda Martins     F0945"
+        }
+    ],
+    "output_files": [
+        "CADHOME.DAT",
+        "CADMULH.DAT"
+    ],
+    "input_output_files": [],
+    "sysin_file": null,
+    "code_file": "successful_snippet_7d0d4c53.cob",
+    "compiled_file": "successful_snippet_7d0d4c53",
+    "expected_output": " MEDIA FINAL SEM EDICAO MULHER =00,00\n MEDIA FINAL SEM EDICAO HOMEM  =38,43\n MEDIA FINAL MULHER = 0,00\n MEDIA FINAL HOMEM  =38,43\n",
+    "expected_output_files": [
+        {
+            "file_name": "CADHOME.DAT",
+            "content": "23001451Carlos Eduardo Santos        M0875\n23002342Maria Aparecida Silva        F0925\n23003213Jo\u00e3o Pedro Oliveira          M0780\n23004584Ana Carolina Ferreira        F0895\n23005125Roberto Carlos Souza         M0650\n23006896Juliana Cristina Lima        F0910\n23007237Fernando Augusto Costa       M0825\n23008568Patricia Helena Alves        F0755\n23009129Marcos Antonio Ribeiro       M0880\n23010450Beatriz Fernanda Martins     F09453010450Beatriz Fernan"
+        },
+        {
+            "file_name": "CADMULH.DAT",
+            "content": ""
+        }
+    ],
+    "expected_input_output_files": []
+}

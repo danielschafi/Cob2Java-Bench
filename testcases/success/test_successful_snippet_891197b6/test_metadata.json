@@ -1,0 +1,20 @@
+{
+    "cobol_file": {
+        "file_name": "successful_snippet_891197b6.cob",
+        "content": "       IDENTIFICATION DIVISION.\n       PROGRAM-ID. AOC-2020-12-2.\n       AUTHOR ANNA KOSIERADZKA.\n      \n       ENVIRONMENT DIVISION.\n       INPUT-OUTPUT SECTION.\n       FILE-CONTROL.\n           SELECT INPUTFILE ASSIGN TO \"d12.input\"\n           ORGANIZATION IS LINE SEQUENTIAL.\n           \n       DATA DIVISION.\n       FILE SECTION.\n         FD INPUTFILE\n         RECORD IS VARYING IN SIZE FROM 1 to 10\n         DEPENDING ON REC-LEN.\n         01 INPUTRECORD.\n           05 INPUT-ACTION PIC X.\n           05 INPUT-ARG PIC 9(3).\n         \n       WORKING-STORAGE SECTION.\n         01 FILE-STATUS PIC 9 VALUE 0.\n         01 REC-LEN PIC 9(2) COMP.\n         01 WX PIC S9(8) VALUE -1.\n         01 WY PIC S9(8) VALUE 10.\n         01 W0 PIC S9(8) VALUE 0.\n         01 X PIC S9(8) VALUE 0.\n         01 Y PIC S9(8) VALUE 0.\n         01 N PIC S9(8) VALUE 0.\n         01 ARG PIC S9(3) VALUE 0.\n\n       PROCEDURE DIVISION.\n       001-MAIN.\n           OPEN INPUT INPUTFILE.\n           PERFORM 002-READ UNTIL FILE-STATUS = 1.\n           CLOSE INPUTFILE.\n           COMPUTE N = FUNCTION ABS(X) + FUNCTION ABS(Y).\n           DISPLAY N.\n           STOP RUN.\n\n       002-READ.\n            READ INPUTFILE\n                AT END MOVE 1 TO FILE-STATUS\n                NOT AT END PERFORM 003-PROCESS-RECORD\n            END-READ.\n       \n       003-PROCESS-RECORD.\n           COMPUTE ARG = FUNCTION NUMVAL(INPUT-ARG)\n           PERFORM 004-NAVIGATE.\n           \n       004-NAVIGATE.\n      * Action F means to move forward to the waypoint \n      * a number of times equal to the given value.\n           IF INPUT-ACTION = 'F' THEN\n            COMPUTE X = X + WX * ARG\n            COMPUTE Y = Y + WY * ARG\n            EXIT PARAGRAPH\n           END-IF.\n\n           COMPUTE N = ARG / 90.\n\n      * Action L means to rotate the waypoint around the ship left\n      *  (counter-clockwise) the given number of degrees.\n           IF INPUT-ACTION = 'L' THEN\n              PERFORM N TIMES\n                 COMPUTE W0 = WX\n                 COMPUTE WX = -1 * WY \n                 COMPUTE WY = W0\n               END-PERFORM\n            EXIT PARAGRAPH\n           END-IF.\n\n      * Action R means to rotate the waypoint around the ship right \n      * (clockwise) the given number of degrees.\n           IF INPUT-ACTION = 'R' THEN\n              PERFORM N TIMES\n                   COMPUTE W0 = WX\n                   COMPUTE WX = WY \n                   COMPUTE WY = -1 * W0\n               END-PERFORM\n             EXIT PARAGRAPH\n           END-IF.\n\n      * Action N means to move the waypoint north by the given value.\n           EVALUATE INPUT-ACTION\n            WHEN 'N'\n               COMPUTE WX = WX - ARG\n            WHEN 'W'\n               COMPUTE WY = WY - ARG\n            WHEN 'S'\n               COMPUTE WX = WX + ARG\n            WHEN 'E'\n               COMPUTE WY = WY + ARG\n           END-EVALUATE.\n"
+    },
+    "input_files": [
+        {
+            "file_name": "d12.input",
+            "content": "F10\nN3\nF7\nR90\nF11\nL90\nN5\nF25\nR180\nF3\nL270\nN2\nF50\nE4\nL90\nF15"
+        }
+    ],
+    "output_files": [],
+    "input_output_files": [],
+    "sysin_file": null,
+    "code_file": "successful_snippet_891197b6.cob",
+    "compiled_file": "successful_snippet_891197b6",
+    "expected_output": "+00000847\n",
+    "expected_output_files": [],
+    "expected_input_output_files": []
+}

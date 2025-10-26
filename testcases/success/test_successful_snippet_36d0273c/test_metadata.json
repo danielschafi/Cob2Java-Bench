@@ -1,0 +1,18 @@
+{
+    "cobol_file": {
+        "file_name": "successful_snippet_36d0273c.cob",
+        "content": "       IDENTIFICATION DIVISION.\n       PROGRAM-ID. INVESTIMENTO.\n      *********************************************\n      * AREA DE COMENTARIOS - REMARKS\n      * AUTHOR  = LUIS FERNANDO LAZANHA\n      * OBJETIVO: INVESTIMENTO FIANANCEIRO\n      * UTILIZAR PERFORM - UNTIL\n      * DATA    = 26/06/2021\n      *********************************************\n       ENVIRONMENT DIVISION.\n       CONFIGURATION SECTION.\n       SPECIAL-NAMES.\n           DECIMAL-POINT IS COMMA.\n       DATA DIVISION.\n       WORKING-STORAGE SECTION.\n       77 WRK-VALOR    PIC 9(06)V99  VALUE ZEROS.\n       77 WRK-ACUM     PIC 9(08)V99  VALUE ZEROS.\n       77 WRK-MESES    PIC 9(03)     VALUE 1.\n       77 WRK-TAXA     PIC 9(04)V99  VALUE ZEROS.\n       77 WRK-ACUM-ED PIC $Z.ZZ9,99  VALUE ZEROS.\n\n       PROCEDURE DIVISION.\n       0001-PRINCIPAL.\n           PERFORM 0050-INICIAR.\n           PERFORM 0100-INICIAR.\n           IF WRK-VALOR > 0\n               PERFORM 0200-PROCESSAR UNTIL WRK-VALOR = 0\n           ELSE\n               DISPLAY 'O VALOR DEVE SER !=0'\n           END-IF.\n           PERFORM 0300-FINALIZAR.\n\n           STOP RUN.\n\n       0050-INICIAR.\n           DISPLAY 'DIGITE UM VALOR DE TAXA MENSAL: '\n           ACCEPT WRK-TAXA.\n\n       0100-INICIAR.\n           DISPLAY 'DIGITE UM VALOR DE INVESTIMENTO: '\n           ACCEPT WRK-VALOR.\n\n       0200-PROCESSAR.\n           ADD 1 TO WRK-MESES.\n           ADD WRK-VALOR TO WRK-ACUM.\n           COMPUTE WRK-ACUM = WRK-ACUM * (WRK-TAXA / 100 + 1).\n           MOVE WRK-ACUM TO WRK-ACUM-ED.\n           PERFORM 0100-INICIAR.\n\n       0300-FINALIZAR.\n           DISPLAY '-------------------'.\n           ADD -1 TO WRK-MESES\n           DISPLAY 'QUANTIDADE DE INVESTIMENTOS: ' WRK-MESES\n           IF WRK-ACUM > 0\n               DISPLAY 'ACUMULADO: R' WRK-ACUM-ED\n           ELSE\n               DISPLAY 'FINAL DO PROCESSAMENTO'\n           END-IF.\n\n           STOP RUN.\n"
+    },
+    "input_files": [],
+    "output_files": [],
+    "input_output_files": [],
+    "sysin_file": {
+        "file_name": "sysin.txt",
+        "content": "000525\n100000\n150000\n200000\n000000"
+    },
+    "code_file": "successful_snippet_36d0273c.cob",
+    "compiled_file": "successful_snippet_36d0273c",
+    "expected_output": "DIGITE UM VALOR DE TAXA MENSAL: \nDIGITE UM VALOR DE INVESTIMENTO: \nDIGITE UM VALOR DE INVESTIMENTO: \nDIGITE UM VALOR DE INVESTIMENTO: \nDIGITE UM VALOR DE INVESTIMENTO: \n-------------------\nQUANTIDADE DE INVESTIMENTOS: 003\nACUMULADO: R$3.437,50\n",
+    "expected_output_files": [],
+    "expected_input_output_files": []
+}

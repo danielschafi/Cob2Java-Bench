@@ -1,0 +1,25 @@
+{
+    "cobol_file": {
+        "file_name": "successful_snippet_03166f0c.cob",
+        "content": "      *************************************\n      * hammer.cob\n      *\n      * When your only tool is a hammer...\n      *************************************\n      \n       identification division.\n       program-id. hammer.\n       \n       environment division.\n       \n       input-output section.\n       file-control.           \n           select html-file\n           assign to \"hammer.html\"\n           organization is line sequential.\n           \n\n       data division.\n       \n       file section.\n       fd html-file.\n       01 html-line\t\t\t\tpic x(255).\n       \n       working-storage section.\n       01 user-message\t\t\t\tpic x(255) value space.\n       78 default-message\t\t\tvalue \"HELLO WORLD\".\n       \n       \n       procedure division.\n       \n      * Get user input\n       display \"Enter a a message: \".\n       accept user-message.\n\n       if user-message equals space then\n           move default-message\t\tto user-message\n       end-if.\n       \n      * Open html file\n       open output html-file.\n       \n      * Write some html\n       write html-line \t\t\tfrom \"<html><head>\".\n       \n      * Gotta have some bootstrap\n       perform write-bootstrap-link.\n       \n      * Load Google web fonts\n       perform write-web-fonts.\n       \n      * Write style\n       perform write-style.\n      \n       write html-line \t\t\tfrom \"</head>\".\n       \n       initialize html-line.\n       string \t\"<body>\"\n       \t\"<div class=\" quote \"container text-center\" quote \">\"\n       \t\"<h1 class=\" quote \"when-your-only\" quote \">\"\n       \t\"When your only tool is COBOL, everything looks like a \"\n       \t\"mainframe\"\n       \t\"</h1>\"\t\t\tinto html-line.\n       write html-line.\n      \n       initialize html-line.\n       string\t\"<h1 class=\" quote \"display-1\" quote \"> \" \n       \t\"<span class=\" quote \"hello-world\" quote \">\"\t\n       \t\t\t\t\tinto html-line.\n       write html-line.\n       \n       write html-line \t\t\tfrom user-message.\n       \n       initialize html-line.\n       string\t\"</span>\"\n        \t\"</h1></div></body></html>\"\tinto html-line.\n       write html-line.  \t\n\n      * Close html file\n       close html-file.\n\n       exit program.\n       stop run.\n       \n       \n       write-style.\n      * Add inline style \n           initialize html-line.\n           string \"<style>\"\n        \t   \".hello-world {\"\n  \t\t      \"font-family: 'VT323', sans-serif;\"\n  \t\t      \"padding: 5rem 0;\"\n\t\t   \"}\"\n\t\t   \".when-your-only {\"\n\t\t      \"font-family: 'Cousine', sans-serif;\"\n\t\t      \"margin: 4rem 0;\"\n\t\t   \"}\"\n\t\t   \"</style>\"\t \n           \t\t\t\t\tinto html-line.\t\n           write html-line.\n\n       write-bootstrap-link.\n      * Gotta have some bootstrap\n           initialize html-line.\n           string \"<link href=\" quote \n       \t   \"https://cdn.jsdelivr.net/npm/\"\t\n                  \"bootstrap@5.0.2/dist/css/bootstrap.min.css\" quote \n                  \"rel=\" quote \"stylesheet\" quote \">\" \n                  \t\t\t\tinto html-line.\n           write html-line.\n           \n       write-web-fonts.\n      * Load Google web fonts \n           initialize html-line.\n      \t   string \"<link href=\" quote\n      \t          \"https://fonts.googleapis.com/css?family=\"\n\t\t  \"VT323|Cousine\" quote \n      \t          \"rel=\" quote \"stylesheet\" quote \n      \t          \"type=\" quote \"text/css\" quote \">\"\t\n      \t          \t\t\t\tinto html-line.\n      \t   write html-line.\n          \n       \n"
+    },
+    "input_files": [],
+    "output_files": [
+        "hammer.html"
+    ],
+    "input_output_files": [],
+    "sysin_file": {
+        "file_name": "sysin.txt",
+        "content": "COBOL POWER UNLEASHED"
+    },
+    "code_file": "successful_snippet_03166f0c.cob",
+    "compiled_file": "successful_snippet_03166f0c",
+    "expected_output": "Enter a a message: \n",
+    "expected_output_files": [
+        {
+            "file_name": "hammer.html",
+            "content": "<html><head>\n<link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css\"rel=\"stylesheet\">\n<link href=\"https://fonts.googleapis.com/css?family=VT323|Cousine\"rel=\"stylesheet\"type=\"text/css\">\n<style>.hello-world {font-family: 'VT323', sans-serif;padding: 5rem 0;}.when-your-only {font-family: 'Cousine', sans-serif;margin: 4rem 0;}</style>\n</head>\n<body><div class=\"container text-center\"><h1 class=\"when-your-only\">When your only tool is COBOL, everything looks like a mainframe</h1>\n<h1 class=\"display-1\"> <span class=\"hello-world\">\nCOBOL POWER UNLEASHED\n</span></h1></div></body></html>\n"
+        }
+    ],
+    "expected_input_output_files": []
+}

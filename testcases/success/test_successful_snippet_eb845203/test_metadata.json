@@ -1,0 +1,20 @@
+{
+    "cobol_file": {
+        "file_name": "successful_snippet_eb845203.cob",
+        "content": "       IDENTIFICATION DIVISION.\n       PROGRAM-ID. AOC-2020-10-1.\n       AUTHOR ANNA KOSIERADZKA.\n      \n       ENVIRONMENT DIVISION.\n       INPUT-OUTPUT SECTION.\n       FILE-CONTROL.\n           SELECT INPUTFILE ASSIGN TO \"d10.input\"\n           ORGANIZATION IS LINE SEQUENTIAL.\n           \n       DATA DIVISION.\n       FILE SECTION.\n         FD INPUTFILE\n         RECORD IS VARYING IN SIZE FROM 1 to 99\n         DEPENDING ON REC-LEN.\n         01 INPUTRECORD PIC X(99).\n         \n       WORKING-STORAGE SECTION.\n         01 FILE-STATUS PIC 9 VALUE 0.\n         01 REC-LEN PIC 9(2) COMP.\n         01 WS-ARR-LEN PIC 9(2) VALUE 95.\n         01 WS-ARRAY OCCURS 11 TO 99 DEPENDING ON WS-ARR-LEN.\n           05 WS-ARR-I PIC 9(3).\n\n       LOCAL-STORAGE SECTION.\n         01 RESULT UNSIGNED-INT VALUE 0.\n         01 I UNSIGNED-INT VALUE 1.\n         01 DIFF-1 UNSIGNED-INT VALUE 0. \n         01 DIFF-3 UNSIGNED-INT VALUE 0.\n         01 DIFF UNSIGNED-INT VALUE 0.\n\n       PROCEDURE DIVISION.\n       001-MAIN.\n           OPEN INPUT INPUTFILE.\n           MOVE 0 TO WS-ARR-I(1).\n           ADD 1 TO I.\n           PERFORM 002-READ UNTIL FILE-STATUS = 1.\n           CLOSE INPUTFILE.\n           SORT WS-ARRAY ON ASCENDING KEY WS-ARR-I.\n           PERFORM 004-SHIFT-ARRAY.\n           COMPUTE WS-ARR-I(WS-ARR-LEN) = WS-ARR-I(WS-ARR-LEN - 1) + 3.\n           PERFORM 005-USE-ADAPTERS.\n           COMPUTE RESULT = DIFF-1 * DIFF-3.\n           DISPLAY RESULT.\n           STOP RUN.\n\n       002-READ.\n            READ INPUTFILE\n                AT END MOVE 1 TO FILE-STATUS\n                NOT AT END PERFORM 003-PROCESS-RECORD\n            END-READ.\n       \n       003-PROCESS-RECORD.\n           ADD 1 TO RESULT.\n           MOVE INPUTRECORD TO WS-ARR-I(I).\n           ADD 1 TO I.\n\n       004-SHIFT-ARRAY.\n           PERFORM VARYING I FROM 1 BY 1 UNTIL I > WS-ARR-LEN - 1\n              MOVE WS-ARR-I(I + 1) TO WS-ARR-I(I)\n           END-PERFORM.\n\n       005-USE-ADAPTERS.\n           PERFORM VARYING I FROM 1 BY 1 UNTIL I > WS-ARR-LEN - 1\n              COMPUTE DIFF = WS-ARR-I(I + 1) - WS-ARR-I(I)\n              IF DIFF = 1 THEN\n                 ADD 1 TO DIFF-1\n              END-IF\n              IF DIFF = 3 THEN\n                 ADD 1 TO DIFF-3\n              END-IF\n           END-PERFORM.\n"
+    },
+    "input_files": [
+        {
+            "file_name": "d10.input",
+            "content": "28\n13\n7\n53\n89\n142\n165\n178\n191\n104"
+        }
+    ],
+    "output_files": [],
+    "input_output_files": [],
+    "sysin_file": null,
+    "code_file": "successful_snippet_eb845203.cob",
+    "compiled_file": "successful_snippet_eb845203",
+    "expected_output": "0000000000\n",
+    "expected_output_files": [],
+    "expected_input_output_files": []
+}

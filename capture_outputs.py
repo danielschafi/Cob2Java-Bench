@@ -27,56 +27,6 @@ logging.basicConfig(
 """
 
 
-# class TestCaseSetup:
-#     def __init__(self, testcase_dir):
-#         """
-#         params:
-#         testcase_dir: directory that contains metadata.json
-#         """
-#         self.testcase_dir = Path(testcase_dir)
-#         if not self.testcase_dir.exists():
-#             raise FileNotFoundError(
-#                 f"Test case directory '{testcase_dir}' does not exist."
-#             )
-#         self.metadata_file = self.testcase_dir / "test_metadata.json"
-#         if not self.metadata_file.exists():
-#             raise FileNotFoundError(
-#                 f"Metadata file 'test_metadata.json' not found in '{testcase_dir}'."
-#             )
-
-#         self.metadata = self.read_metadata()
-
-#     def setup(self):
-#         input_files = self.metadata.get("input_files", [])
-#         input_output_files = self.metadata.get("input_output_files", [])
-#         cob_file = self.metadata.get("cobol_file", {})
-#         sysin_file = self.metadata.get("sysin_file", {})
-
-#         file_list = input_files + input_output_files + [cob_file]
-#         if sysin_file:
-#             file_list += [sysin_file] if sysin_file.get("content") else []
-#         for file in file_list:
-#             filename = file.get("file_name")
-#             content = file.get("content", "")
-#             if filename:
-#                 file_path = self.testcase_dir / filename
-#                 with open(file_path, "w") as f:
-#                     f.write(content)
-#                 logger.info(f"Setup: Created file '{file_path}' with content.")
-#         return file_list
-
-#     def teardown(self):
-#         for f in self.testcase_dir.iterdir():
-#             if f.name != "test_metadata.json":
-#                 f.unlink()
-#         logger.info(f"Teardown: Deleted all files in '{self.testcase_dir}'.")
-
-#     def read_metadata(self):
-#         with open(self.metadata_file, "r") as f:
-#             metadata = json.load(f)
-#         return metadata
-
-
 class CobolOutputCapture:
     def __init__(self, testcase_dir):
         self.tests_dir = Path(

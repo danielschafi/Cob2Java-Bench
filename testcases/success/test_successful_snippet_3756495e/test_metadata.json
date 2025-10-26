@@ -1,0 +1,20 @@
+{
+    "cobol_file": {
+        "file_name": "successful_snippet_3756495e.cob",
+        "content": "      *-----------------------------------------------------------------\n      * $ cobc -Wall -Wextra -std=ibm-strict -fixed -g -O0 -debug \\\n      *        -x -o a.out cobol/MAIN2.cbl\n      * $ cat example.txt | ./a.out\n      *-----------------------------------------------------------------\n       IDENTIFICATION DIVISION.\n       PROGRAM-ID.  AOC-2021-D01-2.\n      * AUTHOR. HBOBENICIO.\n      * DATE-WRITTEN. 09/12/2021.\n      * SECURITY. NON-CONFIDENTIAL.\n      *-----------------------------------------------------------------\n       ENVIRONMENT DIVISION.\n         INPUT-OUTPUT SECTION.\n         FILE-CONTROL.\n           SELECT INPUT-FILE ASSIGN TO 'stdin' *> KEYBOARD\n           ORGANIZATION IS LINE SEQUENTIAL.\n      *-----------------------------------------------------------------\n       DATA DIVISION.\n\n       FILE SECTION.\n       FD  INPUT-FILE.\n       01  INPUT-FILE-RECORD.\n           05 NUM PIC X(4).\n\n       WORKING-STORAGE SECTION.\n       01  WS-XS.\n         05  XS-ARR  PIC 9(4) OCCURS 2048 TIMES.\n         05  XS-LEN  PIC 9(4) VALUE 0.\n       01  WS-LOOP      PIC A(1).\n         88  LOOP-BREAK          VALUE 'B'.\n         88  LOOP-CONTINUE       VALUE 'C'.\n       01  WS-AUX.\n         05  WS-I         PIC 9(4) VALUE 1.\n         05  WS-COUNT     PIC 9(4) VALUE 0.\n         05  WS-PREV      PIC 9(5) VALUE 9999.\n         05  WS-SUM       PIC 9(5).\n         05  WS-SOLUTION  PIC 9(4) VALUE 0.\n      *-----------------------------------------------------------------\n       PROCEDURE DIVISION.\n       MAIN.\n           PERFORM READ-AND-PARSE-INPUT.\n           PERFORM SOLVE.\n           DISPLAY WS-SOLUTION.\n           MOVE 0 TO RETURN-CODE.\n           GOBACK.\n\n       READ-AND-PARSE-INPUT.\n           OPEN INPUT INPUT-FILE.\n           PERFORM UNTIL LOOP-BREAK\n              READ INPUT-FILE AT END SET LOOP-BREAK TO TRUE\n              NOT AT END\n                 MOVE NUM TO XS-ARR(XS-LEN + 1)\n                 SET XS-LEN UP BY 1\n              END-READ\n           END-PERFORM.\n           CLOSE INPUT-FILE.\n\n       SOLVE.\n           MOVE 0 TO WS-COUNT.\n           MOVE 1 TO WS-I.\n           PERFORM UNTIL WS-I > XS-LEN - 2\n              MOVE FUNCTION SUM(\n                 XS-ARR(WS-I) XS-ARR(WS-I + 1) XS-ARR(WS-I + 2)\n              ) TO WS-SUM\n              IF WS-SUM > WS-PREV\n                 SET WS-COUNT UP BY 1\n              END-IF\n              MOVE WS-SUM TO WS-PREV\n              SET WS-I UP BY 1\n           END-PERFORM.\n           MOVE WS-COUNT TO WS-SOLUTION.\n"
+    },
+    "input_files": [
+        {
+            "file_name": "stdin",
+            "content": "0199\n0201\n0204\n0210\n0207\n0215\n0220\n0218\n0225\n0230"
+        }
+    ],
+    "output_files": [],
+    "input_output_files": [],
+    "sysin_file": null,
+    "code_file": "successful_snippet_3756495e.cob",
+    "compiled_file": "successful_snippet_3756495e",
+    "expected_output": "0007\n",
+    "expected_output_files": [],
+    "expected_input_output_files": []
+}

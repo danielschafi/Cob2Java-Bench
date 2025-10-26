@@ -1,0 +1,18 @@
+{
+    "cobol_file": {
+        "file_name": "successful_snippet_709861d1.cob",
+        "content": "       IDENTIFICATION DIVISION.\n       PROGRAM-ID. \"DIDZORCHCANCELMOVIENIGHT\".\n       AUTHOR.     DBAUDISCH.\n      *Is it saturday, and did Zorch cancel movie night again?\n\n       ENVIRONMENT DIVISION.\n       \n       DATA DIVISION.\n       WORKING-STORAGE SECTION.\n       01 TODAY PIC 9(1) VALUE ZERO.\n       01 USER-INPUT PIC A(1) VALUE SPACE.\n       01 INPUT-RESULT PIC A(1) VALUE SPACE.\n       01 ISMOVIENIGHT PIC A(1) VALUE \"y\".\n       01 ISCANCELLED PIC A(1) VALUE \"y\".\n       \n       PROCEDURE DIVISION.\n       START-HERE.\n           ACCEPT TODAY FROM DAY-OF-WEEK\n      *    6 EQUAL saturday\n           IF TODAY EQUAL 6 THEN\n               DISPLAY \"It is saturday!\"\n               DISPLAY \"Should there be a movie night? (y/n)\"\n               PERFORM RECEIVE-USER-USER-INPUT\n               IF INPUT-RESULT IS NOT EQUAL SPACE AND LOW-VALUE THEN\n                   MOVE INPUT-RESULT TO ISMOVIENIGHT\n               END-IF\n\n               IF ISMOVIENIGHT EQUAL 'y' THEN\n                   DISPLAY \"Was ist cancelled? (y/n)\"\n                   PERFORM RECEIVE-USER-USER-INPUT\n                   IF INPUT-RESULT IS NOT EQUAL SPACE AND LOW-VALUE THEN\n                       MOVE INPUT-RESULT TO ISCANCELLED\n                   END-IF\n\n                   IF ISCANCELLED EQUAL 'y' THEN\n                       DISPLAY \"NOT AGAIN, ZORCH! >:(\"\n                   ELSE\n                       DISPLAY \"See ya at movie night! :)\"\n                   END-IF\n               ELSE\n                   DISPLAY \"Then there is no movie night!\"\n                   DISPLAY \"Try again next saturday!\"\n               END-IF\n           ELSE\n               DISPLAY \"It is not saturday!\"\n               DISPLAY \"Try again tomorrow!\"\n           END-IF\n           STOP RUN.\n\n       RECEIVE-USER-USER-INPUT.\n           MOVE SPACE TO USER-INPUT\n           MOVE SPACE TO INPUT-RESULT\n           ACCEPT USER-INPUT\n           MOVE FUNCTION LOWER-CASE(USER-INPUT) TO USER-INPUT\n           IF USER-INPUT IS NOT EQUAL 'y' THEN\n               MOVE USER-INPUT TO INPUT-RESULT\n           END-IF\n           EXIT.\n              \n       END PROGRAM DIDZORCHCANCELMOVIENIGHT.\n"
+    },
+    "input_files": [],
+    "output_files": [],
+    "input_output_files": [],
+    "sysin_file": {
+        "file_name": "sysin.txt",
+        "content": "y\ny\ny\nn\nn\ny"
+    },
+    "code_file": "successful_snippet_709861d1.cob",
+    "compiled_file": "successful_snippet_709861d1",
+    "expected_output": "It is not saturday!\nTry again tomorrow!\n",
+    "expected_output_files": [],
+    "expected_input_output_files": []
+}

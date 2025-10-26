@@ -1,0 +1,20 @@
+{
+    "cobol_file": {
+        "file_name": "successful_snippet_88aa6474.cob",
+        "content": "IDENTIFICATION DIVISION.\nPROGRAM-ID. PROB1.\nENVIRONMENT DIVISION.\nINPUT-OUTPUT SECTION.\nFILE-CONTROL.\n      SELECT INPUT-FILE ASSIGN TO 'PROB1.txt'\n      ORGANIZATION IS LINE SEQUENTIAL.\nDATA DIVISION.\nFILE SECTION.\nFD INPUT-FILE.\n01  INPUT-RECORD PIC X(10).\nWORKING-STORAGE SECTION.\n01  INPUT-VALUE pic s9(9).\n01  RUNNING-TOTAL pic s9(9).\n01  MODULO-TOTAL pic s9(9).\n01  CHECK-TOTAL pic s9(9).\n01  PRINT-LINE.\n    02  PRINT-MESSAGE pic x(30).\n    02  PRINT-VALUE pic s9(9) USAGE IS DISPLAY.\n01  DATA-TABLE.\n    02  DATA-ENTRY OCCURS 100000 TIMES INDEXED BY PRIOR-INDEX.\n        03  USER-INPUT pic s9(9).\n        03  PRIOR-VALUE pic s9(9).\n01  PRIOR-COUNT pic s9(9).\n01  VERBOSE-FLAG pic 9.\n01  ITERATION-COUNT pic s9(9).\nPROCEDURE DIVISION.\nDISPLAY \"Welcome to the Advent of COBOL 2018 Edition!\".\nDISPLAY \"--------------------------------------------\".\nDISPLAY SPACES.\nMOVE ZEROS TO PRIOR-COUNT.\nMOVE ZEROS TO RUNNING-TOTAL.\nMOVE 1 TO VERBOSE-FLAG.\nMOVE ZEROS TO ITERATION-COUNT\nMOVE 1 TO PRIOR-INDEX.\nOPEN INPUT INPUT-FILE.\nGO TO 1-MAIN.\nCHECK-DUPLICATE.\n    IF PRIOR-COUNT IS GREATER THAN 100000\n        DISPLAY \"ERROR: Count exceeds 100,000.\"\n        STOP RUN.\n    PERFORM\n        VARYING PRIOR-INDEX FROM 1 BY 1\n            UNTIL PRIOR-INDEX IS GREATER THAN PRIOR-COUNT\n        IF PRIOR-VALUE (PRIOR-INDEX) IS EQUAL TO RUNNING-TOTAL\n            MOVE \"Found duplicate\" TO PRINT-MESSAGE\n            MOVE RUNNING-TOTAL TO PRINT-VALUE\n            DISPLAY PRINT-LINE\n            STOP RUN\n        END-IF\n    END-PERFORM.\nCHECK-EXIT.\n    EXIT.\nTALLY-HO-HO-HO.\n    IF INPUT-VALUE IS LESS THAN ZEROS\n        SUBTRACT INPUT-VALUE FROM ZEROS GIVING PRINT-VALUE\n      ELSE\n        MOVE INPUT-VALUE TO PRINT-VALUE\n    END-IF.\n    IF INPUT-VALUE IS GREATER THAN ZEROS\n        MOVE \"Nice!\" TO PRINT-MESSAGE\n      ELSE\n        MOVE \"Naughty!\" TO PRINT-MESSAGE\n    END-IF.\n    IF VERBOSE-FLAG IS EQUAL TO 1\n        DISPLAY PRINT-LINE.\n    ADD INPUT-VALUE TO RUNNING-TOTAL.\n    PERFORM CHECK-DUPLICATE THRU CHECK-EXIT.\n    ADD 1 TO PRIOR-COUNT.\n    SET PRIOR-INDEX TO PRIOR-COUNT.\n    MOVE RUNNING-TOTAL TO PRIOR-VALUE (PRIOR-INDEX).\nTALLY-EXIT.\n    EXIT.\n1-MAIN.\nREAD INPUT-FILE\n    AT END GO TO 2-FINISH.\nSET PRIOR-INDEX UP BY 1.\nMOVE INPUT-RECORD TO USER-INPUT (PRIOR-INDEX).\nMOVE INPUT-RECORD TO INPUT-VALUE.\nPERFORM TALLY-HO-HO-HO THRU TALLY-EXIT.\nGO TO 1-MAIN.\n\n2-FINISH.\nMOVE RUNNING-TOTAL TO PRINT-VALUE.\nMOVE \"Resulting Frequency:\" TO PRINT-MESSAGE.\nDISPLAY PRINT-LINE.\nCLOSE INPUT-FILE.\nSTOP RUN.\n"
+    },
+    "input_files": [
+        {
+            "file_name": "PROB1.txt",
+            "content": "+15\n-3\n+7\n-12\n+5\n+8\n-4\n+20\n-15\n+11"
+        }
+    ],
+    "output_files": [],
+    "input_output_files": [],
+    "sysin_file": null,
+    "code_file": "successful_snippet_88aa6474.cob",
+    "compiled_file": "successful_snippet_88aa6474",
+    "expected_output": "Welcome to the Advent of COBOL 2018 Edition!\n--------------------------------------------\n \nNice!                         000000015\nNaughty!                      000000003\nNice!                         000000007\nNaughty!                      000000012\nNice!                         000000005\nFound duplicate               000000012\n",
+    "expected_output_files": [],
+    "expected_input_output_files": []
+}

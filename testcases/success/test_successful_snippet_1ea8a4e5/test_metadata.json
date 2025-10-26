@@ -1,0 +1,27 @@
+{
+    "cobol_file": {
+        "file_name": "successful_snippet_1ea8a4e5.cob",
+        "content": "       >>SOURCE FORMAT FREE\nIDENTIFICATION DIVISION.\nPROGRAM-ID.  READ-CSV.\nAUTHOR Hantzley Tauckoor.\nENVIRONMENT DIVISION.\nINPUT-OUTPUT SECTION.\nFILE-CONTROL.\n    SELECT INPUT-FILE\n    ASSIGN TO \"info.csv\"\n    ORGANIZATION IS LINE SEQUENTIAL\n    ACCESS MODE IS SEQUENTIAL.\n    \n    SELECT OUTPUT-FILE\n    ASSIGN TO \"output.txt\"\n    ORGANIZATION IS LINE SEQUENTIAL\n    ACCESS MODE IS SEQUENTIAL.\n    \nDATA DIVISION.\nFILE SECTION.\nFD  INPUT-FILE          RECORD CONTAINS 80 CHARACTERS.\n01  INPUT-RECORD        PIC X(80).\nFD  OUTPUT-FILE         RECORD CONTAINS 160 CHARACTERS.\n01  OUTPUT-RECORD.\n    05 OUT-LAST-NAME     PIC X(25).\n    05 FILLER            PIC X(5).\n    05 OUT-FIRST-NAME    PIC X(15).\n    05 FILLER            PIC X(5).\n    05 OUT-STREET        PIC X(30).\n    05 FILLER            PIC X(5).\n    05 OUT-CITY          PIC X(15).\n    05 FILLER            PIC X(5).\n    05 OUT-STATE         PIC XXX.\n    05 FILLER            PIC X(5).\n    05 OUT-ZIP           PIC X(10).\n    05 FILLER            PIC X(38).\n    \nWORKING-STORAGE SECTION.\n01  SEPARATE-IT.\n    05 LAST_NAME        PIC X(25).\n    05 FIRST_NAME       PIC X(15).\n    05 STREET_ADDR      PIC X(30).\n    05 CITY             PIC X(15).\n    05 STATE            PIC XXX.\n    05 ZIP              PIC X(10).\nPROCEDURE DIVISION.\nSTART-ROUTINE.\n    OPEN INPUT INPUT-FILE.\n    OPEN OUTPUT OUTPUT-FILE.\nREAD-ROUTINE.\n    MOVE SPACES TO INPUT-RECORD.\n    READ INPUT-FILE AT END GO TO END-ROUTINE.\n    MOVE SPACES TO SEPARATE-IT.\n    UNSTRING INPUT-RECORD DELIMITED BY \",\"\n       INTO LAST_NAME, FIRST_NAME, STREET_ADDR,\n       CITY, STATE, ZIP.\n    MOVE SPACES TO OUTPUT-RECORD.\n    MOVE LAST_NAME TO OUT-LAST-NAME.\n    MOVE FIRST_NAME TO OUT-FIRST-NAME.\n    MOVE STREET_ADDR TO OUT-STREET.\n    MOVE CITY TO OUT-CITY.\n    MOVE STATE TO OUT-STATE.\n    MOVE ZIP TO OUT-ZIP.\n    WRITE OUTPUT-RECORD.\n    GO TO READ-ROUTINE.\nEND-ROUTINE.\n    CLOSE INPUT-FILE.\n    CLOSE OUTPUT-FILE.\n    STOP RUN.\n\n\n"
+    },
+    "input_files": [
+        {
+            "file_name": "info.csv",
+            "content": "Smith,John,123 Main Street,Springfield,IL,62701\nJohnson,Mary,456 Oak Avenue,Chicago,IL,60601\nWilliams,Robert,789 Elm Drive,Peoria,IL,61602\nBrown,Jennifer,321 Maple Lane,Naperville,IL,60540\nDavis,Michael,654 Pine Road,Rockford,IL,61101\nMiller,Sarah,987 Cedar Boulevard,Bloomington,IL,61701\nWilson,David,147 Birch Court,Champaign,IL,61820\nMoore,Lisa,258 Walnut Street,Decatur,IL,62521\nTaylor,James,369 Spruce Way,Aurora,IL,60505\nAnderson,Patricia,741 Hickory Place,Joliet,IL,60432"
+        }
+    ],
+    "output_files": [
+        "output.txt"
+    ],
+    "input_output_files": [],
+    "sysin_file": null,
+    "code_file": "successful_snippet_1ea8a4e5.cob",
+    "compiled_file": "successful_snippet_1ea8a4e5",
+    "expected_output": "",
+    "expected_output_files": [
+        {
+            "file_name": "output.txt",
+            "content": "Smith                         John                123 Main Street                    Springfield         IL      62701\nJohnson                       Mary                456 Oak Avenue                     Chicago             IL      60601\nWilliams                      Robert              789 Elm Drive                      Peoria              IL      61602\nBrown                         Jennifer            321 Maple Lane                     Naperville          IL      60540\nDavis                         Michael             654 Pine Road                      Rockford            IL      61101\nMiller                        Sarah               987 Cedar Boulevard                Bloomington         IL      61701\nWilson                        David               147 Birch Court                    Champaign           IL      61820\nMoore                         Lisa                258 Walnut Street                  Decatur             IL      62521\nTaylor                        James               369 Spruce Way                     Aurora              IL      60505\nAnderson                      Patricia            741 Hickory Place                  Joliet              IL      60432\n"
+        }
+    ],
+    "expected_input_output_files": []
+}

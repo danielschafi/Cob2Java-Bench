@@ -1,0 +1,15 @@
+{
+    "cobol_file": {
+        "file_name": "successful_snippet_ca7b52ce.cob",
+        "content": "       IDENTIFICATION   DIVISION.\n       PROGRAM-ID.      prog.\n       DATA             DIVISION.\n       WORKING-STORAGE  SECTION.\n       01 X-P1          PIC 9(1) VALUE 1.\n       01 X-P2          PIC 9(2) VALUE 12.\n       01 X-P3          PIC 9(3) VALUE 123.\n       01 X-P4          PIC 9(4) VALUE 1234.\n       01 X-P5          PIC 9(5) VALUE 12345.\n       01 X-P6          PIC 9(6) VALUE 123456.\n       01 X-P7          PIC 9(7) VALUE 1234567.\n       01 X-P8          PIC 9(8) VALUE 12345678.\n       01 X-P9          PIC 9(9) VALUE 123456789.\n       01 X-P10         PIC 9(10) VALUE 1234567890.\n       01 X-P11         PIC 9(11) VALUE 12345678901.\n       01 X-P12         PIC 9(12) VALUE 123456789012.\n       01 X-P13         PIC 9(13) VALUE 1234567890123.\n       01 X-P14         PIC 9(14) VALUE 12345678901234.\n       01 X-P15         PIC 9(15) VALUE 123456789012345.\n       01 X-P16         PIC 9(16) VALUE 1234567890123456.\n       01 X-P17         PIC 9(17) VALUE 12345678901234567.\n       01 X-P18         PIC 9(18) VALUE 123456789012345678.\n       PROCEDURE        DIVISION.\n           DISPLAY X-P1\n           END-DISPLAY.\n           DISPLAY X-P2\n           END-DISPLAY.\n           DISPLAY X-P3\n           END-DISPLAY.\n           DISPLAY X-P4\n           END-DISPLAY.\n           DISPLAY X-P5\n           END-DISPLAY.\n           DISPLAY X-P6\n           END-DISPLAY.\n           DISPLAY X-P7\n           END-DISPLAY.\n           DISPLAY X-P8\n           END-DISPLAY.\n           DISPLAY X-P9\n           END-DISPLAY.\n           DISPLAY X-P10\n           END-DISPLAY.\n           DISPLAY X-P11\n           END-DISPLAY.\n           DISPLAY X-P12\n           END-DISPLAY.\n           DISPLAY X-P13\n           END-DISPLAY.\n           DISPLAY X-P14\n           END-DISPLAY.\n           DISPLAY X-P15\n           END-DISPLAY.\n           DISPLAY X-P16\n           END-DISPLAY.\n           DISPLAY X-P17\n           END-DISPLAY.\n           DISPLAY X-P18\n           END-DISPLAY.\n           STOP RUN.\n"
+    },
+    "input_files": [],
+    "output_files": [],
+    "input_output_files": [],
+    "sysin_file": null,
+    "code_file": "successful_snippet_ca7b52ce.cob",
+    "compiled_file": "successful_snippet_ca7b52ce",
+    "expected_output": "1\n12\n123\n1234\n12345\n123456\n1234567\n12345678\n123456789\n1234567890\n12345678901\n123456789012\n1234567890123\n12345678901234\n123456789012345\n1234567890123456\n12345678901234567\n123456789012345678\n",
+    "expected_output_files": [],
+    "expected_input_output_files": []
+}

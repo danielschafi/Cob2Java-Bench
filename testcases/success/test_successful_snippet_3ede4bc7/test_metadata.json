@@ -1,0 +1,15 @@
+{
+    "cobol_file": {
+        "file_name": "successful_snippet_3ede4bc7.cob",
+        "content": "identification division.\nprogram-id. middle3.\nenvironment division.\ndata division.\nworking-storage section.\n01  value-items.\n        05  filler  pic s9(9) value 123.\n        05  filler  pic s9(9) value 12345.\n        05  filler  pic s9(9) value 1234567.\n        05  filler  pic s9(9) value 987654321.\n        05  filler  pic s9(9) value 10001.\n        05  filler  pic s9(9) value -10001.\n        05  filler  pic s9(9) value -123.\n        05  filler  pic s9(9) value -100.\n        05  filler  pic s9(9) value 100.\n        05  filler  pic s9(9) value -12345.\n        05  filler  pic s9(9) value 1.\n        05  filler  pic s9(9) value 2.\n        05  filler  pic s9(9) value -1.\n        05  filler  pic s9(9) value -10.\n        05  filler  pic s9(9) value 2002.\n        05  filler  pic s9(9) value -2002.\n        05  filler  pic s9(9) value 0.\n\n01 value-array redefines value-items.\n        05  items   pic s9(9)  occurs 17 times indexed by item.\n\n01 num      pic 9(9).\n01 num-disp pic ---------9.\n01 num2     pic 9(9).\n\n01 power    pic 9.\n01 power10  pic 9(16).\n\n01 three-digits pic 999.\n\n01 result   pic X(20).\n\n01 flag     pic 9.\n    88 done value 1.\n\nprocedure division.\n01-setup.\n    perform 02-outer with test after varying item from 1 by 1 until items(item) = 0.\n    stop run.\n\n02-outer.\n    move items(item) to num.\n    move items(item) to num-disp.\n    if num less than 100\n        move \"too small\" to result\n    else\n        perform 03-inner with test after varying power from 9 by -1 until power = 1 or done\n    end-if.\n    display num-disp \" --> \" result.\n    exit paragraph.\n\n03-inner.\n    move 0 to flag.\n    compute power10 = 10 ** power.\n    if num >= power10\n        move 1 to flag\n        if function mod(power,2) = 1\n            move \"even number digits\" to result\n        else\n            move num to num2\n            compute num2 = num2 / ( 10 ** (( power / 2 ) - 1 ))\n            move function mod(num2,1000) to three-digits\n            move three-digits to result\n        end-if\n    end-if.\n"
+    },
+    "input_files": [],
+    "output_files": [],
+    "input_output_files": [],
+    "sysin_file": null,
+    "code_file": "successful_snippet_3ede4bc7.cob",
+    "compiled_file": "successful_snippet_3ede4bc7",
+    "expected_output": "       123 --> 123                 \n     12345 --> 234                 \n   1234567 --> 345                 \n 987654321 --> 654                 \n     10001 --> 000                 \n    -10001 --> 000                 \n      -123 --> 123                 \n      -100 --> 100                 \n       100 --> 100                 \n    -12345 --> 234                 \n         1 --> too small           \n         2 --> too small           \n        -1 --> too small           \n       -10 --> too small           \n      2002 --> even number digits  \n     -2002 --> even number digits  \n         0 --> too small           \n",
+    "expected_output_files": [],
+    "expected_input_output_files": []
+}

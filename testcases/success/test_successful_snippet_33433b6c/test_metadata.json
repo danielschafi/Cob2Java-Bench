@@ -1,0 +1,15 @@
+{
+    "cobol_file": {
+        "file_name": "successful_snippet_33433b6c.cob",
+        "content": "identification division.\nprogram-id. harshad.\nenvironment division.\ndata division.\nworking-storage section.\n*> for storing first 20 harshad-niven numbers\n01  harshads.\n    03  harshad pic 9(5)    occurs 20 times indexed by niven.\n\n*> numbers tested for harshad-niven-ness.\n01  first-num   pic 9(5).\n01  second-num  pic 9(5).\n\n*> loop counter\n01  i   pic 9(5).\n\n*> for calculating sum of digits\n01  div pic 9(5).\n01  mod pic 9(5).\n01  tot pic 9(5).\n\n*> for harshad-niven calculation and display\n01  harshad-div pic 9(5).\n01  harshad-mod pic 9(5).\n    88  evenly-divisible    value 0.\n01  harshad-disp    pic zzzz9.\n01  harshad-result  pic 9(5).\n\n*> for selecting what to do with results of harshad calculation\n01  pass        pic 9.\n    88  first-pass  value 1.\n    88  second-pass value 2.\n\nprocedure division.\n10-main section.\n    move 1 to pass.\n    set niven to 1.\n    perform 20-calculate-harshad with test before varying first-num from 1 by 1 until niven = 21.\n\n    move 2 to pass.\n    move first-num to second-num.\n    perform 20-calculate-harshad with test after varying first-num from second-num by 1 until harshad-result > 1000.\n\n    perform with test after varying i from 1 by 1 until i = 20\n        move harshad(i) to harshad-disp\n        display function trim(harshad-disp) space with no advancing\n    end-perform.\n\n    move harshad-result to harshad-disp.\n    display \"... \" function trim(harshad-disp).\n    stop run.\n\n20-calculate-harshad.\n    move first-num to div.\n    move zero to harshad-result.\n    perform 100-calculate-sum-of-digits.\n    divide first-num by tot giving harshad-div remainder harshad-mod.\n    if evenly-divisible\n        if first-pass\n            move first-num to harshad(niven)\n            set niven up by 1\n        else\n            move first-num to harshad-result\n        end-if\n    end-if.\n    exit paragraph.\n\n100-calculate-sum-of-digits.\n    move zero to tot.\n    perform with test after until div = 0\n        divide div by 10 giving div remainder mod\n        add mod to tot\n    end-perform.\n    *> if tot >= 10\n    *>  move tot to div\n    *>  go to 100-calculate-sum-of-digits\n    *> end-if.\n    exit paragraph.\n"
+    },
+    "input_files": [],
+    "output_files": [],
+    "input_output_files": [],
+    "sysin_file": null,
+    "code_file": "successful_snippet_33433b6c.cob",
+    "compiled_file": "successful_snippet_33433b6c",
+    "expected_output": "1 2 3 4 5 6 7 8 9 10 12 18 20 21 24 27 30 36 40 42 ... 1002\n",
+    "expected_output_files": [],
+    "expected_input_output_files": []
+}

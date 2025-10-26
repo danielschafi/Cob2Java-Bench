@@ -1,0 +1,18 @@
+{
+    "cobol_file": {
+        "file_name": "successful_snippet_0c6b2bb9.cob",
+        "content": "IDENTIFICATION DIVISION.\nPROGRAM-ID. HELLO-WORLD.\nDATA DIVISION.\n    WORKING-STORAGE SECTION.\n        77 X PIC 99.\n        77 Y PIC 99.\n        77 Z PIC 99.\n        \n01 A-ARBETSAREOR.\n   05 A-DATUM      PIC X(8).\n   05 A-NAMN       PIC X(40).\n   05 A-ALDER      PIC 999.\n   \n01 UTVARDERING.\n   05 RUBRIK.\n      10 FILLER    PIC X(8)  VALUE \"RAPPORT \".\n      10 DATUM-RED PIC 9999/99/99.\n      10 FILLER    PIC X(4)  VALUE SPACE.\n      10 NAMN      PIC X(40).\n   05 RESULTAT.\n      10 FILLER    PIC X(30).\n         88 BIL-NEJ VALUE 'Du f\u00e5r INTE k\u00f6ra bil.'.\n         88 BIL-JA  VALUE 'Du f\u00e5r k\u00f6ra bil.'.\n      10 FILLER    PIC X(30).\n         88 SYS-NEJ VALUE 'Du f\u00e5r INTE g\u00e5 p\u00e5 bolaget.'.\n         88 SYS-JA  VALUE 'Du f\u00e5r g\u00e5 p\u00e5 bolaget'.\n        \nPROCEDURE DIVISION.\nMOVE 10 TO X\nADD 1 TO X\nSUBTRACT 1 FROM X\nMULTIPLY 6 BY X\nDIVIDE X BY 3 GIVING Y REMAINDER Z\nDISPLAY \"X=\"X \" Y=\"Y \" Z=\"Z\n\nMOVE 10 TO X\nCOMPUTE Y = (((X + 1) - 1) * 6) / 3\nDISPLAY \"Y=\"Y\n\nACCEPT A-DATUM FROM DATE YYYYMMDD\nDISPLAY \"Dagens datum: \"A-DATUM\n\nACCEPT A-NAMN\nACCEPT A-ALDER\n\nSET SYS-NEJ TO TRUE\nIF A-ALDER IS GREATER THAN OR EQUAL TO 18 THEN\n   SET BIL-JA TO TRUE\n   IF A-ALDER >= 20\n      SET SYS-JA TO TRUE\n   END-IF\nELSE\n   SET BIL-NEJ TO TRUE\nEND-IF\n\nEVALUATE A-ALDER\nWHEN 0 THRU 17\n   SET BIL-NEJ TO TRUE\n   SET SYS-NEJ TO TRUE\nWHEN 18\nWHEN 19\n   SET BIL-JA  TO TRUE\n   SET SYS-NEJ TO TRUE\nWHEN OTHER\n   SET BIL-JA TO TRUE\n   SET SYS-JA TO TRUE\nEND-EVALUATE\n\nEVALUATE TRUE\nWHEN A-NAMN = 'Pink Panther'\n   MOVE 'Du \u00e4r ju Rosa Pantern! Du st\u00e5r \u00f6ver lagen!' TO RESULTAT\nWHEN A-ALDER < 18\n   SET BIL-NEJ TO TRUE\n   SET SYS-NEJ TO TRUE\nWHEN A-ALDER >= 18 AND < 20\n   SET BIL-JA  TO TRUE\n   SET SYS-NEJ TO TRUE\nWHEN OTHER\n   SET BIL-JA  TO TRUE\n   SET SYS-JA  TO TRUE\nEND-EVALUATE\n\nMOVE A-DATUM TO DATUM-RED\nMOVE A-NAMN  TO NAMN\nDISPLAY RUBRIK\nDISPLAY RESULTAT\n\nDISPLAY LENGTH OF NAMN\n\nPERFORM VARYING X FROM 1 BY 1 UNTIL X > LENGTH OF NAMN\n   IF NAMN(X:) = SPACE\n      EXIT PERFORM\n   END-IF\n   DISPLAY NAMN(X:1)\nEND-PERFORM\n\nSTOP RUN.\n"
+    },
+    "input_files": [],
+    "output_files": [],
+    "input_output_files": [],
+    "sysin_file": {
+        "file_name": "sysin.txt",
+        "content": "John Smith                              025\nAnna Andersson                          019\nPink Panther                            042\nErik Svensson                           017\nMaria Johansson                         021\nLars Pettersson                         018\nKarin Nilsson                           065"
+    },
+    "code_file": "successful_snippet_0c6b2bb9.cob",
+    "compiled_file": "successful_snippet_0c6b2bb9",
+    "expected_output": "X=60 Y=20 Z=00\nY=20\nDagens datum: 20251026\nRAPPORT 2025/10/26    John Smith                              \nDu f\u00e5r INTE k\u00f6ra bil.       Du f\u00e5r INTE g\u00e5 p\u00e5 bolaget. \n40\nJ\no\nh\nn\n \nS\nm\ni\nt\nh\n",
+    "expected_output_files": [],
+    "expected_input_output_files": []
+}

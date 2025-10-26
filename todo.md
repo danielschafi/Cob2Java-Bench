@@ -21,7 +21,9 @@ This leaves us with 318 programms after all filterings
 [ ] when making requests with claude we sometimes get errors that cause the current programm to crash, catch that
 
 ## generate sample io files 
-[ ] Generate
+[x] Generate sample io
+[ ] capture cobol output
+
 
 
 ## Random

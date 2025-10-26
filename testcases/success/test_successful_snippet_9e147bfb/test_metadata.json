@@ -1,0 +1,20 @@
+{
+    "cobol_file": {
+        "file_name": "successful_snippet_9e147bfb.cob",
+        "content": "       IDENTIFICATION DIVISION.\n       PROGRAM-ID. AdventOfCode2019-2a.\n\n       ENVIRONMENT DIVISION.\n       INPUT-OUTPUT SECTION.\n       FILE-CONTROL.\n       SELECT InputFile ASSIGN TO \"2.input\"\n       ORGANIZATION IS LINE SEQUENTIAL.\n\n       DATA DIVISION.\n       FILE SECTION.\n       FD InputFile RECORD IS VARYING IN SIZE FROM 1 TO 9999 CHARACTERS.\n       01 InputRec  PIC X(9999).\n\n       WORKING-STORAGE SECTION.\n       01 OpTable.\n          02 Len    PIC 9(5).\n          02 Op     PIC 9(15) OCCURS 0 TO 9999 TIMES DEPENDING ON Len.\n       01 SepNumber PIC 9(5).\n       01 Ptr       PIC 9(5).\n       01 Addr      PIC 9(5).\n       01 Val       PIC X(15).\n       01 Res       PIC 9(15).\n       01 ResFmt    PIC Z(15).\n\n       PROCEDURE DIVISION.\n       Begin.\n           OPEN INPUT InputFile.\n           READ InputFile.\n\n           INSPECT InputRec TALLYING SepNumber FOR ALL \",\".\n           IF SepNumber < 9999\n            ADD 1 TO SepNumber\n           ELSE\n            MOVE 9999 TO SepNumber\n           END-IF.\n\n           MOVE 1 TO Ptr.\n           PERFORM SepNumber TIMES\n            UNSTRING InputRec DELIMITED BY \",\" INTO Val\n             WITH POINTER Ptr\n            END-UNSTRING\n            ADD 1 TO Len\n            COMPUTE Op(Len) = FUNCTION NUMVAL(Val)\n           END-PERFORM.\n\n           CLOSE InputFile.\n\n           MOVE 12 TO Op(2)\n           MOVE 2 TO Op(3)\n\n           MOVE 1 TO Ptr.\n           PERFORM UNTIL Ptr IS GREATER THAN Len\n            EVALUATE Op(Ptr)\n            WHEN 1\n             ADD 1 TO Ptr\n             COMPUTE Addr = Op(Ptr) + 1\n             MOVE Op(Addr) TO Res\n             ADD 1 TO Ptr\n             COMPUTE Addr = Op(Ptr) + 1\n             ADD Op(Addr) TO Res\n             ADD 1 TO Ptr\n             COMPUTE Addr = Op(Ptr) + 1\n             MOVE Res TO Op(Addr)\n            WHEN 2\n             ADD 1 TO Ptr\n             COMPUTE Addr = Op(Ptr) + 1\n             MOVE Op(Addr) TO Res\n             ADD 1 TO Ptr\n             COMPUTE Addr = Op(Ptr) + 1\n             MULTIPLY Op(Addr) BY Res\n             ADD 1 TO Ptr\n             COMPUTE Addr = Op(Ptr) + 1\n             MOVE Res TO Op(Addr)\n            WHEN 99\n             MOVE Op(1) TO ResFmt\n             DISPLAY ResFmt\n             STOP RUN\n            END-EVALUATE\n            ADD 1 TO Ptr\n           END-PERFORM.\n\n"
+    },
+    "input_files": [
+        {
+            "file_name": "2.input",
+            "content": "1,9,10,3,2,3,11,0,99,30,40,50\n1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,19,0,99\n2,3,0,3,1,1,2,3,1,3,4,3,1,5,0,3,2,1,10,19,1,6,19,23,2,23,6,27,1,5,27,31,1,31,9,35,2,10,35,39,1,5,39,43,2,43,10,47,1,47,6,51,2,51,6,55,2,55,13,59,2,6,59,63,1,63,5,67,1,6,67,71,2,71,9,75,1,6,75,79,2,13,79,83,1,9,83,87,1,87,13,91,2,91,10,95,1,6,95,99,1,99,13,103,1,13,103,107,2,107,10,111,1,9,111,115,1,115,10,119,1,5,119,123,1,6,123,127,1,10,127,131,1,2,131,135,1,135,10,0,99,2,14,0,0\n1,1,1,4,99,5,6,0,99\n2,4,4,5,99,9801"
+        }
+    ],
+    "output_files": [],
+    "input_output_files": [],
+    "sysin_file": null,
+    "code_file": "successful_snippet_9e147bfb.cob",
+    "compiled_file": "successful_snippet_9e147bfb",
+    "expected_output": "            100\n",
+    "expected_output_files": [],
+    "expected_input_output_files": []
+}

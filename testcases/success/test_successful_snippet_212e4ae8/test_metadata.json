@@ -1,0 +1,20 @@
+{
+    "cobol_file": {
+        "file_name": "successful_snippet_212e4ae8.cob",
+        "content": "      ******************************************************************\n      * Author: Maxfx                                                  *\n      * Revision: 28/8/2017 - Malanius                                 *\n      * Program demonstration sequential reading database              *\n      ******************************************************************\n       IDENTIFICATION DIVISION.\n       PROGRAM-ID. SEQUENTIAL-READ.\n       ENVIRONMENT DIVISION.\n       INPUT-OUTPUT SECTION.\n       FILE-CONTROL.\n           SELECT DATA-FILE ASSIGN TO \"database.dat\"\n           ORGANIZATION IS SEQUENTIAL\n           ACCESS IS SEQUENTIAL\n           FILE STATUS FILE-STATUS.\n\n       DATA DIVISION.\n       FILE SECTION.\n           FD DATA-FILE.\n           01 DETAILS.\n             02 DETAILS-ID PIC 9(7).\n             02 DETAILS-NAME.\n               03 DETAILS-SURNAME PIC X(8).\n               03 INITIALS        PIC XX.\n             02 DETAILS-BIRTHDAY  PIC X(8).\n             02 SOME-CODE         PIC X(5).\n\n       WORKING-STORAGE SECTION.\n           77 FILE-STATUS PIC XX.\n           77 EOF PIC X.\n             88 EOF-T value \"Y\".\n             88 EOF-F value \"N\".\n\n       PROCEDURE DIVISION.\n       MAIN-PROCEDURE.\n           OPEN INPUT DATA-FILE.\n\n           IF FILE-STATUS not = \"00\"\n             DISPLAY \"Error opening the DB file, program will exit.\"\n             GOBACK\n           END-IF.\n\n           READ DATA-FILE\n             AT END\n               SET EOF-T TO TRUE\n             NOT AT END\n               SET EOF-F TO TRUE\n               PERFORM DISPLAY-DET-S THROUGH DISPLAY-DET-E\n           END-READ\n\n           PERFORM UNTIL EOF-T\n             READ DATA-FILE NEXT\n               AT END\n                 SET EOF-T TO TRUE\n               NOT AT END\n                 PERFORM DISPLAY-DET-S THROUGH DISPLAY-DET-E\n             END-READ\n           END-PERFORM\n\n           CLOSE DATA-FILE.\n           GOBACK.\n\n           DISPAY-DET SECTION.\n           DISPLAY-DET-S.\n               DISPLAY DETAILS.\n               DISPLAY \"DETAILS-ID: \" DETAILS-ID\n               DISPLAY \"DETAILS-NAME: \" DETAILS-SURNAME.\n               DISPLAY \"DETAILS-BIRTHDAY: \" DETAILS-BIRTHDAY.\n           DISPLAY-DET-E.\n               EXIT.\n"
+    },
+    "input_files": [
+        {
+            "file_name": "database.dat",
+            "content": "1234567ANDERSON JM19850315CODE1\n2345678THOMPSON RB19920722CODE2\n3456789WILLIAMS KL19780903CODE3\n4567890MARTINEZ AJ19881214CODE4\n5678901JOHNSON  MR19950628CODE5\n6789012BROWN    ST19820417CODE6\n7890123DAVIS    PH19910805CODE7\n8901234GARCIA   LM19870923CODE8"
+        }
+    ],
+    "output_files": [],
+    "input_output_files": [],
+    "sysin_file": null,
+    "code_file": "successful_snippet_212e4ae8.cob",
+    "compiled_file": "successful_snippet_212e4ae8",
+    "expected_output": "1234567ANDERSON JM19850315CODE\nDETAILS-ID: 1234567\nDETAILS-NAME: ANDERSON\nDETAILS-BIRTHDAY: M1985031\n1\n2345678THOMPSON RB19920722CO\nDETAILS-ID: 1\n23456\nDETAILS-NAME: 78THOMPS\nDETAILS-BIRTHDAY:  RB19920\nDE2\n3456789WILLIAMS KL19780903\nDETAILS-ID: DE2\n345\nDETAILS-NAME: 6789WILL\nDETAILS-BIRTHDAY: MS KL197\nCODE3\n4567890MARTINEZ AJ198812\nDETAILS-ID: CODE3\n4\nDETAILS-NAME: 567890MA\nDETAILS-BIRTHDAY: INEZ AJ1\n14CODE4\n5678901JOHNSON  MR1995\nDETAILS-ID: 14CODE4\nDETAILS-NAME: \n5678901\nDETAILS-BIRTHDAY: HNSON  M\n0628CODE5\n6789012BROWN    ST19\nDETAILS-ID: 0628COD\nDETAILS-NAME: E5\n67890\nDETAILS-BIRTHDAY: BROWN   \n820417CODE6\n7890123DAVIS    PH\nDETAILS-ID: 820417C\nDETAILS-NAME: ODE6\n789\nDETAILS-BIRTHDAY: 23DAVIS \n19910805CODE7\n8901234GARCIA   \nDETAILS-ID: 1991080\nDETAILS-NAME: 5CODE7\n8\nDETAILS-BIRTHDAY: 1234GARC\nLM19870923CODE8901234GARCIA   \nDETAILS-ID: LM19870\nDETAILS-NAME: 923CODE8\nDETAILS-BIRTHDAY: 1234GARC\n",
+    "expected_output_files": [],
+    "expected_input_output_files": []
+}
