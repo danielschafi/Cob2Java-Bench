@@ -34,59 +34,14 @@
     - Danke Claude <3
 
 
-
-# TODO
-- after sample io generation check if it runs
-- when there are no io files we need to copy the cob file to the testcase dir too. -> Done
-- Check how much sense the outputs make
-- also use a few smaller files (and github cobol kind of trash peobably)
-- remove simmilar cobol source files 
-- Check for equivalence in stdout output and output files
-
-Rerun on dataset to be sure it works and we do not have duplicates
-
-
-1. Generate the bigger dataset set file size limit smaller to like 60 -> done
-2. Rerun the pipeline
-    - excluding short files
-    - rewrite_file_paths
-    - remove near duplicates and duplicates
-3. Build the benchmarking tool
-    - For each file in the testcases dic
-    - setup the files
-    - some object that inherits from converterbase with method convert(code or filepath, outputpath) is passed to the testcaserunner
-    - the testcase runner uses that object to convert the cobol file
-    - then compilation
-    - run the java file
-    - check the outputs (outputs stdout, outfiles) for equivalence (same but without whitespace maybe)
-    - Keep track somewhere
-    - Display results over all testcases
-    - Code readability metrics
-4. Fix the code, cleanup repo, make workflow as easy as possible
-
-
-
-how to get static code analysis 
-- maintainability index
-- Healstead measures
-
-
-# TODO
-- after sample io generation check if it runs
-- when there are no io files we need to copy the cob file to the testcase dir too. -> Done
-- Check how much sense the outputs make
-- also use a few smaller files (and github cobol kind of trash peobably)
-- remove simmilar cobol source files 
-- Check for equivalence in stdout output and output files
-
-- some outputs inputs generated may not make much sense
-- Remove files that contain accept from command line
-
-ast vergleichen
-
-
-- for java runs catch unicode decode errors like in capture outputs
-
-
-
-progress bar x / num_tescases completed
+## what I've done
+- Filter src files
+    - duplicates, near duplicates
+    - interactive programs
+    - short fiules
+- capture outputs
+- Benchmark metrics static and equivalence output
+- run benchmark with and without ast
+- new llm class with claude
+- regenerate sample input data io
+- run bnechmark

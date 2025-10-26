@@ -1,0 +1,13 @@
+{
+  "cobol_file": {
+    "file_name": "successful_snippet_4f947439.cob",
+    "content": "        >> SOURCE FORMAT FREE\nidentification division.\nprogram-id. 'decisiontable'.\n\nenvironment division.\nconfiguration section.\nrepository.\n    function all intrinsic.\n\ndata division.\n\nworking-storage section.\n\n01  conditions.\n    03  notprinting pic x.\n    03  flashing pic x.\n    03  notrecognized pic x.\n\nprocedure division.\nstart-decision-table.\n\ndisplay space \n\ndisplay 'The printer does not print (Y or N) ' with no advancing\naccept notprinting\n\ndisplay 'A red light is flashing (Y or N) ' with no advancing\naccept flashing\n\ndisplay 'The printer is unrecognized (Y or N) ' with no advancing\naccept notrecognized\n\nmove upper-case(conditions) to conditions\n\ndisplay space\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nevaluate notprinting also flashing also notrecognized\n\nwhen 'Y' also 'Y' also 'Y'\n    display 'Check the printer-computer cable'\n    display 'Ensure printer software is installed'\n    display 'Check/replace ink'\n\nwhen 'Y' also 'Y' also 'N'\n    display 'Check/replace ink'\n    display 'Check for paper jam'\n\nwhen 'Y' also 'N' also 'Y'\n    display 'Check the power cable'\n    display 'Check the printer-computer cable'\n    display 'Ensure printer software is installed'\n\nwhen 'Y' also 'N' also 'N'\n    display 'Check for paper jam'\n\nwhen 'N' also 'Y' also 'Y'\n    display 'Ensure printer software is installed'\n    display 'Check/replace ink'\n\nwhen 'N' also 'Y' also 'N'\n    display 'Check/replace ink'\n\nwhen 'N' also 'N' also 'Y'\n    display 'Ensure printer software is installed'\n\nwhen 'N' also 'N' also 'N'\n    display 'no action found'\n\nwhen other\n    display 'invalid input: ' notprinting space flashing space notrecognized\n\nend-evaluate\n\ndisplay space\n\nstop run\n.\n\nend program 'decisiontable'.\n"
+  },
+  "input_files": [],
+  "output_files": [],
+  "input_output_files": [],
+  "sysin_file": {
+    "file_name": "sysin.txt",
+    "content": "Y\nN\nN\nN\nY\nN\nY\nN\nY\nN\nN\nN\nY\nY\nN"
+  }
+}

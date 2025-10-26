@@ -1,0 +1,15 @@
+{
+  "cobol_file": {
+    "file_name": "successful_snippet_ad2bd9d8.cob",
+    "content": "IDENTIFICATION DIVISION.\nPROGRAM-ID. run-stddev.\nenvironment division.\ninput-output section.\nfile-control.\n  select input-file assign to \"input.txt\"\n    organization is line sequential.\ndata division.\nfile section.\nfd input-file.\n  01  inp-record.\n    03  inp-fld  pic 9(03).\nworking-storage section.\n01  filler pic 9(01)   value 0.\n  88 no-more-input     value 1.\n01  ws-tb-data.\n  03  ws-tb-size         pic 9(03).\n  03  ws-tb-table.\n    05  ws-tb-fld     pic s9(05)v9999 comp-3 occurs 0 to 100 times \n        depending on ws-tb-size.\n01 ws-stddev       pic s9(05)v9999 comp-3.\nPROCEDURE DIVISION.\n  move 0 to ws-tb-size \n  open  input input-file\n    read input-file\n    at end\n      set no-more-input to true\n    end-read\n    perform\n      test after\n    until no-more-input\n      add 1 to ws-tb-size\n      move inp-fld to ws-tb-fld (ws-tb-size)\n      call 'stddev' using  by reference ws-tb-data \n         ws-stddev\n      display  'inp=' inp-fld ' stddev=' ws-stddev\n      read input-file at end set no-more-input to true end-read\n    end-perform\n  close input-file\n  stop run.\nend program run-stddev.\nIDENTIFICATION DIVISION.\nPROGRAM-ID. stddev.\ndata division.\nworking-storage section.\n01 ws-tbx             pic s9(03) comp.\n01 ws-tb-work.\n  03  ws-sum          pic s9(05)v9999 comp-3 value +0.\n  03  ws-sumsq        pic s9(05)v9999 comp-3 value +0.\n  03  ws-avg          pic s9(05)v9999 comp-3 value +0.\nlinkage section.\n01  ws-tb-data.\n  03  ws-tb-size         pic 9(03).\n  03  ws-tb-table.\n    05  ws-tb-fld     pic s9(05)v9999 comp-3 occurs 0 to 100 times \n        depending on ws-tb-size.\n01  ws-stddev       pic s9(05)v9999 comp-3.\nPROCEDURE DIVISION using  ws-tb-data  ws-stddev.\n    compute ws-sum = 0\n    perform test before varying ws-tbx from 1 by +1 until ws-tbx > ws-tb-size\n        compute ws-sum = ws-sum + ws-tb-fld (ws-tbx) \n    end-perform\n    compute ws-avg rounded = ws-sum / ws-tb-size\n    compute ws-sumsq = 0\n    perform test before varying ws-tbx from 1 by +1 until ws-tbx > ws-tb-size\n        compute ws-sumsq = ws-sumsq\n        + (ws-tb-fld (ws-tbx) - ws-avg) ** 2.0\n    end-perform\n    compute ws-stddev = ( ws-sumsq / ws-tb-size) ** 0.5 \n    goback.\nend program stddev.\n"
+  },
+  "input_files": [
+    {
+      "file_name": "input.txt",
+      "content": "123456John Smith          CSC15\n234567Emily Johnson       MAT12\n345678Michael Brown       ENG08\n456789Sarah Davis         BUS20\n567890Christopher Wilson PHY14\n678901Jessica Martinez    CHE11\n789012Daniel Anderson     HIS09\n890123Ashley Thomas       ART07\n901234Matthew Taylor      MUS13\n012345Amanda Rodriguez    BIO16"
+    }
+  ],
+  "output_files": [],
+  "input_output_files": [],
+  "sysin_file": null
+}

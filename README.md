@@ -14,7 +14,7 @@ Benchmark for cobol to java conversion. Can be used to test conversions to other
 
 # Config
 Set the Model you want to use in the env. you can use pretty much any model that is available on huggingface
-
+There is also a class prepared for use with the anthropic api. You will need to get an api key and credits from anthropic though and set it in the .env or in the terminal as an environment variable. And exchange the LLM class with the one from llm_anthropic everywhere
 
 
 ## Data 

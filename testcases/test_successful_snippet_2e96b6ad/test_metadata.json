@@ -1,0 +1,13 @@
+{
+  "cobol_file": {
+    "file_name": "successful_snippet_2e96b6ad.cob",
+    "content": "       *> MAIN INDEX Controller\n       IDENTIFICATION DIVISION.\n       PROGRAM-ID. INDEX.\n       DATA DIVISION.\n\n       WORKING-STORAGE SECTION.\n            01 CREATER.\n                03 CREATER_ID PIC x.\n                03 CREATER_NAME PIC x(20).\n            01 VAR-STATUS-CODE PIC 999.\n            01 DEFAULT-STATUS-CODE PIC 999 VALUE 200.\n            01 ERROR-CLIENT-CODE PIC 999 VALUE 400.\n            01 ERROR-SERVER-CODE PIC 999 VALUE 500.\n            01 NO-ERROR-CODE PIC 999 VALUE 300.\n            01 LOOP-COUNTER PIC 99999 VALUE 1.\n            01 VAR-IDX PIC 99999 VALUE 0.\n       PROCEDURE DIVISION.\n           *> CREATER Accept\n\n           DISPLAY \"What`s your Creater ID ? \".\n           ACCEPT CREATER_ID.\n\n           DISPLAY \"What`s your Creater Name ? \".\n           ACCEPT CREATER_NAME.\n\n           DISPLAY \"Accept \" CREATER_ID \" : \" CREATER_NAME.\n\n           DISPLAY \"Type Code\".\n\n           ACCEPT VAR-STATUS-CODE.\n\n           *> StatusCode = 200\n           IF VAR-STATUS-CODE = DEFAULT-STATUS-CODE THEN\n               DISPLAY \"Status Code Accept\".\n           *> StatusCOde = 300\n           IF VAR-STATUS-CODE = NO-ERROR-CODE THEN\n               DISPLAY \"Status Code No Error\".\n           *> StatusCode = 400\n           IF VAR-STATUS-CODE = ERROR-CLIENT-CODE THEN\n               DISPLAY \"Status Code Client Error\".\n           *> StatusCode - 500\n           IF VAR-STATUS-CODE = ERROR-SERVER-CODE THEN\n               DISPLAY \"Status Code Server Error\".\n\n           DISPLAY \"Type Loop Counter \"\n           ACCEPT LOOP-COUNTER.\n\n           DISPLAY \"Start Loop Run\".\n\n           PERFORM UNTIL VAR-IDX > LOOP-COUNTER\n\n               DISPLAY \"Counter : \" VAR-IDX\n               ADD 1 TO VAR-IDX\n\n           END-PERFORM.\n\n           DISPLAY \"Stop Loop Run\".\n\n           STOP RUN.\n\n\n"
+  },
+  "input_files": [],
+  "output_files": [],
+  "input_output_files": [],
+  "sysin_file": {
+    "file_name": "sysin.txt",
+    "content": "C001\nJohn Smith\n200\n00005\nC002\nMary Johnson\n300\n00010\nC003\nRobert Davis\n200\n00015\nC004\nSarah Wilson\n400\n00020\nC005\nMichael Brown\n200\n00025"
+  }
+}

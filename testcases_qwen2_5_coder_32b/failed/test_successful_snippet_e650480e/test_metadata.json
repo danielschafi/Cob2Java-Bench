@@ -1,0 +1,17 @@
+{
+  "cobol_file": {
+    "file_name": "successful_snippet_e650480e.cob",
+    "content": "       identification division.\n       program-id. interro1.\n      *>****************************************\n\n       environment division.\n\n       input-output section.\n       \n       file-control.\n           select f-degres assign to \"file-degres\".\n           select f-gon    assign to \"file-gon\".\n\n      *>****************************************\n       \n       data division.\n       \n       file section.\n       fd f-degres.\n       01 f-degres-in.\n           03 ptr              pic 9.\n           03 str              pic x(30).\n       \n       fd f-gon.\n       01 f-gon-out.\n           03 gon              pic x(80).\n\n      *>****************************************\n       \n       working-storage section.\n       \n       77 entete               pic x(80).\n\n       77 name                 pic x(25)   value \"Doe\".\n       77 surname              pic x(25)   value \"John\".\n       77 str-ptr              pic 99      value 16.\n\n       77 celsius-edt          pic x(8).\n       77 celsius              pic 999v9999.\n       \n       77 conversion-str       pic x(80).\n\n       77 f-eof                pic x       value \"0\".\n           88 eof                          value \"1\".\n\n      *>****************************************\n\n       procedure division.\n       \n       perform open-file.\n       perform conversion until eof.\n       perform close-file.\n       \n       goback.\n       \n       \n      *>****************************************\n       \n       open-file.\n           open input f-degres\n                output f-gon\n                \n           call \"entete\" using by content name surname str-ptr\n                               by reference entete\n\n           move entete to f-gon-out\n           write f-gon-out\n           \n           read f-degres\n                at end set eof to true\n           end-read\n           .\n\n      *>****************************************\n       \n       conversion.\n       \n           string\n                \"conversion of --> \"    delimited by size\n                str                     delimited by space\n                \" <-- with pointer \"    delimited by size\n                ptr                     delimited by space\n                into conversion-str\n           end-string\n           \n           display conversion-str\n           \n           unstring \n                str\n                into celsius-edt\n                with pointer ptr\n           end-unstring\n           \n           move function numval(celsius-edt) to celsius\n           \n           display celsius\n           display spaces\n           display spaces\n           \n           initialize f-degres-in\n           \n           read f-degres\n                at end set eof to true\n           end-read\n           .\n\n      *>****************************************\n       \n       close-file.\n           close f-degres f-gon\n           .\n"
+  },
+  "input_files": [
+    {
+      "file_name": "file-degres",
+      "content": "1John Doe          25Celsius to Fahrenheit Conversion\n2Temperature in Celsius: 22\n3Temperature in Celsius: 37\n4Temperature in Celsius: 0\n5Temperature in Celsius: 100\n6Temperature in Celsius: 15\n7Temperature in Celsius: 30\n8Temperature in Celsius: 20\n9Temperature in Celsius: 25\n10Temperature in Celsius: 18"
+    }
+  ],
+  "output_files": [
+    "file-gon"
+  ],
+  "input_output_files": [],
+  "sysin_file": null
+}

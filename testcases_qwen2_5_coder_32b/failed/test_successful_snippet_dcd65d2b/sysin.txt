@@ -1,0 +1,16 @@
+1  
+Enter search value: ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890123456789012345678901234567890  
+Search again? (Y/[N]) N  
+2  
+Enter search value: ShortSearch  
+Search again? (Y/[N]) Y  
+3  
+Enter search value: AnotherSearchTerm  
+Search again? (Y/[N]) N  
+4  
+Enter search value: ExitSearch  
+Search again? (Y/[N]) N  
+1  
+Enter search value: YetAnotherSearch  
+Search again? (Y/[N]) Y  
+4

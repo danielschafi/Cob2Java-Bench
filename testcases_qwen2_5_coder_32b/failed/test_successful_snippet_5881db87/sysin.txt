@@ -1,0 +1,23 @@
+Certainly! Below is the raw input data based on the provided requirements. Since no specific field definitions were provided, I'll create a hypothetical record structure for demonstration purposes. Let's assume the following record structure:
+
+- Field 1: PIC 9(5) - Numeric ID
+- Field 2: PIC X(10) - Name
+- Field 3: PIC 9(3) - Age
+- Field 4: PIC X(15) - Address
+
+Total record length: 33 characters
+
+Here are 5 sample input records:
+
+00001John Doe        030123 Main St          
+00002Jane Smith       025456 Elm St           
+00003Alice Johnson    040789 Oak St           
+00004Bob Brown        035123 Pine St          
+00005Charlie Davis    045456 Maple St         
+00006Diana Evans     028789 Cedar St         
+00007Ethan Foster    032123 Birch St         
+00008Fiona Gates     037456 Spruce St         
+
+Termination record (empty line to indicate end of input):
+
+(blank line)

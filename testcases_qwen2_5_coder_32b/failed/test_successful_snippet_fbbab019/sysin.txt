@@ -1,0 +1,8 @@
+/data/input/file1.txt                                        
+/data/input/file2.txt                                        
+/data/input/file3.txt                                        
+/data/input/file4.txt                                        
+/data/input/file5.txt                                        
+/data/input/file6.txt                                        
+/data/input/file7.txt                                        
+/data/input/file8.txt

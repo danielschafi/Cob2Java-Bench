@@ -1,0 +1,9 @@
+l               user1           password123     newuser1        newpassword456    c               
+L               user2           pass2           newuser2        newpass5          c               
+l               admin           adminpass       newadmin        adminnewpass      c               
+L               guest           guestpass       newguest        guestnewpass      c               
+l               testuser        testpass        newtestuser     newtestpass       c               
+L               demo            demopass        newdemo         newdemopass       c               
+l               sample          samplepass      newsample       newsamplepass     c               
+L               example         examplepass     newexample      newexamplepass    c               
+EOF             EOF             EOF             EOF             EOF             EOF

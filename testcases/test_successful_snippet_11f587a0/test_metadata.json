@@ -1,0 +1,15 @@
+{
+  "cobol_file": {
+    "file_name": "successful_snippet_11f587a0.cob",
+    "content": "       IDENTIFICATION DIVISION.\n       PROGRAM-ID. AOC-2020-04-1.\n       AUTHOR. ANNA KOSIERADZKA.\n      \n       ENVIRONMENT DIVISION.\n       INPUT-OUTPUT SECTION.\n       FILE-CONTROL.\n           SELECT INPUTFILE ASSIGN TO \"d4.input\"\n           ORGANIZATION IS LINE SEQUENTIAL.\n           \n       DATA DIVISION.\n       FILE SECTION.\n         FD INPUTFILE\n         RECORD IS VARYING IN SIZE FROM 1 to 99\n         DEPENDING ON REC-LEN.\n         01 INPUTRECORD PIC X(99).\n       WORKING-STORAGE SECTION.\n         01 FILE-STATUS PIC 9 VALUE 0.\n         01 REC-LEN PIC 9(2) COMP.\n         01 WS-ROW PIC X(16) OCCURS 8 TIMES.\n         01 WS-CHAR PIC X.\n\n       LOCAL-STORAGE SECTION.\n         01 CORRECT-PASSPORTS UNSIGNED-INT VALUE 0.\n         01 FOUND-FIELDS UNSIGNED-INT VALUE 0.\n         01 STRING-PTR UNSIGNED-INT VALUE 1.\n         01 I UNSIGNED-INT VALUE 1.\n\n       PROCEDURE DIVISION.\n       001-MAIN.\n           OPEN INPUT INPUTFILE.\n           PERFORM 002-READ UNTIL FILE-STATUS = 1.\n           CLOSE INPUTFILE.\n           PERFORM 004-NEXT-PASSPORT.\n           DISPLAY CORRECT-PASSPORTS.\n           STOP RUN.\n\n       002-READ.\n            READ INPUTFILE\n                AT END MOVE 1 TO FILE-STATUS\n                NOT AT END PERFORM 003-PROCESS-RECORD\n            END-READ.\n       \n       003-PROCESS-RECORD.\n           IF REC-LEN = 0 THEN\n              PERFORM 004-NEXT-PASSPORT\n           ELSE \n              PERFORM 005-PROCESS-ROW\n           END-IF.\n          \n       004-NEXT-PASSPORT.\n           IF FOUND-FIELDS = 7 THEN \n              ADD 1 TO CORRECT-PASSPORTS\n           END-IF.\n           MOVE 0 TO FOUND-FIELDS.\n           \n       005-PROCESS-ROW.\n           MOVE 1 TO STRING-PTR.\n           PERFORM VARYING I FROM 1 BY 1 UNTIL I > 8\n             UNSTRING INPUTRECORD DELIMITED BY SPACE INTO WS-ROW(I)\n             WITH POINTER STRING-PTR\n           END-PERFORM.\n           \n           PERFORM VARYING I FROM 1 BY 1 UNTIL I > 8\n              MOVE WS-ROW(I)(1:1) TO WS-CHAR\n              IF NOT WS-CHAR ='c' AND NOT WS-CHAR = ' ' THEN\n                 ADD 1 TO FOUND-FIELDS\n              END-IF\n           END-PERFORM.\n"
+  },
+  "input_files": [
+    {
+      "file_name": "d4.input",
+      "content": "byr:1937 iyr:2017 eyr:2020 hgt:183cm pid:860033327 ecl:grn\n\ncid:147 byr:1929 ecl:amb iyr:2013 eyr:2023\nhgt:150cm pid:028048884 cid:350\n\nhgt:59cm ecl:zzz\neyr:2038 hgt:59cm iyr:2019 pid:3556412378\n\npid:087499704 hgt:74in ecl:grn iyr:2012 eyr:2030 byr:1980\n\niyr:2019\nhgt:171cm pid:186cm eyr:2025 byr:1926\n\niyr:2013 ecl:amb cid:350 eyr:2023 pid:028048884\nhgt:66in byr:1972\n\nbyr:1931 eyr:2024 ecl:gry hgt:179cm iyr:2013 pid:345572994\n\necl:gry pid:860033327 eyr:2020 hgt:183cm byr:1937 iyr:2017 cid:147\n\nhgt:190cm iyr:2015 pid:093154719\nbyr:1992 cid:101 eyr:2025 ecl:brn\n\neyr:2040 iyr:1984 pid:2388399270 byr:2029 cid:219 ecl:zzz hgt:177"
+    }
+  ],
+  "output_files": [],
+  "input_output_files": [],
+  "sysin_file": null
+}

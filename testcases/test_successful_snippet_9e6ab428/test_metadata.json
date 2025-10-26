@@ -1,0 +1,15 @@
+{
+  "cobol_file": {
+    "file_name": "successful_snippet_9e6ab428.cob",
+    "content": "       IDENTIFICATION DIVISION.\n       PROGRAM-ID. AOC-2020-02-2.\n       AUTHOR. ANNA KOSIERADZKA.\n      \n       ENVIRONMENT DIVISION.\n       INPUT-OUTPUT SECTION.\n       FILE-CONTROL.\n           SELECT INPUTFILE ASSIGN TO \"d2.input\"\n           ORGANIZATION IS LINE SEQUENTIAL.\n           \n       DATA DIVISION.\n       FILE SECTION.\n         FD INPUTFILE\n         RECORD IS VARYING IN SIZE FROM 8 to 50\n         DEPENDING ON REC-LEN.\n         01 INPUTRECORD PIC X(50).\n       WORKING-STORAGE SECTION.\n         01 FILE-STATUS PIC 9 VALUE 0.\n         01 REC-LEN  PIC 9(2) COMP.\n         01 WS-POS-1 PIC 9(4).\n         01 WS-POS-2 PIC 9(4).\n         01 WS-CHAR PIC A.\n         01 WS-STRING-EMPTY PIC X.\n         01 WS-PASSWORD PIC A(50).\n\n       LOCAL-STORAGE SECTION.\n         01 CONDITIONS-MET UNSIGNED-INT VALUE 0.\n         01 CORRECT-ROWS UNSIGNED-INT VALUE 0.\n\n       PROCEDURE DIVISION.\n       001-MAIN.\n            OPEN INPUT INPUTFILE.\n            PERFORM 002-READ UNTIL FILE-STATUS = 1.\n            CLOSE INPUTFILE.\n            DISPLAY CORRECT-ROWS.\n            STOP RUN.\n\n       002-READ.\n            READ INPUTFILE\n                AT END MOVE 1 TO FILE-STATUS\n                NOT AT END PERFORM 003-PROCESS-RECORD\n            END-READ.\n       \n       003-PROCESS-RECORD.\n           MOVE 0 TO CONDITIONS-MET.\n           UNSTRING INPUTRECORD DELIMITED BY SPACE OR \"-\" OR \":\" INTO \n               WS-POS-1\n               WS-POS-2\n               WS-CHAR\n               WS-STRING-EMPTY\n               WS-PASSWORD.\n           IF WS-PASSWORD(WS-POS-1:1) = WS-CHAR THEN\n              ADD 1 TO CONDITIONS-MET\n           END-IF.\n           IF WS-PASSWORD(WS-POS-2:1) = WS-CHAR THEN\n              ADD 1 TO CONDITIONS-MET\n           END-IF.\n           IF CONDITIONS-MET = 1 THEN\n              ADD 1 TO CORRECT-ROWS\n           END-IF.\n"
+  },
+  "input_files": [
+    {
+      "file_name": "d2.input",
+      "content": "1-3 a: abcde\n2-9 c: ccccccccc\n5-11 b: cdefgbijklm\n1-5 z: zzztvz\n3-6 x: xxxxpx\n4-8 m: mmmfmmmm\n2-4 p: ppkp\n6-10 d: dddddddddd\n1-2 q: qwerty\n7-15 s: sssssssssssssss"
+    }
+  ],
+  "output_files": [],
+  "input_output_files": [],
+  "sysin_file": null
+}

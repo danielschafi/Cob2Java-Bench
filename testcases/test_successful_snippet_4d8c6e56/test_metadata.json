@@ -1,0 +1,13 @@
+{
+  "cobol_file": {
+    "file_name": "successful_snippet_4d8c6e56.cob",
+    "content": "      *******************************************************************\n      **=================================================================\n      ** Ce programme teste le module VIRTUAL-PRINTER\n      **\n      ** Auteurs: Colin Duquesnoy, Thomas Bertels\n      ** Date: Mai 2013\n      *******************************************************************\n       IDENTIFICATION DIVISION.\n      **************************************\n       PROGRAM-ID. TEST-PRINTER.\n      **\n       ENVIRONMENT DIVISION.\n      **************************************\n      **\n       INPUT-OUTPUT SECTION.\n      **-*-*-*-*-*-*-*-*-*-*-*-*-*\n      **\n       DATA DIVISION.\n      **************************************\n       FILE SECTION.\n      **-*-*-*-*-*-*-*-*-*-*-*-*-*\n      **\n       WORKING-STORAGE SECTION.\n      **-*-*-*-*-*-*-*-*-*-*-*-*-*\n       01 PRINTER-PARAM.\n           02 PA-RESET         PIC X       VALUE \"N\"       .\n           02 PA-BUFFER        PIC X(80)   VALUE SPACES    .\n           02 PA-WHEN          PIC X(6)    VALUE \"AFTER\"   .\n           02 PA-WHAT          PIC X(5)    VALUE \"LINES\"   .\n           02 PA-HOWMANY       PIC 99      VALUE 1         .\n       01 BUF-NB-LIGNES-PAR-PAGE PIC 99 VALUE 10.\n      **\n       PROCEDURE DIVISION.\n      **************************************\n       MAIN-PROCEDURE.\n           DISPLAY \"Proj UF31: Test virtual printer\"\n\n           DISPLAY \"Combien de lignes par pages desirez-vous ?\"\n           ACCEPT BUF-NB-LIGNES-PAR-PAGE\n\n           MOVE \"O\"        TO PA-RESET\n           CALL \"VIRTUAL-PRINTER\" USING PRINTER-PARAM\n\n           MOVE \"Bonjour\"  TO PA-BUFFER\n           CALL \"VIRTUAL-PRINTER\" USING PRINTER-PARAM\n\n           MOVE \"La vie est dure et pleine de confiture\" to PA-BUFFER\n           MOVE \"LINES\"    TO PA-WHAT\n           MOVE \"BEFORE\"   TO PA-WHEN\n           MOVE 5          TO PA-HOWMANY\n           CALL \"VIRTUAL-PRINTER\" USING PRINTER-PARAM\n\n           MOVE \"Bonjour\"  TO PA-BUFFER\n           MOVE \"PAGE\"    TO PA-WHAT\n           MOVE \"BEFORE\"   TO PA-WHEN\n           CALL \"VIRTUAL-PRINTER\" USING PRINTER-PARAM\n\n           MOVE \"Bye bye\"  TO PA-BUFFER\n           CALL \"VIRTUAL-PRINTER\" USING PRINTER-PARAM\n\n           DISPLAY \"End\"\n           STOP RUN.\n       HELLO-WORLD.\n           DISPLAY \"Hello World!!\".\n       END PROGRAM TEST-PRINTER.\n"
+  },
+  "input_files": [],
+  "output_files": [],
+  "input_output_files": [],
+  "sysin_file": {
+    "file_name": "sysin.txt",
+    "content": "25"
+  }
+}

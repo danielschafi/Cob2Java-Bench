@@ -1,0 +1,8 @@
+C:\data\sales\2023\Q1\sales_data.txt                                                                  
+C:\data\sales\2023\Q2\sales_data.txt                                                                  
+C:\data\sales\2023\Q3\sales_data.txt                                                                  
+C:\data\sales\2023\Q4\sales_data.txt                                                                  
+C:\data\inventory\2023\Q1\inventory_data.txt                                                          
+C:\data\inventory\2023\Q2\inventory_data.txt                                                          
+C:\data\inventory\2023\Q3\inventory_data.txt                                                          
+C:\data\inventory\2023\Q4\inventory_data.txt

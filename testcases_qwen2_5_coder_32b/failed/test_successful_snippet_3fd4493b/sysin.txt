@@ -1,0 +1,8 @@
+/data/files/input1.txt                                        
+/data/files/input2.txt                                        
+/data/files/input3.txt                                        
+/data/files/input4.txt                                        
+/data/files/input5.txt                                        
+/data/files/input6.txt                                        
+/data/files/input7.txt                                        
+/data/files/input8.txt

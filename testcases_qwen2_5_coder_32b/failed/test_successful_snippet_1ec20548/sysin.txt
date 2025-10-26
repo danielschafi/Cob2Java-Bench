@@ -1,0 +1,8 @@
+APPLE     ORANGE    
+BANANA    GRAPE     
+CHERRY    LEMON     
+DATE      MANGO     
+FIG       PEAR      
+GRAPES    PEACH     
+KIWI      PLUM      
+MELON     STRAWBERRY

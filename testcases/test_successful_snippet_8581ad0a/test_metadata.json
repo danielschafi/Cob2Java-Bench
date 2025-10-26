@@ -1,0 +1,15 @@
+{
+  "cobol_file": {
+    "file_name": "successful_snippet_8581ad0a.cob",
+    "content": "       IDENTIFICATION DIVISION.\n           PROGRAM-ID. ReadData.\n      *> How to write a file     \n       \n       ENVIRONMENT DIVISION.\n           INPUT-OUTPUT SECTION.\n           FILE-CONTROL.\n               SELECT FileUsed ASSIGN TO \"data.cobol.dat\"\n                   ORGANIZATION IS SEQUENTIAL\n                   FILE STATUS FileStatus.\n       \n       DATA DIVISION.\n           FILE SECTION.\n           FD FileUsed.\n      *> Some complex data type, notice the \"02\", \"03\" levels\n           01  Employee.\n               88 EndOfFile  VALUE ALL '*'.\n               02 fname     PIC X(10).\n               02 lname     PIC X(10).\n               02 SSN.\n                   03 A     PIC 999.\n                   03 B     PIC 99.\n                   03 C     PIC 9(4).\n               02 city      PIC X(10).\n           \n           WORKING-STORAGE SECTION.\n           01  FileStatus   PIC X(2).\n               88 FileNotFound      VALUE '35'.\n               88 ReachEndOfFile    VALUE '10'.\n               88 EverythingOK      VALUE '00'.\n\n       PROCEDURE DIVISION.                 \n           \n      *> open file\n           OPEN INPUT FileUsed\n           \n      *> Check for errors\n           DISPLAY \"ERROR CODE : \" FileStatus           \n           IF FileNotFound\n               DISPLAY \"ERROR : File NOT found\"\n               STOP RUN\n           END-IF\n\n           IF ReachEndOfFile\n               DISPLAY \"File Empty\"\n           END-IF\n\n           IF EverythingOK\n               DISPLAY \"No errors. Reading...\"\n           END-IF\n\n           IF FileStatus <> '00'\n               DISPLAY \"You are not catching this error!\"\n           END-IF\n\n      *>  Read the file until you reach the end:\n           PERFORM UNTIL FileStatus IS EQUAL TO '10'\n             READ FileUsed \n               AT END SET EndOfFile TO TRUE\n               NOT AT END DISPLAY fname \",\" SPACE lname \n                   \" SSN: \"A \"-\" B \"-\" C\n           END-PERFORM\n        \n           DISPLAY \"ERROR CODE : \" FileStatus      \n           DISPLAY fname \",\" SPACE lname \" SSN: \"A \"-\" B \"-\" C\n\n           IF ReachEndOfFile\n               DISPLAY \"End of File Reached\"\n           END-IF\n              \n      *> close file\n           CLOSE FileUsed\n           STOP RUN.\n\n"
+  },
+  "input_files": [
+    {
+      "file_name": "data.cobol.dat",
+      "content": "John      Smith     123456789 NewYork   \nMary      Johnson   987654321 Chicago   \nRobert    Williams  456789123 Houston   \nPatricia  Brown     321654987 Phoenix   \nMichael   Jones     789123456 Philadelphia\nLinda     Garcia    654987321 SanAntonio\nDavid     Miller    147258369 SanDiego  \nBarbara   Davis     963852741 Dallas    \nWilliam   Rodriguez 258369147 SanJose   \nElizabeth Martinez  852741963 Austin"
+    }
+  ],
+  "output_files": [],
+  "input_output_files": [],
+  "sysin_file": null
+}

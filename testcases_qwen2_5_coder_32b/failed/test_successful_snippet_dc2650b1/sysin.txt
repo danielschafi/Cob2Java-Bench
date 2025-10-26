@@ -1,0 +1,8 @@
+/path/to/inputfile1.txt                                        
+/path/to/inputfile2.txt                                        
+/path/to/inputfile3.txt                                        
+/path/to/inputfile4.txt                                        
+/path/to/inputfile5.txt                                        
+/path/to/inputfile6.txt                                        
+/path/to/inputfile7.txt                                        
+/path/to/inputfile8.txt

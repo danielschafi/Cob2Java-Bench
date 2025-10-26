@@ -1,0 +1,18 @@
+{
+    "cobol_file": {
+        "file_name": "successful_snippet_b924536e.cob",
+        "content": "      ******************************************************************\n      * Author: mkaraki\n      * Date: 2021-10-17\n      * Purpose: Equipment Management\n      * Tectonics: cobc\n      ******************************************************************\n       IDENTIFICATION DIVISION.\n       PROGRAM-ID. EQUIPMENTDB-ADD.\n       ENVIRONMENT DIVISION.\n           INPUT-OUTPUT SECTION.\n               FILE-CONTROL.\n               SELECT EQUIPMENT-LIST-DATA ASSIGN TO \"equipments.data\"\n               ORGANIZATION IS LINE SEQUENTIAL\n               FILE STATUS IS STATUS-EQUIPMENT-LIST-DATA.\n       DATA DIVISION.\n       FILE SECTION.\n           FD EQUIPMENT-LIST-DATA.\n           01 EQUIPMENT-LIST-DATA-REC PIC X(70).\n       WORKING-STORAGE SECTION.\n           01 STATUS-EQUIPMENT-LIST-DATA PIC X(2).\n           01 QUEUE-SERIAL PIC X(10).\n           01 QUEUE-STATUS PIC X(10).\n           01 QUEUE-SERIAN-AND-STATUS PIC X(20).\n           01 QUEUE-NAME PIC X(50).\n       PROCEDURE DIVISION.\n       MAIN-PROCEDURE.\n           OPEN EXTEND EQUIPMENT-LIST-DATA.\n\n           PERFORM UNTIL 1 = 2\n               PERFORM ADD-ITEM\n           END-PERFORM.\n\n       ADD-ITEM.\n      *    Read Internal Serial Code\n           DISPLAY \"Internal Serial (`!` to exit): \".\n           ACCEPT QUEUE-SERIAL FROM CONSOLE.\n           IF QUEUE-SERIAL = \"!\" THEN\n               CLOSE EQUIPMENT-LIST-DATA\n               STOP RUN\n           END-IF\n\n      *    Set Default Item Status\n           MOVE \"ACTIVE\" TO QUEUE-STATUS.\n\n      *    Read Device Name\n           DISPLAY \"Device Name: \".\n           ACCEPT QUEUE-NAME FROM CONSOLE.\n\n           STRING\n               QUEUE-SERIAL DELIMITED BY SIZE\n               QUEUE-STATUS DELIMITED BY SIZE\n               INTO QUEUE-SERIAN-AND-STATUS\n           END-STRING.\n\n           STRING\n               QUEUE-SERIAN-AND-STATUS DELIMITED BY SIZE\n               QUEUE-NAME DELIMITED BY SIZE\n               INTO EQUIPMENT-LIST-DATA-REC\n           END-STRING.\n\n           WRITE EQUIPMENT-LIST-DATA-REC.\n\n           EXIT.\n\n       END PROGRAM EQUIPMENTDB-ADD.\n"
+    },
+    "input_files": [],
+    "output_files": [
+        "equipments.data"
+    ],
+    "input_output_files": [],
+    "sysin_file": {
+        "file_name": "sysin.txt",
+        "content": "1234567890QUEUE DEVICE ONE                                \n9876543210ANOTHER DEVICE NAME                             \n0000000001DEVICE THREE                                      \n1111111111DEVICE FOUR                                       \n2222222222DEVICE FIVE                                       \n3333333333DEVICE SIX                                        \n4444444444DEVICE SEVEN                                      \n5555555555DEVICE EIGHT                                      \n!"
+    },
+    "code_file": "successful_snippet_b924536e.cob",
+    "compiled_file": "successful_snippet_b924536e",
+    "expected_output": "Internal Serial (`!` to exit): \nDevice Name: \nInternal Serial (`!` to exit): \nDevice Name: \nInternal Serial (`!` to exit): \nDevice Name: \nInternal Serial (`!` to exit): \nDevice Name: \nInternal Serial (`!` to exit): \n"
+}

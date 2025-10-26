@@ -1,0 +1,18 @@
+{
+  "cobol_file": {
+    "file_name": "successful_snippet_429b4275.cob",
+    "content": "       IDENTIFICATION DIVISION.\n       PROGRAM-ID. NOTES.\n\n       ENVIRONMENT DIVISION.\n       INPUT-OUTPUT SECTION.\n       FILE-CONTROL.\n           SELECT OPTIONAL notes ASSIGN TO \"NOTES.TXT\"\n               ORGANIZATION LINE SEQUENTIAL\n               FILE STATUS note-status.\n\n       DATA DIVISION.\n       FILE SECTION.\n       FD  notes.\n       01  note-record       PIC X(256).\n\n       LOCAL-STORAGE SECTION.\n       01  note-status       PIC 99.\n           88  notes-ok      VALUE 0 THRU 9.\n\n       01  date-now.\n           03  current-year  PIC 9(4).\n           03  current-month PIC 99.\n           03  current-day   PIC 99.\n\n       01  time-now.\n           03  current-hour  PIC 99.\n           03  current-min   PIC 99.\n           03  current-sec   PIC 99.\n\n       01  args              PIC X(256).\n\n       PROCEDURE DIVISION.\n       DECLARATIVES.\n       note-error SECTION.\n           USE AFTER STANDARD ERROR PROCEDURE ON notes.\n\n           DISPLAY \"Error using NOTES.TXT. Error code: \" note-status\n           .\n       END DECLARATIVES.\n\n       main.\n           ACCEPT args FROM COMMAND-LINE\n\n*          \n           IF args = SPACES\n               OPEN INPUT notes\n\n               PERFORM FOREVER\n*                  \n*                  \n                   READ notes \n                       AT END\n                           EXIT PERFORM\n\n                       NOT AT END\n                           DISPLAY FUNCTION TRIM(note-record)\n                   END-READ\n               END-PERFORM\n           ELSE\n               OPEN EXTEND notes\n\n*              \n               ACCEPT date-now FROM DATE YYYYMMDD\n               ACCEPT time-now FROM TIME\n               STRING current-year \"-\" current-month \"-\" current-day\n                   \" \" current-hour \":\" current-min \":\" current-sec\n                   INTO note-record\n               WRITE note-record\n               \n*              \n               STRING X\"09\", args INTO note-record\n               WRITE note-record\n           END-IF\n\n           CLOSE notes\n\n           GOBACK\n           .\n"
+  },
+  "input_files": [
+    {
+      "file_name": "NOTES.TXT",
+      "content": "2024-01-15 09:23 - Initial project setup completed. Database schema finalized and approved by team lead.\n2024-01-15 14:47 - Met with stakeholders to review requirements. Action items assigned to development team.\n2024-01-16 08:15 - Code review scheduled for Friday afternoon. All developers must submit PRs by Thursday EOD.\n2024-01-16 11:30 - Production deployment successful. Monitoring system performance. No issues reported so far.\n2024-01-17 13:05 - Bug #2847 resolved. Fix tested in QA environment. Ready for next release cycle.\n2024-01-18 10:20 - Customer reported issue with invoice generation. Investigating root cause. Priority: HIGH\n2024-01-18 15:45 - Invoice issue traced to date formatting in batch job. Hotfix deployed to production.\n2024-01-19 09:00 - Weekly team meeting notes: Sprint velocity improved by 15%. Continue current practices.\n2024-01-22 16:30 - Security audit completed. Two minor vulnerabilities identified. Remediation plan created.\n2024-01-23 12:15 - New feature request from sales team. Estimated 40 hours development time. Awaiting approval."
+    }
+  ],
+  "output_files": [],
+  "input_output_files": [],
+  "sysin_file": {
+    "file_name": "sysin.txt",
+    "content": "--help\n--version\n--input=data.txt --output=result.txt\n--verbose --debug --log=trace.log\n-f input.dat -o output.dat --format=csv\n--config=settings.ini --threads=4\n--batch --silent --no-color"
+  }
+}

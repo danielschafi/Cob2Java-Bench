@@ -1,0 +1,15 @@
+{
+  "cobol_file": {
+    "file_name": "successful_snippet_fd04903e.cob",
+    "content": "       IDENTIFICATION DIVISION.\n       PROGRAM-ID. AOC-2021-07-2.\n       AUTHOR. ANNA KOSIERADZKA.\n\n       ENVIRONMENT DIVISION.\n       INPUT-OUTPUT SECTION.\n       FILE-CONTROL.\n           SELECT INPUTFILE ASSIGN TO \"d07.input\"\n           ORGANIZATION IS LINE SEQUENTIAL.\n\n       DATA DIVISION.\n\n       FILE SECTION.\n         FD INPUTFILE.\n         01 INPUTRECORD PIC X(4).\n      * input was modified to have 1 number per line   \n         \n       WORKING-STORAGE SECTION.\n         01 FILE-STATUS PIC 9 VALUE 0.\n         01 N PIC 9(4) VALUE 1000.\n         01 WS-ARRAY OCCURS 0 TO 1000 TIMES DEPENDING ON N.\n           05 WS-NUM PIC 9(4) VALUE 0.\n         01 WS-MEAN PIC 9(16) VALUE 0.\n         01 WS-SUM PIC 9(16) VALUE 0.\n         01 WS-ANS1 PIC 9(16) VALUE 0.\n         01 WS-ANS2 PIC 9(16) VALUE 0.\n         01 WS-ANS3 PIC 9(16) VALUE 0.\n         01 WS-RESULT PIC 9(16) VALUE 0.\n         77 X PIC 9(16) VALUE 0.\n\n       LOCAL-STORAGE SECTION.\n         01 I UNSIGNED-INT VALUE 1.\n\n       PROCEDURE DIVISION.\n       001-MAIN.\n            OPEN INPUT INPUTFILE.\n            PERFORM 002-READ UNTIL FILE-STATUS = 1.\n            CLOSE INPUTFILE.\n            PERFORM 004-COMPUTE.\n            DISPLAY WS-RESULT.\n            STOP RUN.\n            \n       002-READ.\n            READ INPUTFILE\n                AT END MOVE 1 TO FILE-STATUS\n                NOT AT END PERFORM 003-PROCESS-RECORD\n            END-READ.\n\n       003-PROCESS-RECORD.\n           COMPUTE WS-NUM(I) = FUNCTION NUMVAL(INPUTRECORD).\n           ADD 1 TO I.\n\n       004-COMPUTE.\n           PERFORM VARYING I FROM 1 BY 1 UNTIL I > N\n             COMPUTE WS-SUM = WS-SUM + WS-NUM(I)\n           END-PERFORM.\n           COMPUTE WS-MEAN ROUNDED = WS-SUM / N.\n\n           PERFORM VARYING I FROM 1 BY 1 UNTIL I > N\n             COMPUTE X = FUNCTION ABS(WS-MEAN - 1 - WS-NUM(I))\n             COMPUTE WS-ANS1 = WS-ANS1 + (X * (X + 1))/ 2\n             COMPUTE X = FUNCTION ABS(WS-MEAN - WS-NUM(I))\n             COMPUTE WS-ANS2 = WS-ANS2 + (X * (X + 1))/ 2\n             COMPUTE X = FUNCTION ABS(WS-MEAN + 1 - WS-NUM(I))\n             COMPUTE WS-ANS3 = WS-ANS3 + (X * (X + 1))/ 2\n           END-PERFORM.\n           COMPUTE WS-RESULT = FUNCTION MIN(WS-ANS1, WS-ANS2, WS-ANS3).\n"
+  },
+  "input_files": [
+    {
+      "file_name": "d07.input",
+      "content": "0016\n0001\n0002\n0025\n0007\n0004\n0001\n0014\n0002\n0018"
+    }
+  ],
+  "output_files": [],
+  "input_output_files": [],
+  "sysin_file": null
+}

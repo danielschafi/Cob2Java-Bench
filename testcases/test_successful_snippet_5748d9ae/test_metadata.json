@@ -1,0 +1,10 @@
+{
+  "cobol_file": {
+    "file_name": "successful_snippet_5748d9ae.cob",
+    "content": "       IDENTIFICATION DIVISION.\n       PROGRAM-ID. show-lcm.\n\n       ENVIRONMENT DIVISION.\n       CONFIGURATION SECTION.\n       REPOSITORY.\n           FUNCTION lcm\n           .\n       PROCEDURE DIVISION.\n           DISPLAY \"lcm(35, 21) = \" FUNCTION lcm(35, 21)\n           GOBACK\n           .\n       END PROGRAM show-lcm.\n\n       IDENTIFICATION DIVISION.\n       FUNCTION-ID. lcm.\n\n       ENVIRONMENT DIVISION.\n       CONFIGURATION SECTION.\n       REPOSITORY.\n           FUNCTION gcd\n           .\n       DATA DIVISION.\n       LINKAGE SECTION.\n       01  m                       PIC S9(8).\n       01  n                       PIC S9(8).\n       01  ret                     PIC S9(8).\n\n       PROCEDURE DIVISION USING VALUE m, n RETURNING ret.\n           COMPUTE ret = FUNCTION ABS(m * n) / FUNCTION gcd(m, n)\n           GOBACK\n           .\n       END FUNCTION lcm.\n\n       IDENTIFICATION DIVISION.\n       FUNCTION-ID. gcd.\n\n       DATA DIVISION.\n       LOCAL-STORAGE SECTION.\n       01  temp                    PIC S9(8).\n\n       01  x                       PIC S9(8).\n       01  y                       PIC S9(8).\n\n       LINKAGE SECTION.\n       01  m                       PIC S9(8).\n       01  n                       PIC S9(8).\n       01  ret                     PIC S9(8).\n\n       PROCEDURE DIVISION USING VALUE m, n RETURNING ret.\n           MOVE m to x\n           MOVE n to y\n\n           PERFORM UNTIL y = 0\n               MOVE x TO temp\n               MOVE y TO x\n               MOVE FUNCTION MOD(temp, y) TO Y\n           END-PERFORM\n\n           MOVE FUNCTION ABS(x) TO ret\n           GOBACK\n           .\n       END FUNCTION gcd.\n"
+  },
+  "input_files": [],
+  "output_files": [],
+  "input_output_files": [],
+  "sysin_file": null
+}

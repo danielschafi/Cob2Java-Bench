@@ -1,0 +1,16 @@
+1  
+09000123Caloric snack at 9:00 AM     
+2  
+12300456Lunch at noon                
+1  
+18450200Dinner at 6:45 PM            
+2  
+07150300Breakfast at 7:15 AM         
+1  
+14000600Lunch at 2:00 PM             
+2  
+20000250Dinner at 8:00 PM            
+1  
+11300150Morning snack at 11:30 AM    
+2  
+22000100Late night snack at 10:00 PM

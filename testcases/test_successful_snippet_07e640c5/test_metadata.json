@@ -1,0 +1,13 @@
+{
+  "cobol_file": {
+    "file_name": "successful_snippet_07e640c5.cob",
+    "content": "       IDENTIFICATION DIVISION.\n       PROGRAM-ID. AdventOfCode2019-8b.\n\n       ENVIRONMENT DIVISION.\n       INPUT-OUTPUT SECTION.\n       FILE-CONTROL.\n       SELECT InputFile ASSIGN TO InputPath\n       ORGANIZATION IS SEQUENTIAL.\n\n       DATA DIVISION.\n       FILE SECTION.\n       FD InputFile.\n       01 InputRec.\n        02 Pixel PIC X(1) OCCURS 150 TIMES.\n\n       WORKING-STORAGE SECTION.\n       01 InputPath PIC X(50).\n       01 EOF       PIC 9(1).\n\n       01 Image.\n        02 Pixel    PIC X(1) OCCURS 150 TIMES.\n       01 Layers    REDEFINES Image.\n        02 Layer    PIC X(25) OCCURS 6 TIMES.\n       01 Remaining PIC 9(3).\n       01 Idx       PIC 9(3).\n\n       PROCEDURE DIVISION.\n       Begin.\n           ACCEPT InputPath FROM ARGUMENT-VALUE.\n           OPEN INPUT InputFile.\n\n           MOVE 150 TO Remaining.\n\n           PERFORM VARYING Idx FROM 1 UNTIL Idx > 150\n            MOVE 2 TO Pixel OF Image (Idx)\n           END-PERFORM.\n\n           PERFORM FOREVER\n            READ InputFile\n             AT END MOVE 1 TO EOF\n            END-READ\n\n           PERFORM VARYING Idx FROM 1 UNTIL Idx > 150\n            IF Pixel OF Image (Idx) IS EQUAL TO 2\n             AND Pixel OF InputRec (Idx) IS NOT EQUAL TO 2\n             MOVE Pixel OF InputRec (Idx) TO Pixel OF Image (Idx)\n             SUBTRACT 1 FROM Remaining\n            END-IF\n           END-PERFORM\n\n           IF Remaining IS EQUAL TO 0\n            EXIT PERFORM\n           END-IF\n\n            IF EOF IS EQUAL TO 1\n             EXIT PERFORM\n            END-IF\n           END-PERFORM.\n\n           PERFORM VARYING Idx FROM 1 UNTIL Idx > 6\n            DISPLAY Layer(Idx)\n           END-PERFORM.\n\n           CLOSE InputFile.\n\n"
+  },
+  "input_files": [],
+  "output_files": [],
+  "input_output_files": [],
+  "sysin_file": {
+    "file_name": "sysin.txt",
+    "content": "/data/input/customer_records.dat"
+  }
+}

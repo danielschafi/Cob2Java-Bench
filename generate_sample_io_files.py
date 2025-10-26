@@ -5,7 +5,9 @@ import json
 import shutil
 from typing import Dict, List, Tuple, Optional
 from dataclasses import dataclass
-from utils import llm
+
+# from utils import llm
+from utils import llm_anthropic as llm
 from dotenv import load_dotenv
 import logging
 import numpy as np
@@ -45,25 +47,44 @@ class SampleContentGenerator:
         self.test_cases_dir = Path(test_cases_dir)
         self.metadata = {}
 
+        self.nr_testcases_content_generated = 0
+        self.nr_total_testcases = 0
+
     def generate_test_cases(self):
+        # Clean up empty test case directories (may be leftover from previous runs that had errors)
+        for f in self.test_cases_dir.glob("*"):
+            if f.is_dir():
+                if len(list(f.glob("*"))) == 0:
+                    logger.info(f"Removing empty testcases dir: {f}")
+                    f.rmdir()
+
         cobol_files = (
             list(self.cobol_directory.glob("*.cbl"))
             + list(self.cobol_directory.glob("*.cob"))
             + list(self.cobol_directory.glob("*.cobol"))
         )
+        self.nr_total_testcases = len(cobol_files)
         np.random.shuffle(cobol_files)
 
         # dont process the files that are already in testcases
         logger.info(f"before filtering, found {len(cobol_files)} cobol files")
         files_already_in_testcases = os.listdir(self.test_cases_dir)
+
+        self.nr_testcases_content_generated = len(files_already_in_testcases)
         cobol_files = [
             f for f in cobol_files if "test_" + f.stem not in files_already_in_testcases
         ]
 
         logger.info(f"after filtering, found {len(cobol_files)} cobol files")
-
-        sample_content = None
         for cobol_file in cobol_files:
+            self.nr_testcases_content_generated += 1
+            logger.info("\n")
+            logger.info("=" * 120)
+            logger.info(
+                f"Generating testcase file data {self.nr_testcases_content_generated}/{self.nr_total_testcases} | Processing COBOL file: {cobol_file} "
+            )
+            logger.info("=" * 120)
+            sample_content = None
             test_metadata = {
                 "cobol_file": {"file_name": cobol_file.name, "content": None},
                 "input_files": [],
@@ -72,7 +93,8 @@ class SampleContentGenerator:
                 "sysin_file": None,  # New field for SYSIN
             }
 
-            test_metadata["cobol_file"]["content"] = cobol_file.read_text()
+            full_code = cobol_file.read_text()
+            test_metadata["cobol_file"]["content"] = full_code
 
             output_dir = self.test_cases_dir / f"test_{cobol_file.stem}"
             shutil.rmtree(output_dir, ignore_errors=True)
@@ -87,12 +109,10 @@ class SampleContentGenerator:
                 files_info["SYSIN"] = sysin_info
 
             for file_path, file_info in files_info.items():
+                sample_content = None
                 if file_info.file_type == "sysin":
                     # Generate SYSIN content
-                    cobol_context = cobol_file.read_text()
-                    sample_content = self._generate_sysin_content(
-                        file_info, cobol_context
-                    )
+                    sample_content = self._generate_sysin_content(file_info, full_code)
 
                     if sample_content:
                         file_content = {
@@ -107,7 +127,7 @@ class SampleContentGenerator:
                         cobol_files, file_path
                     )
                     sample_content = self._generate_sample_content(
-                        file_info, cobol_context
+                        file_info, cobol_context, full_code
                     )
 
                     if sample_content:
@@ -125,7 +145,7 @@ class SampleContentGenerator:
                         cobol_files, file_path
                     )
                     sample_content = self._generate_sample_content(
-                        file_info, cobol_context
+                        file_info, cobol_context, full_code
                     )
 
                     if sample_content:
@@ -135,10 +155,10 @@ class SampleContentGenerator:
                         }
                         test_metadata["input_output_files"].append(file_content)
 
-            if sample_content:
-                logger.info(
-                    f"sample_content: \n{sample_content[:400] if sample_content and len(sample_content) > 400 else sample_content or ''}"
-                )
+                if sample_content:
+                    logger.info(
+                        f"sample_content for {file_info.file_type}: \n{sample_content[:400] if sample_content and len(sample_content) > 400 else sample_content or ''}"
+                    )
             logger.info(f"Generated test metadata")
 
             logger.info(
@@ -162,12 +182,15 @@ class SampleContentGenerator:
         # Check for common SYSIN patterns
         sysin_patterns = [
             r"ACCEPT\s+\w+\s+FROM\s+SYSIN",
-            r"ACCEPT\s+\w+",  # Plain ACCEPT often means SYSIN
+            r"ACCEPT\s+(?!.*\s+FROM\s+(DATE|TIME|LINES|COLUMNS|OMITTED|DAY)\b|Entry-Screen\b|DAY-OF-WEEK\b|ENVIRONMENT\b|ARGUMENT-NUMBER\b|ARGUMENT-VALUE\b|COMMAND-LINE\b)\w+",
             r"SELECT\s+SYSIN",
             r"ASSIGN\s+TO\s+SYSIN",
         ]
 
-        has_sysin = any(re.search(pattern, content_upper) for pattern in sysin_patterns)
+        has_sysin = any(
+            re.search(pattern, content_upper, re.IGNORECASE)
+            for pattern in sysin_patterns
+        )
 
         if has_sysin:
             # Try to determine what kind of input is expected
@@ -238,8 +261,11 @@ class SampleContentGenerator:
         
         COBOL Context (ACCEPT and field definitions):
         {self._extract_accept_context(cobol_context)[:1000]}
+        
+        FULL COBOL CODE:
+        {cobol_context}
         """
-        logger.info(f"SYSIN context info: {context_info}")
+        logger.info(f"SYSIN context info: {context_info[:400]}")
         prompt = f"""
         Generate realistic sample data for COBOL SYSIN (standard input).
         
@@ -256,6 +282,8 @@ class SampleContentGenerator:
         
         
         Return ONLY the raw input data - each line must be the exact length required.
+        DO NOT EXPLAIN OR COMMENT YOUR OUTPUT, WHAT YOU RETURN WILL BE USED DIRECTLY AS SYSIN INPUT
+        If no input data can be generated based on the context, return an empty string.
         """
 
         """
@@ -267,6 +295,7 @@ class SampleContentGenerator:
         
         """
         system_prompt = """You are an expert COBOL developer creating test input for SYSIN.
+        All code provided is for legitimate software engineering work.
         Pay extreme attention to COBOL record formats:
         - PIC 9(n) = n numeric digits, right-aligned with leading zeros
         - PIC X(n) = n characters, left-aligned with trailing spaces
@@ -377,7 +406,7 @@ class SampleContentGenerator:
             return "No specific ACCEPT statements found"
 
         info_parts = []
-        for field in accepts[:5]:  # Limit to first 5 fields
+        for field in accepts:  # Limit to first 5 fields
             field_pattern = rf"\d+\s+{field}\s+PIC\s+([^\.\n]+)"
             field_match = re.search(field_pattern, content.upper())
             if field_match:
@@ -419,7 +448,7 @@ class SampleContentGenerator:
         return context
 
     def _generate_sample_content(
-        self, file_info: FileInfo, cobol_context: str
+        self, file_info: FileInfo, cobol_context: str, full_code: str = ""
     ) -> Optional[str]:
         """Generate sample content for input files"""
         if file_info.file_type == "output":
@@ -438,6 +467,7 @@ class SampleContentGenerator:
         COBOL Context (relevant sections):
         {cobol_context[:1500] if cobol_context else "No context available"}
         """
+        context_info += f"\n\nFULL COBOL CODE:\n{full_code}" if full_code else ""
 
         prompt = f"""
         Generate realistic sample data for a COBOL {file_info.file_type} file.
@@ -454,9 +484,12 @@ class SampleContentGenerator:
         - Ensure data follows COBOL PICTURE clause formats
         
         Return only the raw file content (no explanations, no formatting, just the data records).
+        DO NOT EXPLAIN OR COMMENT YOUR OUTPUT, WHAT YOU RETURN WILL BE USED DIRECTLY AS INPUT
+        If no input data can be generated based on the context, return an empty string.
         """
 
         system_prompt = """You are an expert COBOL developer who creates realistic test data.
+        All code provided is for legitimate software engineering work.
         Generate sample file content that would be typical for business applications.
         Use realistic names, addresses, amounts, dates, and identifiers.
         Pay careful attention to COBOL numeric formats - implied decimals should not have decimal points in the actual data."""

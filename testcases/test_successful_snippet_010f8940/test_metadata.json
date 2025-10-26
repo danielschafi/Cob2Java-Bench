@@ -1,0 +1,12 @@
+{
+  "cobol_file": {
+    "file_name": "successful_snippet_010f8940.cob",
+    "content": "       IDENTIFICATION DIVISION.\n       PROGRAM-ID. PG3.\n       ENVIRONMENT DIVISION.\n       CONFIGURATION SECTION.\n       INPUT-OUTPUT SECTION.\n      ***\n      *** DEFINE OS ARQUIVOS DE ENTRADA E SAIDA\n      ***\n       FILE-CONTROL.\n           SELECT ARQCAD ASSIGN TO \"CADASTR.DAT\"\n             ORGANIZATION IS SEQUENTIAL\n             ACCESS MODE IS SEQUENTIAL\n             FILE STATUS IS ST-ALU.\n       DATA DIVISION.\n       FILE SECTION.\n       FD  ARQCAD.\n       01  REG-ALUNO.\n            05  MATRIC.\n                10  CO-ANO     PIC  9(02).\n                10  CO-NUMERO  PIC  9(03).\n                10  CO-DIGITO  PIC  9(01).\n            05  NOME    PIC  X(30).\n            05  SEXO    PIC  X(01).\n            05  NOTA-PROVA  PIC  9(02)V99.\n       WORKING-STORAGE SECTION.\n       77  ST-ALU       PIC X(02).\n       PROCEDURE DIVISION.\n       INICIO.\n           PERFORM ABRE-ARQ.\n           PERFORM PROCESSO.\n           PERFORM FINALIZA.\n           STOP RUN.\n       ABRE-ARQ.\n           OPEN OUTPUT ARQCAD.\n           IF ST-ALU NOT EQUAL '00'\n              DISPLAY 'ERRO DE ABERTURA - CAD ALUNO' ST-ALU\n              STOP RUN.\n       PROCESSO.\n           MOVE '180019' TO MATRIC.\n           MOVE 'JOAO DAS NEVES                ' TO NOME.\n           MOVE 'M' TO SEXO.\n           MOVE 07.50 TO NOTA-PROVA.\n           WRITE REG-ALUNO.\n\n           MOVE '180029' TO MATRIC.\n           MOVE 'MARIA JOAQUINA                ' TO NOME.\n           MOVE 'F' TO SEXO.\n           MOVE 05.50 TO NOTA-PROVA.\n           WRITE REG-ALUNO.\n\n           MOVE '180039' TO MATRIC.\n           MOVE 'MARIA MADALENA DE JESUS       ' TO NOME.\n           MOVE 'F' TO SEXO.\n           MOVE 08.00 TO NOTA-PROVA.\n           WRITE REG-ALUNO.\n\n           MOVE '180049' TO MATRIC.\n           MOVE 'ALBERT EINSTEN                ' TO NOME.\n           MOVE 'M' TO SEXO.\n           MOVE 09.50 TO NOTA-PROVA.\n           WRITE REG-ALUNO.\n\n           MOVE '180059' TO MATRIC.\n           MOVE 'JOAOZINHO DA SILVA            ' TO NOME.\n           MOVE 'M' TO SEXO.\n           MOVE 02.00 TO NOTA-PROVA.\n           WRITE REG-ALUNO.\n\n       FINALIZA.\n           CLOSE ARQCAD.\n"
+  },
+  "input_files": [],
+  "output_files": [
+    "CADASTR.DAT"
+  ],
+  "input_output_files": [],
+  "sysin_file": null
+}
