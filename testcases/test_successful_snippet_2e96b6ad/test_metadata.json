@@ -8,6 +8,6 @@
   "input_output_files": [],
   "sysin_file": {
     "file_name": "sysin.txt",
-    "content": "C001\nJohn Smith\n200\n00005\nC002\nMary Johnson\n300\n00010\nC003\nRobert Davis\n200\n00015\nC004\nSarah Wilson\n400\n00020\nC005\nMichael Brown\n200\n00025"
+    "content": "A\nJohn Smith          \n200\n00005"
   }
 }

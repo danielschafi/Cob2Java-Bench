@@ -6,8 +6,5 @@
   "input_files": [],
   "output_files": [],
   "input_output_files": [],
-  "sysin_file": {
-    "file_name": "sysin.txt",
-    "content": "1\n2\n3\n4\n5\n6\n7"
-  }
+  "sysin_file": null
 }

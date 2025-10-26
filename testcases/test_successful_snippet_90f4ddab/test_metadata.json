@@ -8,6 +8,6 @@
   "input_output_files": [],
   "sysin_file": {
     "file_name": "sysin.txt",
-    "content": "HELLO WORLD                                       \n03\nTHE QUICK BROWN FOX JUMPS OVER THE LAZY DOG       \n13\nCOBOL PROGRAMMING IS FUN                          \n05\nSECURE MESSAGE FOR ENCRYPTION                     \n07\nTESTING CAESAR CIPHER ALGORITHM                   \n25"
+    "content": "Hello World                                      \n13\nThe quick brown fox jumps over the lazy dog       \n05\nCOBOL Programming Language                        \n25\nAttack at dawn                                    \n03\nMeet me at the secret location tonight           \n07"
   }
 }

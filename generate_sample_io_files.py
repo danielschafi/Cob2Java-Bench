@@ -666,3 +666,5 @@ if __name__ == "__main__":
     contentGenerator = SampleContentGenerator(cobol_directory, output_directory)
     contentGenerator.generate_test_cases()
     print("Test case generation completed.")
+
+    # this programm is not perfect yet. Could be improved to handle command line arguments and sysin better.

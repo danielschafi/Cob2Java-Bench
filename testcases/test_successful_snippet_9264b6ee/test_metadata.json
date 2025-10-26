@@ -8,6 +8,6 @@
   "input_output_files": [],
   "sysin_file": {
     "file_name": "sysin.txt",
-    "content": "0001\n0015\n0042\n0127\n0256\n0384\n0999\n0001"
+    "content": "0123\n0456\n0789\n0001\n0099\n0500\n0999"
   }
 }

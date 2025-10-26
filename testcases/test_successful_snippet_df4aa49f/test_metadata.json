@@ -8,6 +8,6 @@
   "input_output_files": [],
   "sysin_file": {
     "file_name": "sysin.txt",
-    "content": "Employee John Smith started on 2024-01-15 in the Sales Department with an annual salary of $75000 and is eligible for benefits including health insurance and retirement plan contributions.    \nCustomer Mary Johnson placed order #12345 on 2024-03-20 for product SKU-9876 quantity 25 units at unit price $149.99 with standard shipping to 123 Main Street Boston MA 02101 USA.        \nInvoice #INV-2024-0891 dated 2024-03-25 for client ABC Corporation shows total amount due $12,450.75 with payment terms Net 30 days and includes line items for consulting services rendered.\nTransaction ID TXN-456789 processed on 2024-03-28 at 14:35:22 EST for account number 9876543210 shows debit amount $2,350.00 with reference number REF-2024-Q1-0456 and status APPROVED.   \nReport generated on 2024-03-30 shows quarterly sales figures: Q1 revenue $1,250,000 expenses $875,000 net profit $375,000 with year-over-year growth of 15.5 percent across all regions."
+    "content": "S3 H4 D5 C6 S7 H8 D9 C10 SJ HQ DK CA S2 H3 D4 C5 S6 H7 D8 C9 S10 HJ DQ CK SA S2 H3 D4 C5 S6 H7 D8 C9 S10 HJ DQ CK DA S2 H3 D4 C5 S6 H7 D8 C9 S10 HJ DQ CK"
   }
 }

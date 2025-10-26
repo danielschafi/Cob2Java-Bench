@@ -6,7 +6,7 @@
   "input_files": [
     {
       "file_name": "d2.input",
-      "content": "1-3 a: abcde\n2-9 c: ccccccccc\n5-11 b: cdefgbijklm\n1-5 z: zzztvz\n3-6 x: xxxxpx\n4-8 m: mmmfmmmm\n2-4 p: ppkp\n6-10 d: dddddddddd\n1-2 q: qwerty\n7-15 s: sssssssssssssss"
+      "content": "1-3 a: abcde\n1-3 b: cdefg\n2-9 c: ccccccccc\n5-11 t: sthpwtotzss\n3-6 s: ssdsssss\n1-13 w: wwwwwwwwwwwww\n4-7 k: kkkxkkkk\n2-4 r: rrkr\n6-8 m: mmmmmmmm\n3-5 x: xxxxy"
     }
   ],
   "output_files": [],

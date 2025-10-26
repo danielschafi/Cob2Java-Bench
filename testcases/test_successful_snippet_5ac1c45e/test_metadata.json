@@ -6,7 +6,7 @@
   "input_files": [
     {
       "file_name": "d22.input",
-      "content": "Player 1:\n\n9\n2\n6\n3\n1\n\nPlayer 2:\n\n5\n8\n4\n7\n10"
+      "content": "Player 1:\n9\n2\n6\n3\n1\nPlayer 2:\n5\n8\n4\n7\n10"
     }
   ],
   "output_files": [],

@@ -1,0 +1,13 @@
+{
+  "cobol_file": {
+    "file_name": "successful_snippet_3ae24dff.cob",
+    "content": "       PROGRAM-ID. SWAP-DEMO.\n       AUTHOR.  Bill Gunshannon.\n       INSTALLATION.  Home.\n       DATE-WRITTEN.  16 December 2021.\n      ************************************************************\n      ** Program Abstract:\n      **   A simple program to demonstrate the SWAP subprogram.\n      **     \n      ************************************************************\n       \n       DATA DIVISION.\n       \n       WORKING-STORAGE SECTION.\n       \n       01  Val1                 PIC X(72).\n       01  Val2                 PIC X(72).\n       \n       PROCEDURE DIVISION.\n       \n       Main-Program.\n\n          DISPLAY 'Enter a Value: ' WITH NO ADVANCING.\n          ACCEPT Val1.\n          DISPLAY 'Enter another Value: ' WITH NO ADVANCING.\n          ACCEPT Val2.\n          DISPLAY ' ' .\n          DISPLAY 'First value: ' FUNCTION TRIM(Val1) .\n          DISPLAY 'Second value: ' FUNCTION TRIM(Val2) .\n\n           CALL \"SWAP\" USING BY REFERENCE Val1,  BY REFERENCE Val2.\n\n          DISPLAY ' '.\n          DISPLAY 'After SWAP '.\n          DISPLAY ' '.\n          DISPLAY 'First value: ' FUNCTION TRIM(Val1).\n          DISPLAY 'Second value: ' FUNCTION TRIM(Val2).\n\n           STOP RUN.\n       \n       END PROGRAM SWAP-DEMO.\n       \n       IDENTIFICATION DIVISION.\n       PROGRAM-ID. SWAP.\n       AUTHOR.  Bill Gunshannon.\n       INSTALLATION.  Home.\n       DATE-WRITTEN.  16 December 2021.\n      ************************************************************\n      ** Program Abstract:\n      **   SWAP any Alphanumeric value.  Only limit is 72\n      **     character size.  But that can be adjusted for\n      **     whatever use one needs.\n      ************************************************************\n\n       DATA DIVISION.\n\n       WORKING-STORAGE SECTION.\n\n       01  TEMP                  PIC X(72).\n\n       LINKAGE SECTION.\n\n       01  Field1                PIC X(72).\n       01  Field2                PIC X(72).\n\n       PROCEDURE DIVISION \n               USING BY REFERENCE Field1, BY REFERENCE Field2.\n\n       MOVE Field1 to TEMP.\n       MOVE Field2 to Field1.\n       MOVE TEMP to Field2.\n\n       GOBACK.\n\n       END PROGRAM SWAP.\n"
+  },
+  "input_files": [],
+  "output_files": [],
+  "input_output_files": [],
+  "sysin_file": {
+    "file_name": "sysin.txt",
+    "content": "Hello World from COBOL Programming\nGoodbye World - Testing SWAP Functionality"
+  }
+}

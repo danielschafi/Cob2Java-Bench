@@ -8,6 +8,6 @@
   "input_output_files": [],
   "sysin_file": {
     "file_name": "sysin.txt",
-    "content": "Juan Perez          28Madrid            \nMaria Garcia        35Barcelona         \nCarlos Lopez        42Valencia          \nAna Martinez        31Sevilla           \nLuis Rodriguez      29Bilbao            \nSofia Fernandez     38Zaragoza          \n0001\n0003\n0005\n0000"
+    "content": "0001MARIA             GONZALEZ RODRIGUEZ  01\n0002CARLOS ALBERTO    MARTINEZ LOPEZ      02\n0003ANA ISABEL        GARCIA VERA         01\n0001\n0002\n0003\n0000"
   }
 }

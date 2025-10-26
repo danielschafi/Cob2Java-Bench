@@ -6,7 +6,7 @@
   "input_files": [
     {
       "file_name": "equipments.data",
-      "content": "EQ00123456AVAILABLE  Desktop Computer - Dell OptiPlex 7090          \nEQ00234567IN-USE     Laptop - HP EliteBook 840 G8                   \nEQ00345678MAINTENANCE Laser Printer - Canon imageRUNNER ADVANCE     \nEQ00456789AVAILABLE  Conference Phone - Polycom SoundStation IP 6000\nEQ00567890RETIRED    Monitor - Samsung 24 inch LED Display          \nEQ00678901IN-USE     Wireless Mouse - Logitech MX Master 3          \nEQ00789012AVAILABLE  Ergonomic Keyboard - Microsoft Sculpt          \nEQ00890123IN-USE     Projector - Epson PowerLite 1795F              \nEQ00901234AVAILABLE  Network Switch - Cisco Catalyst 2960-X         \nEQ01012345MAINTENANCE External Hard Drive - Seagate 2TB USB 3.0"
+      "content": "* Equipment Inventory Database - Updated 2021-10-17\n* Format: SERIAL(10) STATUS(10) PRODUCT_NAME(50)\nEQ00012345ACTIVE     Dell Latitude 5520 Laptop 15.6\" i7 16GB RAM      \nEQ00012346ACTIVE     HP LaserJet Pro M404dn Printer                   \nEQ00012347MAINTENANCE Cisco Catalyst 2960-X 48 Port Switch              \nEQ00012348ACTIVE     Lenovo ThinkCentre M720q Desktop i5 8GB          \nEQ00012349RETIRED    Samsung 27\" LED Monitor S27F350                  \nEQ00012350ACTIVE     Apple MacBook Pro 13\" M1 8GB                     \nEQ00012351ACTIVE     Logitech MX Master 3 Wireless Mouse              \nEQ00012352MAINTENANCE APC Smart-UPS 1500VA LCD 120V Battery Backup      \nEQ00012353ACTIVE     Microsoft Surface Pro 7 i5 8GB 256GB SSD         \nEQ00012354ACTIVE     Polycom VVX 450 Business IP Desk Phone"
     }
   ],
   "output_files": [],

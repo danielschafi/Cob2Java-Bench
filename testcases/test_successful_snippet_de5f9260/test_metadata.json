@@ -6,7 +6,7 @@
   "input_files": [
     {
       "file_name": "d16.input",
-      "content": "departure location: 27-180 or 187-953\ndeparture station: 48-646 or 671-973\ndeparture platform: 25-808 or 834-968\ndeparture track: 26-378 or 397-967\ndeparture date: 36-560 or 574-950\ndeparture time: 43-295 or 310-949\narrival location: 49-307 or 325-962\narrival station: 37-338 or 353-974\narrival platform: 40-261 or 282-955\narrival track: 39-715 or 736-955\nclass: 1-864 or 875-957\nduration: 1-474 or 495-974\nprice: 1-805 or 830-962\nroute: 1-650 or 675-965\nrow: 1-215 or 236-974\nseat: 1-120 or 139-965\ntrain: 1-52 or 75-950\ntype: 1-896 or 920-950\nwagon: 1-440 or 460-965\nzone: 1-721 or 742-954\n\nyour ticket:\n139,113,101,83,61,53,131,103,109,127,89,107,97,137,71,73,79,59,67,149\n\nnearby tickets:\n706,519,527,724,478,429,202,72,420,736,564,156,608,707,792,866,761,419,783,52"
+      "content": "8A004A801A8002F478\n620080001611562C8802118E34\nC0015000016115A2E0802F182340\nA0016C880162017C3686B18A3D4780\n8A004A801A8002F478A0016C880162017C3686B18A3D4780\n620080001611562C8802118E34C0015000016115A2E0802F182340\nD2FE28A0016C880162017C3686B18A3D4780\n9C0141080250320F1802104A08"
     }
   ],
   "output_files": [],

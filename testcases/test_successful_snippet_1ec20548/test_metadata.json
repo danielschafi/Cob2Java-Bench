@@ -8,6 +8,6 @@
   "input_output_files": [],
   "sysin_file": {
     "file_name": "sysin.txt",
-    "content": "APPLE     BANANA    \nCUSTOMER  ORDER     \nPRODUCT   INVOICE   \nEMPLOYEE  DEPARTMENT\nACCOUNT   BALANCE   \nSUPPLIER  SHIPMENT  \nITEM      QUANTITY  \nSERVICE   CONTRACT"
+    "content": "APPLE     \nBANANA    \nCARROT    \nDOUGHNUT  \nELEPHANT  \nFLAMINGO"
   }
 }

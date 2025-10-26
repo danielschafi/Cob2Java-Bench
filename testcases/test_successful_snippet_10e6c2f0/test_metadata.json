@@ -8,6 +8,6 @@
   "input_output_files": [],
   "sysin_file": {
     "file_name": "sysin.txt",
-    "content": "ACME Corporation                    123 Main Street                         New York       NY10001\nGlobal Industries Ltd               456 Oak Avenue                          Los Angeles    CA90012\nTech Solutions Inc                  789 Pine Road                           Chicago        IL60601\nPremier Services LLC                321 Elm Boulevard                       Houston        TX77002\nInnovative Systems Corp             654 Maple Drive                         Phoenix        AZ85001\nQuality Products International      987 Cedar Lane                          Philadelphia   PA19101\nAdvanced Manufacturing Group        147 Birch Street                        San Antonio    TX78201"
+    "content": "print 42;\nx = 10;\nwhile (x > 0) {\n    putc(x);\n    x = x - 1;\n}\nif (x == 0) {\n    print \"done\\n\";\n} else {\n    print \"error\";\n}\n/* this is a comment */\ny = 'a' + '\\n';"
   }
 }

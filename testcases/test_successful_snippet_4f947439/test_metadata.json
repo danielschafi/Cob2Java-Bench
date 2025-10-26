@@ -8,6 +8,6 @@
   "input_output_files": [],
   "sysin_file": {
     "file_name": "sysin.txt",
-    "content": "Y\nN\nN\nN\nY\nN\nY\nN\nY\nN\nN\nN\nY\nY\nN"
+    "content": "Y\nY\nY"
   }
 }

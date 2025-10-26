@@ -6,7 +6,7 @@
   "input_files": [
     {
       "file_name": "d4.input",
-      "content": "ecl:gry pid:860033327 eyr:2020 hcl:#fffffd byr:1937 iyr:2017 cid:147 hgt:183cm\n\niyr:2013 ecl:amb cid:350 eyr:2023 pid:028048884 hcl:#cfa07d byr:1929\n\nhcl:#ae17e1 iyr:2013 eyr:2024 ecl:brn pid:760753108 byr:1931 hgt:179cm\n\nhcl:#cfa07d eyr:2025 pid:166559648 iyr:2011 ecl:brn hgt:59in\n\niyr:2011 ecl:brn hgt:180cm hcl:#18171d pid:186cm byr:1933 eyr:2025 cid:122\n\npid:093154719 byr:1980 hgt:174cm iyr:2015 eyr:2025 ecl:hzl hcl:#623a2f\n\neyr:2029 ecl:blu cid:129 byr:1989 iyr:2014 pid:896056539 hcl:#a97842 hgt:165cm\n\nhcl:#888785 hgt:164cm byr:2001 iyr:2015 cid:88 pid:545766238 ecl:hzl eyr:2022\n\niyr:2010 hgt:158cm hcl:#b6652a ecl:blu byr:1944 eyr:2021 pid:093154719"
+      "content": "ecl:blu pid:123456789 eyr:2025 hcl:#623a2f iyr:2015 byr:1985 hgt:175cm\n\nbyr:1992 iyr:2018 eyr:2028 hgt:165cm hcl:#a97842 ecl:grn pid:456789012\n\necl:amb pid:789012345 eyr:2022 hcl:#cfa07d\niyr:2012 byr:1978 hgt:68in\n\nbyr:1995 iyr:2019 eyr:2029 hgt:183cm\nhcl:#18171d ecl:brn pid:234567890\n\necl:hzl pid:345678901 eyr:2024 hcl:#888785 iyr:2016 byr:1988 hgt:72in\n\nbyr:1920 iyr:2010 eyr:2020 hgt:150cm hcl:#ffffed ecl:gry pid:567890123\n\necl:oth pid:678901234 eyr:2030 hcl:#000000\niyr:2020 byr:2002 hgt:193cm\n\nbyr:1965 iyr:2014 eyr:2026 hgt:59in hcl:#b6652a ecl:blu pid:890123456\n\necl:brn pid:901234567 eyr:2027 hcl:#341e13 iyr:2017 byr:1982 hgt:76in\n\nbyr:1999 iyr:2013 eyr:2023 hgt:160cm\nhcl:#7d3b0c ecl:amb pid:012345678"
     }
   ],
   "output_files": [],

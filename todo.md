@@ -18,7 +18,10 @@ This leaves us with 318 programms after all filterings
 [x] Exclude files from, benchmark and filter them if
     [x] Screen Section 25.files
     [x] Accept * from console
+[ ] when making requests with claude we sometimes get errors that cause the current programm to crash, catch that
 
+## generate sample io files 
+[ ] Generate
 
 
 ## Random

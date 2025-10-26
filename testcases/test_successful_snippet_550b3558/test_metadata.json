@@ -8,6 +8,6 @@
   "input_output_files": [],
   "sysin_file": {
     "file_name": "sysin.txt",
-    "content": "h\nadd 5 3\nsubtract 10 4\nmultiply 6 7\ndivide 20 5\nadd 100 50\nmultiply 12 12\nsubtract 99 33\nq"
+    "content": "h\nn\n1234;1 + 2 + 3 + 4\nn\n5679;6 - (5 - 7) * 9\nn\n1268;((1 * (8 * 6) / 2))\nn\n4583;8 * 4 - 5 - 3\nn\nq"
   }
 }

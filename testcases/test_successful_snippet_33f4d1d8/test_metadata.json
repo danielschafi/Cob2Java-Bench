@@ -6,7 +6,7 @@
   "input_files": [
     {
       "file_name": "lab3.dat",
-      "content": "1001A Widget Deluxe 025001250\n1002BHammer Tool   150002999\n1003CGadget Pro    075005000\n1004APencil Set    200000350\n1005BNotebook      100001200\n1006CDesk Lamp     050007500\n1007AEraser Pack   300000125\n1008BStapler       080002450\n1009CFile Folder   500000075\n1010AMarker Set    125001850"
+      "content": "1001AOffice Chair  025012500\n2034BSteel Desk    150025000\n3567DPaper Reams   200000350\n4123APrinter Toner 045019995\n5678CMonitor Stand 008007500\n6789DFile Folders  175000125\n7890BBookshelf     012015000\n8901ADesk Lamp     030004500\n9012DStapler Box   250000095\n1234CKeyboard      015003250"
     }
   ],
   "output_files": [

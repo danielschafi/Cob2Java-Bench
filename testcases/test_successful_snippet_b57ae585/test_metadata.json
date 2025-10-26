@@ -8,6 +8,6 @@
   "input_output_files": [],
   "sysin_file": {
     "file_name": "sysin.txt",
-    "content": "12345678\n87654321"
+    "content": "Looking at this COBOL program, I can see it:\n\n1. Uses `ACCEPT OMITTED` only once at the very end to pause before exit (waits for ENTER key)\n2. Uses `ACCEPT TIME1 FROM TIME` and `ACCEPT TIME2 FROM TIME` which read from the system clock, NOT from SYSIN\n\nThe program is a performance testing utility that:\n- Builds lookup tables internally\n- Runs performance tests comparing custom XF4/XF5 procedures vs library calls\n- Only needs user input at the very end to acknowledge completion\n\nSince `ACCEPT FROM TIME` reads the system time (not SYSIN), and the only SYSIN input needed is a single ENTER keypress at the end, the appropriate SYSIN data is:\n\n\n\n(A single blank line representing the ENTER key press to satisfy the `ACCEPT OMITTED` statement at program termination)"
   }
 }

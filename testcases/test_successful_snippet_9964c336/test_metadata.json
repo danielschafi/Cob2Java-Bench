@@ -8,6 +8,6 @@
   "input_output_files": [],
   "sysin_file": {
     "file_name": "sysin.txt",
-    "content": "003\n10 HELLO\n20 WORLD\n30 COBOL\n005\n15 PROGRAMMING\n25 LANGUAGE\n30 MAINFRAME\n45 SYSTEM\n60 DATA\n004\n05 TEST\n10 INPUT\n15 SAMPLE\n20 RECORDS"
+    "content": "005\n001 out\n003 in\n007 out\n012 in\n015 out"
   }
 }

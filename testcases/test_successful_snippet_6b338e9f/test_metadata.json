@@ -6,7 +6,7 @@
   "input_files": [
     {
       "file_name": "File.txt",
-      "content": "The quick brown fox jumps over the lazy dog near the riverbank at dawn\nCOBOL programming language was designed for business data processing applications\nMary had a little lamb whose fleece was white as snow and everywhere that Mary went\nProgramming in COBOL requires attention to detail and proper data structure design\nThe alphabet contains twenty-six letters from A to Z in sequential order\nBusiness applications often process large volumes of transaction data daily\nFinancial reports must be accurate and comply with regulatory requirements\nCustomer service representatives handle inquiries and resolve issues promptly\nInventory management systems track stock levels and reorder points effectively\nQuality assurance testing validates software functionality before deployment"
+      "content": "The quick brown fox jumps over the lazy dog near the riverbank at dawn.\nIn computing, COBOL is a compiled English-like computer programming language.\nBusiness applications require robust data processing and file handling capabilities.\nModern software development practices emphasize testing and quality assurance methods.\nFinancial transactions must be processed accurately with proper validation and controls.\nDatabase management systems store and retrieve information efficiently for users worldwide.\nEnterprise resource planning integrates business processes across multiple departments seamlessly.\nCustomer relationship management helps organizations track interactions and improve service quality."
     }
   ],
   "output_files": [],

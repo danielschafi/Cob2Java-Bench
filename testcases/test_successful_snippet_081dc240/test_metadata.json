@@ -8,6 +8,6 @@
   "input_output_files": [],
   "sysin_file": {
     "file_name": "sysin.txt",
-    "content": "I cannot generate valid SYSIN data for this COBOL program because:\n\n1. No ACCEPT statements were detected in the program\n2. No record structure definition was found\n3. No field definitions are available to determine the required format\n4. No termination condition is specified\n\nWithout these critical elements, I cannot determine:\n- What data format is expected\n- What field lengths are required\n- How many fields per record\n- What constitutes a valid termination record\n\nTo generate proper SYSIN data, I would need the actual COBOL code showing:\n- ACCEPT statements with their associated field names\n- Working-Storage section with field definitions (PIC clauses)\n- Loop termination logic"
+    "content": "199\n200\n208\n210\n200\n207\n240\n263"
   }
 }

@@ -8,6 +8,6 @@
   "input_output_files": [],
   "sysin_file": {
     "file_name": "sysin.txt",
-    "content": "Anna Andersson                          025\nErik Eriksson                           042\nMaria Svensson                          031\nJohan Johansson                         055\nLisa Pettersson                         028\nKarl Karlsson                           047\nEmma Nilsson                            033"
+    "content": "John Smith                              025\nAnna Andersson                          019\nPink Panther                            042\nErik Svensson                           017\nMaria Johansson                         021\nLars Pettersson                         018\nKarin Nilsson                           065"
   }
 }

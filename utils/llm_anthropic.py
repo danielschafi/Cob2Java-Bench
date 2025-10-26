@@ -68,19 +68,38 @@ class LLM:
                 try:
                     logger.info(f"Full response: {response}")
                     logger.info(f"Content: {response.content}")
-                    logger.info(f"Text: {response.content[0].text}")
+                    # Use getattr for safety because content blocks may be typed
+                    # objects without a direct 'text' attribute in some variants.
+                    logger.info(f"Text: {getattr(response.content[0], 'text', '')}")
                 except Exception as e:
                     logger.error(f"Error logging response details: {e}")
 
-                # Extract text from response
+                # Extract text from response. If the API returns an empty response or
+                # the content block contains no text, treat that as a transient
+                # condition and retry with exponential backoff (similar to rate
+                # limiting and overloaded handling) until ANTHROPIC_MAX_WAIT_SECONDS
+                # is exceeded.
                 if not response.content:
-                    logger.error("Empty response from Anthropic API")
-                    raise RuntimeError("Received empty response from Anthropic")
+                    elapsed = time.time() - start_time
+                    if elapsed >= max_wait_seconds:
+                        logger.error(
+                            "Empty response from Anthropic API (max wait exceeded)"
+                        )
+                        raise RuntimeError("Received empty response from Anthropic")
+
+                    sleep_time = min(backoff, 60.0)
+                    logger.warning(
+                        f"Empty response from Anthropic API. Sleeping {sleep_time:.1f}s (elapsed: {elapsed:.1f}s) and retrying"
+                    )
+                    time.sleep(sleep_time)
+                    backoff *= 2
+                    continue
 
                 # Get the text content from the first content block
                 content_block = response.content[0]
                 if hasattr(content_block, "text"):
-                    text = content_block.text
+                    # use getattr to avoid static-analysis attribute errors
+                    text = getattr(content_block, "text", "")
                 elif isinstance(content_block, dict):
                     text = content_block.get("text", "")
                 else:
@@ -92,8 +111,21 @@ class LLM:
                     )
 
                 if not text:
-                    logger.warning("Anthropic returned empty text content")
-                    return ""
+                    # empty text is treated as transient; retry with backoff
+                    elapsed = time.time() - start_time
+                    if elapsed >= max_wait_seconds:
+                        logger.error(
+                            "Anthropic returned empty text content (max wait exceeded)"
+                        )
+                        raise RuntimeError("Anthropic returned empty text content")
+
+                    sleep_time = min(backoff, 60.0)
+                    logger.warning(
+                        f"Anthropic returned empty text. Sleeping {sleep_time:.1f}s (elapsed: {elapsed:.1f}s) and retrying"
+                    )
+                    time.sleep(sleep_time)
+                    backoff *= 2
+                    continue
 
                 # Log usage
                 if hasattr(response, "usage"):
@@ -131,5 +163,28 @@ class LLM:
                 backoff *= 2
 
             except Exception as e:
+                # Some Anthropic API errors aren't RateLimitError but indicate the service
+                # is currently overloaded (e.g. HTTP 500 with message 'Overloaded').
+                # Detect that case by inspecting the exception text and retry with backoff.
+                msg = str(e) or ""
+                elapsed = time.time() - start_time
+
+                if "Overloaded" in msg or "overloaded" in msg.lower():
+                    if elapsed >= max_wait_seconds:
+                        logger.error(
+                            f"Anthropic API overloaded for more than {max_wait_seconds}s"
+                        )
+                        raise RuntimeError(
+                            f"Anthropic API overloaded for more than {max_wait_seconds}s"
+                        ) from e
+
+                    sleep_time = min(backoff, 60.0)
+                    logger.warning(
+                        f"Anthropic API overloaded. Sleeping {sleep_time:.1f}s (elapsed: {elapsed:.1f}s) and retrying"
+                    )
+                    time.sleep(sleep_time)
+                    backoff *= 2
+                    continue
+
                 logger.error(f"Anthropic API error: {e}")
                 raise

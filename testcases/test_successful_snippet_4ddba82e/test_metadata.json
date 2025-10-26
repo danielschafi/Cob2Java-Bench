@@ -6,8 +6,5 @@
   "input_files": [],
   "output_files": [],
   "input_output_files": [],
-  "sysin_file": {
-    "file_name": "sysin.txt",
-    "content": "Based on the COBOL code analysis, this program uses `ACCEPT REFMOD-TIME-ITEM FROM TIME` which retrieves the system time, not SYSIN input. The ACCEPT statement with FROM TIME/DATE clauses reads from the system, not standard input.\n\nHowever, if this were modified to accept from SYSIN and REFMOD-TIME-ITEM is PIC X(8) for time values in HHMMSSss format:\n\n12345678\n09153045\n14302156\n23594599\n00000000\n06451523\n18234567\n11111111"
-  }
+  "sysin_file": null
 }

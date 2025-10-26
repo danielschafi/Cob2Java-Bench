@@ -6,13 +6,13 @@
   "input_files": [
     {
       "file_name": "USPRES.DAT",
-      "content": "George Washington\nJohn Adams\nThomas Jefferson\nJames Madison\nJames Monroe\nJohn Quincy Adams\nAndrew Jackson\nMartin Van Buren\nWilliam Henry Harrison\nJohn Tyler"
+      "content": "01George Washington        \n02John Adams               \n03Thomas Jefferson         \n04James Madison            \n05James Monroe             \n06John Quincy Adams        \n07Andrew Jackson           \n08Martin Van Buren         \n09William Henry Harrison   \n10John Tyler               \n11James K. Polk            \n12Zachary Taylor           \n13Millard Fillmore         \n14Franklin Pierce          \n15James Buchanan           \n16Abraham Lincoln          \n17Andrew Johnson           \n18Ulysses S. Grant         \n19Rutherford B. Hayes      \n20James A. Garfield        \n21Chester A. Arthur        \n22Grover Cleveland         \n23Benjamin Harrison        \n24Grover Cleveland         \n25William McKinley         \n26Theodore Roosevelt       \n27William Howard Taft      \n28Woodrow Wilson           \n29Warren G. Harding        \n30Calvin Coolidge          \n31Herbert Hoover           \n32Franklin D. Roosevelt    \n33Harry S. Truman          \n34Dwight D. Eisenhower     \n35John F. Kennedy          \n36Lyndon B. Johnson        \n37Richard Nixon            \n38Gerald Ford              \n39Jimmy Carter             \n40Ronald Reagan            \n41George H. W. Bush        \n42Bill Clinton             \n43George W. Bush           \n44Barack Obama             \n45Donald Trump"
     }
   ],
   "output_files": [],
   "input_output_files": [],
   "sysin_file": {
     "file_name": "sysin.txt",
-    "content": "01\n02\n03\nA \n15\n22\nX"
+    "content": "01\n15\n33\nA \n07\n42\nX"
   }
 }

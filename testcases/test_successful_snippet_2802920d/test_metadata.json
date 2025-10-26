@@ -1,0 +1,15 @@
+{
+  "cobol_file": {
+    "file_name": "successful_snippet_2802920d.cob",
+    "content": "       IDENTIFICATION DIVISION.\n       PROGRAM-ID. AOC-2021-05-1.\n       AUTHOR. ANNA KOSIERADZKA.\n\n       ENVIRONMENT DIVISION.\n       INPUT-OUTPUT SECTION.\n       FILE-CONTROL.\n           SELECT INPUTFILE ASSIGN TO \"d05.input\"\n           ORGANIZATION IS LINE SEQUENTIAL.\n\n       DATA DIVISION.\n\n       FILE SECTION.\n         FD INPUTFILE.\n         01 INPUTRECORD PIC X(20).\n      \n       WORKING-STORAGE SECTION.\n         01 FILE-STATUS PIC 9 VALUE 0.\n\n         01 WS-MAP OCCURS 1000 TIMES.\n           05 WS-POINT PIC 9(3) VALUE 0 OCCURS 1000 TIMES.\n\n         01 WS-RESULT PIC 9(8) VALUE 0.  \n         \n       LOCAL-STORAGE SECTION.\n         01 I UNSIGNED-INT VALUE 1.\n         01 J UNSIGNED-INT VALUE 1.\n         01 K UNSIGNED-INT VALUE 1.\n         01 L UNSIGNED-INT VALUE 1.\n         01 X1 UNSIGNED-INT VALUE 1.\n         01 Y1 UNSIGNED-INT VALUE 1.\n         01 X2 UNSIGNED-INT VALUE 1.\n         01 Y2 UNSIGNED-INT VALUE 1.\n\n       PROCEDURE DIVISION.\n       001-MAIN.\n           OPEN INPUT INPUTFILE. \n           PERFORM 002-READ UNTIL FILE-STATUS = 1.\n           CLOSE INPUTFILE.\n           PERFORM 004-COUNT.\n           DISPLAY WS-RESULT.\n           STOP RUN.\n                  \n       002-READ.\n            READ INPUTFILE\n                AT END MOVE 1 TO FILE-STATUS\n                NOT AT END PERFORM 003-PROCESS-RECORD\n            END-READ.           \n          \n       003-PROCESS-RECORD.\n           UNSTRING INPUTRECORD DELIMITED BY \",\" OR \" -> \" INTO \n             X1 Y1 X2 Y2.\n\n           IF X1 = X2 THEN\n             COMPUTE K = FUNCTION MIN(Y1, Y2) + 1\n             COMPUTE L = FUNCTION MAX(Y1, Y2) + 1\n             PERFORM VARYING I FROM K BY 1 UNTIL I > L\n               ADD 1 TO WS-POINT(X1 + 1, I)\n             END-PERFORM\n           END-IF.\n\n           \n           IF Y1 = Y2 THEN\n             COMPUTE K = FUNCTION MIN(X1, X2) + 1\n             COMPUTE L = FUNCTION MAX(X1, X2) + 1\n             PERFORM VARYING I FROM K BY 1 UNTIL I > L\n               ADD 1 TO WS-POINT(I, Y1 + 1)\n             END-PERFORM\n           END-IF.\n\n       004-COUNT.\n           PERFORM VARYING I FROM 1 BY 1 UNTIL I > 1000\n             PERFORM VARYING J FROM 1 BY 1 UNTIL J > 1000\n      *        DISPLAY WS-POINT(J, I) NO ADVANCING\n               IF WS-POINT(I, J) > 1 THEN\n                 ADD 1 TO WS-RESULT\n               END-IF\n             END-PERFORM\n      *       DISPLAY \" \"\n           END-PERFORM.\n           "
+  },
+  "input_files": [
+    {
+      "file_name": "d05.input",
+      "content": "0,9 -> 5,9\n8,0 -> 0,8\n9,4 -> 3,4\n2,2 -> 2,1\n7,0 -> 7,4\n6,4 -> 2,0\n0,9 -> 2,9\n3,4 -> 1,4\n0,0 -> 8,8\n5,5 -> 8,2"
+    }
+  ],
+  "output_files": [],
+  "input_output_files": [],
+  "sysin_file": null
+}

@@ -6,7 +6,7 @@
   "input_files": [
     {
       "file_name": "lab2.dat",
-      "content": "S12345678Johnson, Emily      20180301\nS23456789Martinez, Carlos    20190402\nS34567890Chen, Sophia        20170203\nS45678901Williams, Michael   20200101\nS56789012Brown, Jessica      20190304\nS67890123Davis, Ryan         20180202\nS78901234Anderson, Sarah     20210101\nS89012345Thompson, David     20190403\nS90123456Garcia, Maria       20180304\nS01234567Wilson, Christopher 20200202"
+      "content": "100234567Smith, John          20150103\n100345678Johnson, Emily       20160204\n100456789Williams, Michael   20140305\n100567890Brown, Sarah        20170201\n100678901Jones, David        20160304\n100789012Davis, Jennifer     20150402\n100890123Miller, Robert      20170103\n100901234Wilson, Amanda      20140204"
     }
   ],
   "output_files": [

@@ -6,7 +6,7 @@
   "input_files": [
     {
       "file_name": "MD5",
-      "content": "echo -n  | md5sum > MD5\necho -n  | md5sum > MD5.txt\necho -n  | md5sum > HASH\necho -n  | md5sum > OUTPUT\necho -n  | md5sum > RESULT\necho -n  | md5sum > MD5SUM\necho -n  | md5sum > TEMP"
+      "content": "9f86d148998466d0b024add5b1049e31\n5d41402abc4b2a76b9719d911017c592\n098f6bcd4621d373cade4e832627b4f6\ne4d909c290d0fb1ca068ffaddf22cbd0\nd8578edf8458ce06fbc5bb76a58c5ca4\n25d55ad283aa400af464c76d713c07ad\n8277e0910d750195b448797616e091ad\n7fc56270e7a70fa81a5935b72eacbe29"
     }
   ],
   "output_files": [],

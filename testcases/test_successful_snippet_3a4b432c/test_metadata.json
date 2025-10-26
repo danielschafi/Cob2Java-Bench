@@ -8,6 +8,6 @@
   "input_output_files": [],
   "sysin_file": {
     "file_name": "sysin.txt",
-    "content": "0001Maria Silva         F18Informatica  0850\n0002Jo\u00e3o Santos        M20Engenharia   0975\n0003Ana Costa          F19Administracao0785\n0004Pedro Oliveira     M21Informatica  0990\n0005Carla Souza        F22Engenharia   0865\n0006Lucas Ferreira     M19Administracao0780\n0007Julia Almeida      F20Informatica  0895\n9999999999999999999999999999999999999999999"
+    "content": "0001Maria Silva         F18Informatica  0850075500\n0002Jo\u00e3o Santos        M20Engenharia   0920088500\n0003Ana Costa          F19Administracao0780082000\n0004Pedro Oliveira     M21Informatica  0950092500\n0005Carla Souza        F18Engenharia   0870089000\n0006Lucas Ferreira     M20Administracao0820085500\n0007Julia Almeida      F19Informatica  0910094000\n9999999999999999999999999999999999999999999"
   }
 }

@@ -6,7 +6,7 @@
   "input_files": [
     {
       "file_name": "d6.input",
-      "content": "abcxy\nfghij\n\nklmno\npqrst\n\nuvwxyz\nabc\n\ndefgh\nijklm\nnopqr"
+      "content": "abc\n\nabcde\nfghij\n\na\nb\nc\n\nab\nac\n\nabcdefghijklmnopqrstuvwxyz\n\npqrst\nuvwxy\n\nz"
     }
   ],
   "output_files": [],

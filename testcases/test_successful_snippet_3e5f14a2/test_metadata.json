@@ -6,7 +6,7 @@
   "input_files": [
     {
       "file_name": "d14.input",
-      "content": "mask = XXXXXXXXXXXXXXXXXXXXXXXXXXXXX1XXXX0X\nmem[8] = 11\nmem[7] = 101\nmem[8] = 0\nmask = X1XX0X01X0X000X10X0X0X000X0000XX1101\nmem[26] = 1\nmem[17] = 496\nmem[18] = 98237\nmask = 00X1XXX1X011XX001X0X0X1XX1X01X011001\nmem[5436] = 30899\nmem[3293] = 231\nmem[54] = 100663\nmask = 1XX10X01X0X1XX0X1X0XXX1X00001X001100\nmem[42] = 7\nmem[39] = 58\nmem[13664] = 1031"
+      "content": "mask = XXXXXXXXXXXXXXXXXXXXXXXXXXXXX1XXXX0X\nmem[8] = 11\nmem[7] = 101\nmem[8] = 0\nmask = 00000000000000000000000000000000X0XX\nmem[26] = 1\nmem[19] = 11\nmask = X10X01X0X0X0000X010XX0X1001X010X1101\nmem[4616] = 197428\nmem[5460] = 8311\nmem[25509] = 151\nmask = 0X00X1010X10110X0100101000X01X001100\nmem[17610] = 1035852\nmem[55284] = 23927\nmem[28394] = 950696\nmem[17322] = 64875"
     }
   ],
   "output_files": [],

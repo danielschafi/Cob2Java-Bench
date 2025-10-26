@@ -6,11 +6,11 @@
   "input_files": [
     {
       "file_name": "SALESIDAMT.DAT",
-      "content": "CA10112500\nCA10298750\nNY20156300\nNY20287450\nTX30145600\nCA10323400\nNY20198800\nTX30276500\nCA10434200\nFL40167890"
+      "content": "CA001125050\nCA001087500\nCA002156000\nNY001234500\nNY002198750\nTX001067800\nTX003145000\nFL002089900\nFL003112500\nCA003098000\nNY003076500\nTX002134200\nFL001156700\nCA004211000\nNY004189500\nTX004167300\nFL004145600\nCA005178900\nNY005134000\nTX005198000"
     },
     {
       "file_name": "STATESOUT.DAT",
-      "content": "CA00112500\nCA00298750\nNY00156300\nTX00387450\nCA00223100\nNY00298200\nTX00445600\nFL00334500\nCA00398900\nNY00467800"
+      "content": "I notice this is asking for data for STATESOUT.DAT, which is an OUTPUT file according to the COBOL code. The program reads from SALESIDAMT.DAT (input) and writes to SALESIDOUT.DAT and STATESOUT.DAT (outputs).\n\nSince STATESOUT.DAT is an output file that the program generates, not an input file, no input data should be generated for it."
     }
   ],
   "output_files": [

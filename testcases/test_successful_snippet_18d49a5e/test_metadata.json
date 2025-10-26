@@ -6,11 +6,11 @@
   "input_files": [
     {
       "file_name": "INVENT.TXT",
-      "content": "12345Computer Mouse       \n23456Wireless Keyboard   \n34567USB Cable 6ft       \n45678Monitor 24 inch     \n56789Laptop Stand        \n67890HDMI Adapter        \n78901Ethernet Cable      \n89012Webcam HD           \n90123Desk Lamp LED       \n01234Surge Protector"
+      "content": "12345Hydraulic Pump       0851295ABC  075\n23456Ball Bearing Set    1250875DEF  100\n34567Steel Shaft 10mm    0320450GHI  025\n45678Rubber Gasket Kit   2751125JKL  200\n56789Motor Assembly      0085500MNO  010\n67890Valve Control Unit  1423750PQR  125\n78901Filter Cartridge    3500325STU  300\n89012Pressure Gauge      0751850VWX  050\n90123Coupling Adapter    1982995YZA  150"
     },
     {
       "file_name": "SUPPLIERS.TXT",
-      "content": "12345ABC Manufacturing Co\n23456XYZ Industrial Supply\n34567Precision Parts Ltd   \n45678Global Components Inc\n56789Quality Hardware Co  \n67890Superior Tools & Dies\n78901Reliable Fasteners   \n89012Advanced Materials Co\n90123Standard Supply House\n01234Metro Distribution"
+      "content": "SUP01Acme Corporation  \nSUP02Global Parts Inc\nSUP03Midwest Supply  \nSUP04Eastern Distrib \nSUP05Pacific Vendors \nSUP06Northern Trade  \nSUP07Southern Supply \nSUP08Central Parts   \nSUP09Western Distrib \nSUP10Quality Suppliers"
     }
   ],
   "output_files": [

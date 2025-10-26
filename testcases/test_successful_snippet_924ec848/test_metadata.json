@@ -6,7 +6,7 @@
   "input_files": [
     {
       "file_name": "d12.input",
-      "content": "start-A\nA-c\nA-b\nb-d\nA-end\nb-end\nc-A\nstart-b\nd-b\nend-A"
+      "content": "start-A\nstart-b\nA-c\nA-b\nb-d\nA-end\nb-end\nc-end\nd-end\nb-c"
     }
   ],
   "output_files": [],

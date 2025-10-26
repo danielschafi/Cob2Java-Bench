@@ -6,7 +6,7 @@
   "input_files": [
     {
       "file_name": "input.txt",
-      "content": "123456John Smith          CSC15\n234567Emily Johnson       MAT12\n345678Michael Brown       ENG08\n456789Sarah Davis         BUS20\n567890Christopher Wilson PHY14\n678901Jessica Martinez    CHE11\n789012Daniel Anderson     HIS09\n890123Ashley Thomas       ART07\n901234Matthew Taylor      MUS13\n012345Amanda Rodriguez    BIO16"
+      "content": "125\n098\n234\n156\n189\n203\n178\n145\n167\n198"
     }
   ],
   "output_files": [],
