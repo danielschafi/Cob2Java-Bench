@@ -1,0 +1,10 @@
+nop +000
+acc +001
+jmp +004
+acc +003
+jmp -003
+acc -099
+acc +001
+jmp +002
+acc +017
+nop +008

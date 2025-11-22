@@ -1,0 +1,57 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class CGPRG006 {
+    private static String wsFim = " ";
+    private static int wsCtlido = 0;
+    private static int mediaSp = 0;
+    private static int totalSp = 0;
+    private static int qtdCidSp = 0;
+    private static int pctAcid = 0;
+    private static int cidMaior = 0;
+    private static int acidMaiorTotal = 0;
+    private static int qtdCidMaior = 0;
+    private static int cidMenor = 0;
+    private static int pctMenor = 0;
+    private static int cidMenorVeics = 0;
+    private static int cidMenorObitos = 0;
+    private static int wsCidade = 0;
+    private static String wsEstado = " ";
+    private static int wsQtdVeiculos = 0;
+    private static String wsBafometro = " ";
+    private static int wsQtdAcidentes = 0;
+    private static int wsQtdObitos = 0;
+    private static int cid = 0;
+    private static String uf = " ";
+    private static int veics = 0;
+    private static String bafo = " ";
+    private static int acids = 0;
+    private static int obitos = 0;
+    private static double porcAcids = 0.0;
+
+    public static void main(String[] args) {
+        try {
+            System.out.println("ANA CAROLINA GOMES DA SILVA");
+            System.out.println("ATIVIDADE 6");
+            System.out.println("ESTATISTICAS - DATA DO CALCULO: 11/04/2021");
+
+            lerSysin();
+            while (!wsFim.equals("S")) {
+                processar();
+                lerSysin();
+            }
+            processarSp();
+            processarMaior();
+            processarMenor();
+            terminar();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void lerSysin() throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        String inputLine = reader.readLine();
+
+        if (inputLine != null && inputLine.trim().equals("99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999

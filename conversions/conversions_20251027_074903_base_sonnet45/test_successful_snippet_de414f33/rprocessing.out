@@ -1,0 +1,11 @@
+                                R PROCESSING REPORT                   
+
+ TRANSACTION  TRANSACTION  PAYMENT  STORE   INVOICE          SKU               TAX
+    CODE        AMOUNT     TYPE     NUMBER  NUMBER           CODE             OWING
+ -----------  -----------  -------  ------  -------          ----             -----
+
+
+ TOTAL NUMBER OF 'R' RECORDS:  00          TOTAL AMOUNT OF 'R' RECORDS: $0.00
+
+
+ TOTAL TAX OWING:  $0.00

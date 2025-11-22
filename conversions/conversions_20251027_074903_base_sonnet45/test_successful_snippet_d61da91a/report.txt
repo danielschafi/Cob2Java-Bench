@@ -1,0 +1,18 @@
+10/27/2025     TSB          Drakea Cart Parts Warehouse                PAGE 01
+
+
+                                    STOCK REPORT
+
+ CAT           ITEM           PURCHASE   QUANTITY    QUANTITY    REORDER
+ NUM        DESCRIPTION        PRICE      IN STK     ON ORDER     POINT
+
+A1234   Widget Assembly        $ 12.95     15.00        0.00     10000.00
+B5678   Bearing Set            $  8.75     75.00        0.00     50000.00
+C9012   Axle Rod               $ 21.50     30.00        2.00       0.00
+D3456   Wheel Hub              $ 18.25     45.00        1.00     50000.00
+E7890   Brake Pad Set          $  9.95    120.00        0.00       0.00
+F2468   Chain Link             $  3.25    250.00        5.00       0.00
+G1357   Gear Assembly          $ 34.50     20.00        1.00       0.00
+H8024   Handlebar Grip         $  5.45    180.00        3.00       0.00
+J4680   Spring Coil            $  1.85    300.00       10.00       0.00
+K9753   Pedal Crank            $ 22.75     35.00        2.00     50000.00

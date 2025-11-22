@@ -1,0 +1,7 @@
+Monday Tuesday Wednesday Thursday Friday Saturday Sunday
+sunday monday tuesday wednesday thursday friday saturday
+mon tue wed thu fri sat sun
+MONDAY TUESDAY WEDNESDAY THURSDAY FRIDAY SATURDAY SUNDAY
+Montag Dienstag Mittwoch Donnerstag Freitag Samstag Sonntag
+Lunes Martes Miercoles Jueves Viernes Sabado Domingo
+Dimanche Lundi Mardi Mercredi Jeudi Vendredi Samedi

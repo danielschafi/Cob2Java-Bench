@@ -1,0 +1,9 @@
+12345Hydraulic Pump       0851295ABC  075
+23456Ball Bearing Set    1250875DEF  100
+34567Steel Shaft 10mm    0320450GHI  025
+45678Rubber Gasket Kit   2751125JKL  200
+56789Motor Assembly      0085500MNO  010
+67890Valve Control Unit  1423750PQR  125
+78901Filter Cartridge    3500325STU  300
+89012Pressure Gauge      0751850VWX  050
+90123Coupling Adapter    1982995YZA  150

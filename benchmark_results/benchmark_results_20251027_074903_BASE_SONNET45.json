@@ -1,0 +1,91 @@
+{
+  "similarity_exact": {
+    "mean": 0.1729,
+    "min": 0.0,
+    "max": 1.0,
+    "std": 0.3743
+  },
+  "similarity_cosine": {
+    "mean": 0.6376,
+    "min": 0.0,
+    "max": 1.0,
+    "std": 0.4312
+  },
+  "similarity_levenshtein_distance": {
+    "mean": 660.5665,
+    "min": 0.0,
+    "max": 98514.0,
+    "std": 6684.2635
+  },
+  "similarity_levenshtein_similarity": {
+    "mean": 0.6688,
+    "min": 0.0,
+    "max": 1.0,
+    "std": 0.3486
+  },
+  "similarity_jaccard": {
+    "mean": 0.5723,
+    "min": 0.0,
+    "max": 1.0,
+    "std": 0.422
+  },
+  "static_halstead_volume": {
+    "mean": 1674.3715,
+    "min": 19.6515,
+    "max": 6756.6795,
+    "std": 1038.1909
+  },
+  "static_halstead_difficulty": {
+    "mean": 23.1716,
+    "min": 1.0,
+    "max": 61.3846,
+    "std": 9.7564
+  },
+  "static_halstead_effort": {
+    "mean": 44987.1068,
+    "min": 19.6515,
+    "max": 355058.7503,
+    "std": 45228.5995
+  },
+  "static_cyclomatic_complexity": {
+    "mean": 15.095,
+    "min": 1,
+    "max": 60,
+    "std": 9.3545
+  },
+  "static_lines_of_code": {
+    "mean": 76.7285,
+    "min": 6,
+    "max": 179,
+    "std": 34.6153
+  },
+  "static_maintainability_index": {
+    "mean": 36.0955,
+    "min": 20.6779,
+    "max": 73.8346,
+    "std": 8.1808
+  },
+  "generation_success": {
+    "sum": 221,
+    "ratio": 0.9057
+  },
+  "compilation_success": {
+    "sum": 221,
+    "ratio": 0.9057
+  },
+  "run_success": {
+    "sum": 200,
+    "ratio": 0.8197
+  },
+  "conversion_time": {
+    "mean": 11.2627,
+    "min": 3.5434,
+    "max": 55.0889,
+    "std": 5.2853
+  },
+  "total_benchmark_time_seconds": 3194.8902711868286,
+  "total_testcases": 244,
+  "benchmark_run_description": "Running COBOL to Java conversion benchmark using Base Cobol Converter with LLM claude sonnet 4.5.",
+  "converter_used": "BaseCobolConverter claude-sonnet-4-5",
+  "timestamp": "20251027_074903"
+}

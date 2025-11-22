@@ -1,0 +1,12 @@
+I need to analyze this COBOL program to determine if it requires SYSIN input.
+
+After reviewing the code, I can see that:
+
+1. The program does NOT contain any ACCEPT statements that read from SYSIN
+2. The program does NOT read from any input files
+3. The program is a self-contained demonstration of doubly-linked list operations
+4. All data is hardcoded within the program itself (NODE1, NODE2, NODE3, NODE4, NODE5)
+5. The program only performs DISPLAY statements for output
+6. It uses dynamic memory allocation (ALLOCATE/FREE) to manage linked list nodes
+
+This program does not require any SYSIN input data. It runs completely standalone with its internal data.

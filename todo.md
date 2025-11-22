@@ -18,20 +18,21 @@ This leaves us with 318 programms after all filterings
 [x] Exclude files from, benchmark and filter them if
     [x] Screen Section 25.files
     [x] Accept * from console
-[ ] when making requests with claude we sometimes get errors that cause the current programm to crash, catch that
+[a] when making requests with claude we sometimes get errors that cause the current programm to crash, catch that
 
 ## generate sample io files 
 [x] Generate sample io
-[ ] capture cobol output
-
+[x] capture cobol output -> 244 successfull testcases, 70 failed
+[x] Run benchmark with claude sonnet 4.5
 
 
 ## Random
 [ ] Try other llms for translation
     [ ] Qwen 3.5 Coder
     [ ] Claude Haiku 4.5
-    [ ] ChatGPT 5.1
 
+## Comparison
+[ ] Script to build a table to compare all the results in the benchmark_results folder
 
 ## Finally
 [ ] Clean up Code
@@ -44,3 +45,9 @@ This leaves us with 318 programms after all filterings
     [ ] Usage
         [ ] How to test your own converter
 [ ] Add default .env
+
+
+
+
+## Remarks
+- Did not run sonnet 4.5 with AST because it would have cost me like 30$. Not willing to pay that for just a project to have some more numbers (10-60k input tokens)

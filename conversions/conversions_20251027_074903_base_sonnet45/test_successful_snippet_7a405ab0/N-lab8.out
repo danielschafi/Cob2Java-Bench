@@ -1,0 +1,40 @@
+LAB 8                    240402     12345678
+
+                    GRADUATE
+                  EMPLOYEE SALARY REPORT                          PAGE  1
+
+EMP  EMP                              PRESENT  INCREASE      PAY         NEW    
+NUM  NAME            YEARS  POSITION  SALARY       %        INCREASE    SALARY
+
+001  Johnson Michael 18  ANALYST   65000     11.8%  $  7,670.00+  $ 72,670.00
+
+002  Williams Sarah  12  SEN PROG  52000      8.3%  $  4,316.00+  $ 56,316.00
+
+003  Davis Robert    05  PROG      38500      6.7%  $  2,579.50+  $ 41,079.50
+
+004  Martinez Linda  01                35000                        $ 35,000.00
+
+005  Anderson James  22  ANALYST   78000     11.8%  $  9,204.00+  $ 87,204.00
+
+EMPLOYEE CLASS:        Analyst    Sen Prog    Prog    Unclassified
+# ON THIS PAGE:         2          1          1          1
+
+AVERAGE INCREASES:   ANALYST=  8,437.00      SEN PROG=  4,316.00
+                     PROG=  2,579.50
+
+                    NON-GRADUATE
+                  EMPLOYEE SALARY REPORT                          PAGE  1
+
+EMP  EMP                              PRESENT  INCREASE      PAY         NEW    
+NUM  NAME            YEARS  POSITION  SALARY       %        INCREASE    SALARY
+
+006  Thompson Mary   15  PROG      42000      6.7%  $  2,814.00+  $ 44,814.00
+
+007  Garcia John     08  JR PROG   32000      4.2%  $  1,344.00+  $ 33,344.00
+
+008  Rodriguez Anna  03                28000                        $ 28,000.00
+
+EMPLOYEE CLASS:        Prog    Jr Prog    Unclassified
+# ON THIS PAGE:         1       1          1
+
+AVERAGE INCREASES:   PROG=  2,814.00      JR PROG=  1,344.00

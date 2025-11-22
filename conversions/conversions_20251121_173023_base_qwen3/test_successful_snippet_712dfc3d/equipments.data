@@ -1,0 +1,12 @@
+* Equipment Inventory Database - Updated 2021-10-17
+* Format: SERIAL(10) STATUS(10) PRODUCT_NAME(50)
+EQ00012345ACTIVE     Dell Latitude 5520 Laptop 15.6" i7 16GB RAM      
+EQ00012346ACTIVE     HP LaserJet Pro M404dn Printer                   
+EQ00012347MAINTENANCE Cisco Catalyst 2960-X 48 Port Switch              
+EQ00012348ACTIVE     Lenovo ThinkCentre M720q Desktop i5 8GB          
+EQ00012349RETIRED    Samsung 27" LED Monitor S27F350                  
+EQ00012350ACTIVE     Apple MacBook Pro 13" M1 8GB                     
+EQ00012351ACTIVE     Logitech MX Master 3 Wireless Mouse              
+EQ00012352MAINTENANCE APC Smart-UPS 1500VA LCD 120V Battery Backup      
+EQ00012353ACTIVE     Microsoft Surface Pro 7 i5 8GB 256GB SSD         
+EQ00012354ACTIVE     Polycom VVX 450 Business IP Desk Phone

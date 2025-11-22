@@ -46,10 +46,10 @@ class Testcase:
         converter: BaseCob2JavaConverter,
         cleanup_java: bool = True,
     ) -> None:
-        self.testcase_dir = testcase_dir
-        self.conversion_dest_dir = conversion_dest_dir  # main conversions dir
+        self.testcase_dir = Path(testcase_dir)
+        self.conversion_dest_dir = Path(conversion_dest_dir)  # main conversions dir
         self.test_case_conversion_dir = (
-            conversion_dest_dir / testcase_dir.stem
+            self.conversion_dest_dir / testcase_dir.stem
         )  # dir for this testcase we need it in a dir to setup the environment with files etc
         self.test_case_conversion_dir.mkdir(parents=True, exist_ok=True)
         # self.java_output_path = self.test_case_conversion_dir / (
@@ -474,10 +474,12 @@ class Cob2JavaBenchmark:
         benchmark_dir: Path,
         conversions_dest_dir: Path,
         converter: BaseCob2JavaConverter,
+        resume_previous_run: bool = False,
     ) -> None:
         self.benchmark_dir = benchmark_dir
         self.conversions_dest_dir = conversions_dest_dir
         self.converter = converter
+        self.resume_previous_run = resume_previous_run
         self.testcases = [
             Testcase(
                 testcase_dir=testcase_dir,
@@ -538,9 +540,52 @@ class Cob2JavaBenchmark:
 
     def run(self):
         timer_start = time.time()
+
+        if self.resume_previous_run:
+            # load metrics from previous run if exists
+            intermediate_results_path = (
+                self.conversions_dest_dir / "intermediate_per_testcase_results.json"
+            )
+            if intermediate_results_path.exists():
+                with open(intermediate_results_path, "r") as f:
+                    self.metrics = json.load(f)
+                logger.info(
+                    f"Resumed previous run, loaded intermediate results from {intermediate_results_path}"
+                )
+            else:
+                logger.info(
+                    f"No intermediate results found at {intermediate_results_path}, starting fresh."
+                )
+                self.curr_testcase_index = 0
+
+            # add the time of already run testcases, this is probably not 100% accurate as it does not include compile+run time, but it should be very close
+            timer_start -= sum(self.metrics.get("conversion_time", []))
+
+            # determine how many testcases have already been run
+            self.curr_testcase_index = len(
+                [
+                    dir
+                    for dir in self.conversions_dest_dir.iterdir()
+                    if dir.is_dir() and len(list(dir.iterdir())) > 0
+                ]
+            )
+
         self.num_testcases = len(self.testcases)
-        logger.info(f"Running benchmark on {self.num_testcases} testcases.")
+
+        if self.resume_previous_run:
+            logger.info(
+                f"Resuming benchmark run from testcase index {self.curr_testcase_index}/{self.num_testcases}"
+            )
+        else:
+            logger.info(f"Running benchmark on {self.num_testcases} testcases.")
+
         for testcase in tqdm(self.testcases):
+            if self.resume_previous_run:
+                if len(list(testcase.test_case_conversion_dir.iterdir())) > 0:
+                    logger.info(
+                        f"Skipping already run testcase in {testcase.test_case_conversion_dir}"
+                    )
+                    continue
             try:
                 self.curr_testcase_index += 1
                 logger.info(
@@ -557,10 +602,19 @@ class Cob2JavaBenchmark:
 
                     self.metrics[k].append(v)
 
-                    pd.DataFrame(self.metrics).to_csv(
-                        self.conversions_dest_dir
-                        / "intermediate_per_testcase_results.csv"
-                    )
+                with open(
+                    self.conversions_dest_dir
+                    / "intermediate_per_testcase_results.json",
+                    "w",
+                ) as f:
+                    json.dump(self.metrics, f, indent=2)
+
+                intermediate_agg = self.aggregate_metrics()
+                with open(
+                    self.conversions_dest_dir / "intermediate_aggregated_results.json",
+                    "w",
+                ) as f:
+                    json.dump(intermediate_agg, f, indent=2)
 
             except Exception as e:
                 logger.error(f"Error running testcase in {testcase.testcase_dir}: {e}")
@@ -589,24 +643,36 @@ class DummyConvert(BaseCob2JavaConverter):
 
 from converters.cobolToJavaTranslator.baseCobolConverter import BaseCobolConverter
 from converters.cobolToJavaTranslator.astCobolConverter import ASTCobolConverter
-from converters.cobolToJavaTranslator.llm import LLM
+
+# from converters.cobolToJavaTranslator.llm import LLM
+# from utils.llm_anthropic import LLM
+from utils.llm_huggingface import LLM
 
 
 def main():
+    # If you want to continnue a previous benchmark run (because it was interrupted),
+    # set the following variable to the path of the previous conversions dir
+    resume_previous_run = True
+    previous_conversions_dir = None
+    if resume_previous_run:
+        previous_conversions_dir = Path(
+            "/home/schafhdaniel@edu.local/Cob2Java-Bench/conversions/conversions_20251121_173023"
+        )
+
     # ====================================================
     # ========= 1. Describe the Benchmark Run here =======
     # ====================================================
 
-    run_description = "Running COBOL to Java conversion benchmark using ASTCobolConverter with LLM. It uses the cobol ast in addition to the source code as input to the LLM for better conversion quality."
-    converter_description = "ASTCobolConverter with LLM"
+    run_description = "Running COBOL to Java conversion benchmark using Base Cobol Converter with LLM huggingface Qwen3."
+    converter_description = "BaseCobolConverter huggingface Qwen3"
 
     # ====================================================
     # ========= 2. Set Up Your Converter here ============
     # ====================================================
 
     llm = LLM()
-    # converter = BaseCobolConverter(llm)
-    converter = ASTCobolConverter(llm)
+    converter = BaseCobolConverter(llm)
+    # converter = ASTCobolConverter(llm)
 
     # ====================================================
     # ========= 3. Set up dirs according to .env =========
@@ -617,8 +683,16 @@ def main():
     conversions_main_dest_dir = Path(
         os.environ.get("CONVERSIONS_DEST_DIR", "conversions")
     )
-    conversions_sub_dest_dir = conversions_main_dest_dir / f"conversions_{timestamp}"
-    conversions_sub_dest_dir.mkdir(parents=True, exist_ok=True)
+
+    if resume_previous_run and previous_conversions_dir is not None:
+        conversions_sub_dest_dir = previous_conversions_dir
+        logger.info(f"Resuming previous benchmark run in {conversions_sub_dest_dir}")
+    else:
+        conversions_sub_dest_dir = (
+            conversions_main_dest_dir / f"conversions_{timestamp}"
+        )
+        conversions_sub_dest_dir.mkdir(parents=True, exist_ok=True)
+
     if (testcases_dir / "success").exists():
         testcases_dir = testcases_dir / "success"
     results_output_path = Path(
@@ -631,7 +705,9 @@ def main():
     # ========= 4. Run the Benchmark =====================
     # ====================================================
 
-    benchmark = Cob2JavaBenchmark(testcases_dir, conversions_sub_dest_dir, converter)
+    benchmark = Cob2JavaBenchmark(
+        testcases_dir, conversions_sub_dest_dir, converter, resume_previous_run
+    )
     results = benchmark.run()
 
     # ====================================================

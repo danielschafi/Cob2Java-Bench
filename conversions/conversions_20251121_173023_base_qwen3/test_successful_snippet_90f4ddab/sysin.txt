@@ -1,0 +1,10 @@
+Hello World                                      
+13
+The quick brown fox jumps over the lazy dog       
+05
+COBOL Programming Language                        
+25
+Attack at dawn                                    
+03
+Meet me at the secret location tonight           
+07

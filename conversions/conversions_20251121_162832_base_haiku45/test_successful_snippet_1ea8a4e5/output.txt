@@ -1,0 +1,10 @@
+Smith                         John                123 Main Street                    Springfield         IL      62701                                          
+Johnson                       Mary                456 Oak Avenue                     Chicago             IL      60601                                          
+Williams                      Robert              789 Elm Drive                      Peoria              IL      61602                                          
+Brown                         Jennifer            321 Maple Lane                     Naperville          IL      60540                                          
+Davis                         Michael             654 Pine Road                      Rockford            IL      61101                                          
+Miller                        Sarah               987 Cedar Boulevard                Bloomington         IL      61701                                          
+Wilson                        David               147 Birch Court                    Champaign           IL      61820                                          
+Moore                         Lisa                258 Walnut Street                  Decatur             IL      62521                                          
+Taylor                        James               369 Spruce Way                     Aurora              IL      60505                                          
+Anderson                      Patricia            741 Hickory Place                  Joliet              IL      60432                                          
