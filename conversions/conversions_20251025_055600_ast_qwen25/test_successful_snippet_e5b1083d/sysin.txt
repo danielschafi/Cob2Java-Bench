@@ -1,9 +1,0 @@
-Doe       John      123456789This is a comment.          This is a message that will be displayed on the screen.                                                                  
-Smith     Jane      987654321Another comment here.       This is another message for the screen.                                                                             
-Johnson   Mike      111222333Yet another comment.        This is yet another message for the screen.                                                                         
-Williams  Lisa      222333444Comment number four.          This is the fourth message for the screen.                                                                        
-Brown     David     333444555Fifth comment goes here.     This is the fifth message for the screen.                                                                         
-Garcia    Maria     444555666Sixth comment is here.      This is the sixth message for the screen.                                                                         
-Martinez  Carlos    555666777Seventh comment is here.    This is the seventh message for the screen.                                                                         
-Rodriguez Ana       666777888Eighth comment is here.      This is the eighth message for the screen.                                                                        
-q         q         000000000Termination record.         This is the termination message for the screen.

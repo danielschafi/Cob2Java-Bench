@@ -1,0 +1,91 @@
+{
+  "similarity_exact": {
+    "mean": 0.0851,
+    "min": 0.0,
+    "max": 1.0,
+    "std": 0.2757
+  },
+  "similarity_cosine": {
+    "mean": 0.5037,
+    "min": 0.0,
+    "max": 1.0,
+    "std": 0.4325
+  },
+  "similarity_levenshtein_distance": {
+    "mean": 1138.7199,
+    "min": 0.0,
+    "max": 98285.0,
+    "std": 7666.5061
+  },
+  "similarity_levenshtein_similarity": {
+    "mean": 0.5111,
+    "min": 0.0,
+    "max": 1.0,
+    "std": 0.3712
+  },
+  "similarity_jaccard": {
+    "mean": 0.4285,
+    "min": 0.0,
+    "max": 1.0,
+    "std": 0.4049
+  },
+  "static_halstead_volume": {
+    "mean": 1467.0408,
+    "min": 2.0,
+    "max": 6232.5095,
+    "std": 958.7149
+  },
+  "static_halstead_difficulty": {
+    "mean": 21.4191,
+    "min": 0.0,
+    "max": 68.7966,
+    "std": 9.5796
+  },
+  "static_halstead_effort": {
+    "mean": 37328.6001,
+    "min": 0.0,
+    "max": 308114.2014,
+    "std": 40599.8218
+  },
+  "static_cyclomatic_complexity": {
+    "mean": 12.9358,
+    "min": 1,
+    "max": 70,
+    "std": 10.1677
+  },
+  "static_lines_of_code": {
+    "mean": 69.5,
+    "min": 4,
+    "max": 201,
+    "std": 37.1853
+  },
+  "static_maintainability_index": {
+    "mean": 37.9661,
+    "min": 16.0309,
+    "max": 84.6244,
+    "std": 8.4195
+  },
+  "generation_success": {
+    "sum": 218,
+    "ratio": 0.8934
+  },
+  "compilation_success": {
+    "sum": 218,
+    "ratio": 0.8934
+  },
+  "run_success": {
+    "sum": 175,
+    "ratio": 0.7172
+  },
+  "conversion_time": {
+    "mean": 109.5747,
+    "min": 11.8687,
+    "max": 382.5808,
+    "std": 60.9472
+  },
+  "total_benchmark_time_seconds": 25272.864190340042,
+  "total_testcases": 244,
+  "benchmark_run_description": "Running COBOL to Java conversion benchmark using AST Cobol Converter with LLM huggingface Qwen3.",
+  "converter_used": "ASTCobolConverter huggingface Qwen3",
+  "timestamp": "20251123_122056"
+}

@@ -1,9 +1,0 @@
-type h <enter> to see instructions
-h                               
-instruction? help                    
-instruction? process                
-instruction? report                
-instruction? q                      
-instruction? summary                
-instruction? details                
-instruction? exit

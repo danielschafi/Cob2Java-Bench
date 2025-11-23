@@ -1,0 +1,10 @@
+00001Anderson                                          Margaret                                          0542310% discount applied       
+00003Chen                                              Robert                                            03331Standard contract        
+00005Martinez                                          Jennifer                                          12323Premium service          
+00010Thompson                                          William                                           00653Basic plan                
+00024Rodriguez                                         Patricia                                          00247New customer              
+00025Williams                                          Elizabeth                                         07725Annual renewal            
+00030Jackson                                           Christopher                                       08765Corporate account        
+00050Davis                                             Sarah                                             05050Multi-year agreement     
+00075Brown                                             Michael                                           01175Promotional rate         
+00085Johnson                                           Jessica                                           04567Standard terms

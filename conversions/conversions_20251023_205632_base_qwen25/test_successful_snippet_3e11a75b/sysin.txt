@@ -1,8 +1,0 @@
-datafile1.txt                                                                     
-datafile2.txt                                                                     
-datafile3.txt                                                                     
-datafile4.txt                                                                     
-datafile5.txt                                                                     
-datafile6.txt                                                                     
-datafile7.txt                                                                     
-datafile8.txt

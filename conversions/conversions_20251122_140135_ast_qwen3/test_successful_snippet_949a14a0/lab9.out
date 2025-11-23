@@ -1,0 +1,28 @@
+  Henry Zheng, lab 9     20251122     173833243
+                                       call centre volumes for july - december
+  operator    operator      jul     aug     sep     oct     nov     dec     total     avg     rem
+       #        name
+   001      Smith J      23      45      67      89      102     34      360   60 0
+
+   002      Johnson M    12      34      56      78      90      45      315   52 3
+
+   003      Williams K   0       0       0       0       0       0         0    ZERO    
+
+   004      Brown T      45      67      89      123     145     67      536   89 2
+
+   005      Davis R      34      56      78      90      102     34      394   65 4
+
+   006      Miller P     23      45      67      89      102     34      360   60 0
+
+   007      Wilson C     12      34      56      78      90      45      315   52 3
+
+   008      Moore A      45      67      89      123     145     67      536   89 2
+
+   009      Taylor S     34      56      78      90      102     34      394   65 4
+
+   010      Anderson L   23      45      67      89      102     34      360   60 0
+
+      number of operators with no calls:  1
+
+      overall total calls:                3570
+

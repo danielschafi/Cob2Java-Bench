@@ -1,9 +1,0 @@
-HELLO WORLD                                                   03
-COBOL PROGRAMMING                                             10
-ENCRYPTION TECHNIQUES                                         05
-SECURE DATA TRANSFER                                          15
-DATA PROCESSING                                               20
-ALGORITHM DESIGN                                              07
-SOFTWARE DEVELOPMENT                                          12
-CRYPTOGRAPHY                                                  08
-END OF DATA                                                   00

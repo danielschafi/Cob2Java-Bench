@@ -1,5 +1,0 @@
-SQUARE ROOT APPROXIMATIONS
---------------------------------------------
-        NUMBER               SQUARE ROOT
- -------------------      ------------------
- 00000000000.000000        INVALID INPUT

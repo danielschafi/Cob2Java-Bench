@@ -656,23 +656,23 @@ def main():
     previous_conversions_dir = None
     if resume_previous_run:
         previous_conversions_dir = Path(
-            "/home/schafhdaniel@edu.local/Cob2Java-Bench/conversions/conversions_20251121_173023"
+            "/home/schafhdaniel@edu.local/Cob2Java-Bench/conversions/conversions_20251122_140135"
         )
 
     # ====================================================
     # ========= 1. Describe the Benchmark Run here =======
     # ====================================================
 
-    run_description = "Running COBOL to Java conversion benchmark using Base Cobol Converter with LLM huggingface Qwen3."
-    converter_description = "BaseCobolConverter huggingface Qwen3"
+    run_description = "Running COBOL to Java conversion benchmark using AST Cobol Converter with LLM huggingface Qwen3."
+    converter_description = "ASTCobolConverter huggingface Qwen3"
 
     # ====================================================
     # ========= 2. Set Up Your Converter here ============
     # ====================================================
 
     llm = LLM()
-    converter = BaseCobolConverter(llm)
-    # converter = ASTCobolConverter(llm)
+    # converter = BaseCobolConverter(llm)
+    converter = ASTCobolConverter(llm)
 
     # ====================================================
     # ========= 3. Set up dirs according to .env =========

@@ -1,0 +1,31 @@
+                                                                               Henry Zheng, Lab 3 
+
+
+                ITEM               EXTENDED      DISCOUNT       NET PRICE         CLASS     TRANS     TRANSPORTATION
+                          PRICE          AMOUNT                    %          CHARGE
+
+
+Office Chair   1,002,500.00   50,125.00      952,375.00      A  11.5115,287.50
+
+Steel Desk     37,500.00      0.00           37,500.00       B   3.5  1,312.50
+
+Paper Reams    700.00         35.00          665.00          D   8.5     59.50
+
+Printer Toner  2,007,996.00   100,399.80     1,907,596.20    A  11.5230,919.54
+
+Monitor Stand  0.00           0.00           0.00            C   8.5      0.00
+
+File Folders   8,500,204.00   425,010.20     8,075,193.80    D   8.5722,517.34
+
+Bookshelf      201,500.00     0.00           201,500.00      B   3.5  7,052.50
+
+Desk Lamp      1,350.00       0.00           1,350.00        A  11.5    155.25
+
+Stapler Box    225.00         11.25          213.75          D   8.5     19.12
+
+Keyboard       500,325.00     0.00           500,325.00      C   8.5 42,527.62
+
+               11,676,718.75                11,676,718.75                 1,119,850.88
+
+
+                ITEMS WITH OUT A DISCOUNT =  100.0%

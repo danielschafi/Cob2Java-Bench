@@ -1,0 +1,21 @@
+       IDENTIFICATION DIVISION.         
+                                        
+       PROGRAM-ID. GRICE.               
+                                        
+       ENVIRONMENT DIVISION.            
+                                        
+       CONFIGURATION SECTION.           
+                                        
+       SPECIAL-NAMES.                   
+                                        
+           SYMBOLIC CHARACTERS FULL-STOP
+ IS 76.                                 
+       INPUT-OUTPUT SECTION.            
+                                        
+       FILE-CONTROL.                    
+                                        
+           SELECT OUTPUT-FILE ASSIGN TO 
+OUTPUT1.                                
+       DATA DIVISION.                   
+                                        
+                                        

@@ -1,8 +1,0 @@
-PROCESS-TYPE1 NB-STEPS-100                                                                  
-PROCESS-TYPE2 NB-STEPS-200                                                                  
-PROCESS-TYPE3 NB-STEPS-300                                                                  
-PROCESS-TYPE4 NB-STEPS-400                                                                  
-PROCESS-TYPE5 NB-STEPS-500                                                                  
-PROCESS-TYPE6 NB-STEPS-600                                                                  
-PROCESS-TYPE7 NB-STEPS-700                                                                  
-PROCESS-TYPE8 NB-STEPS-800

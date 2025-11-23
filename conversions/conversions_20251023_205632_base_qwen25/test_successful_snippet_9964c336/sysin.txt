@@ -1,8 +1,0 @@
-005                    This is a test string
-010                    Another test string here
-003                    Short one
-007                    Seven characters
-002                    Hi
-004                    Test
-006                    Six chars
-008                    Eight chars here
