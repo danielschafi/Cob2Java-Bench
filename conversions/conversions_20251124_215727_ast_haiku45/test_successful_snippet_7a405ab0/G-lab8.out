@@ -1,0 +1,54 @@
+LAB 8                    240315     14253047                                                  
+                                                                                              
+                    GRADUATE                                                                  
+                  EMPLOYEE SALARY REPORT                          PAGE  1                     
+                                                                                              
+EMP  EMP                              PRESENT  INCREASE      PAY         NEW                 
+NUM  NAME            YEARS  POSITION  SALARY       %        INCREASE    SALARY               
+                                                                                              
+EMPLOYEE CLASS:        Analyst    Sen Prog    Prog    Unclassified                           
+# ON THIS PAGE:             2          3        2            1                               
+                                                                                              
+AVERAGE INCREASES:   ANALYST=  5,723.50      SEN PROG=  3,892.33                             
+                        PROG=  2,845.67                                                       
+101  Johnson, Robert  18  ANALYST   48,500.00  11.8%  $5,723.00+  $54,223.00                 
+                                                                                              
+102  Smith, Jennifer  16  ANALYST   52,300.00  11.8%  $6,171.40+  $58,471.40                 
+                                                                                              
+103  Williams, Mary   14  SEN PROG  45,200.00   8.3%  $3,751.60+  $48,951.60                 
+                                                                                              
+104  Davis, Michael   12  SEN PROG  47,800.00   8.3%  $3,967.40+  $51,767.40                 
+                                                                                              
+105  Brown, Patricia   9  SEN PROG  48,900.00   8.3%  $4,058.70+  $52,958.70                 
+                                                                                              
+106  Miller, James     5  PROG      38,750.00   6.7%  $2,596.25+  $41,346.25                 
+                                                                                              
+107  Wilson, Linda     4  PROG      42,500.00   6.7%  $2,847.50+  $45,347.50                 
+                                                                                              
+108  Moore, David      2            35,600.00         $      .00   $35,600.00                 
+                                                                                              
+LAB 8                    240315     14253047                                                  
+                                                                                              
+                NON-GRADUATE                                                                  
+                  EMPLOYEE SALARY REPORT                          PAGE  1                     
+                                                                                              
+EMP  EMP                              PRESENT  INCREASE      PAY         NEW                 
+NUM  NAME            YEARS  POSITION  SALARY       %        INCREASE    SALARY               
+                                                                                              
+EMPLOYEE CLASS:        Prog    Jr Prog    Unclassified                                       
+# ON THIS PAGE:         2         3            2                                             
+                                                                                              
+AVERAGE INCREASES:   PROG=  2,456.84      JR PROG=  1,523.67                                 
+201  Anderson, Susan  15  PROG      35,800.00   6.7%  $2,398.60+  $38,198.60                 
+                                                                                              
+202  Taylor, Thomas   12  PROG      37,200.00   6.7%  $2,492.40+  $39,692.40                 
+                                                                                              
+203  Martinez, Karen   8  JR PROG   32,400.00   4.2%  $1,360.80+  $33,760.80                 
+                                                                                              
+204  Garcia, Richard   7  JR PROG   35,600.00   4.2%  $1,495.20+  $37,095.20                 
+                                                                                              
+205  Rodriguez, Lisa   5  JR PROG   38,200.00   4.2%  $1,604.40+  $39,804.40                 
+                                                                                              
+206  Lee, Christopher  3            28,900.00         $      .00   $28,900.00                 
+                                                                                              
+207  White, Nancy      2            31,500.00         $      .00   $31,500.00

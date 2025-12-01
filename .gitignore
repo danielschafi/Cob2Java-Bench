@@ -5,7 +5,7 @@ short_files/*
 gt100
 testcases copy
 testcases/failed
-converters/*
+#converters/*
 .env
 
 codeTransOceanNiche

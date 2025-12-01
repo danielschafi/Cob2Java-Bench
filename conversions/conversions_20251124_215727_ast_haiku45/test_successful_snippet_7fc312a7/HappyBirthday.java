@@ -1,0 +1,85 @@
+public class HappyBirthday {
+    public static void main(String[] args) {
+        try {
+            System.out.println("***************************************************");
+            Thread.sleep(80);
+            System.out.println("*                                                 *");
+            Thread.sleep(80);
+            System.out.println("*                                                 *");
+            Thread.sleep(80);
+            System.out.println("*                 Happy Birthday!                 *");
+            Thread.sleep(80);
+            System.out.println("*                                                 *");
+            Thread.sleep(80);
+            System.out.println("*                                                 *");
+            Thread.sleep(80);
+            System.out.println("***************************************************");
+            Thread.sleep(80);
+            System.out.println("CCCLLfffffffLLLLLfffffffftttttttfLLLCCCCLLLCLLLLLCC");
+            Thread.sleep(80);
+            System.out.println("tt11111111ttffffffLCCCCCLLLfft111tfLLLLLLLfftfLLLLL");
+            Thread.sleep(80);
+            System.out.println("1111111tfffffttfCG0GGCCLLLCCLfLLfffLfffLLfft11fLLLf");
+            Thread.sleep(80);
+            System.out.println("tttftttfffftttCGGGLffffffffLfLLLLLLLffffttffftfffff");
+            Thread.sleep(80);
+            System.out.println("ffffffftttttLGCCCfttttt1tffffffLfffLftt111tffffffff");
+            Thread.sleep(80);
+            System.out.println("tttttttttttfCffft11111tfLCCGGCLfLffLLLfttttttttttff");
+            Thread.sleep(80);
+            System.out.println("LLLffffttttCLfLftttfffLCGGGG00GLLCLLCLLffffffffffff");
+            Thread.sleep(80);
+            System.out.println("LLLLLLfftttCLGCCCCCGGGGGGGGGG00GLCCCCLLLLLLLLLLLLLL");
+            Thread.sleep(80);
+            System.out.println("LLLLLLLLLLLCLGCCCCCCGGGGGGGGGG0GGCLCCCCLLLLLLfffLLL");
+            Thread.sleep(80);
+            System.out.println("GCCLLLLCLLfLfLCCGGGGCCCCGGGGGG0000CCCGCLLLLLLLLLLLL");
+            Thread.sleep(80);
+            System.out.println("GGCCCLLLLfffLLGCCCLLLLLLftt1tffCG00CCLCLLCCCLCCGGGC");
+            Thread.sleep(80);
+            System.out.println("CLLLLLLLLLLLLCCt11111fLLt11tfLLCG00GGCCLLLCLfLLLLLL");
+            Thread.sleep(80);
+            System.out.println("LLLLfffLffLLfCCfttttffGGCCCCCGGGG00GG0CLLLftttfffft");
+            Thread.sleep(80);
+            System.out.println("LfLLLCCCCCLLCCGGGCCCLLG00GCLCCCGGGGGCLLLLLLLLLLCLLL");
+            Thread.sleep(80);
+            System.out.println("ffLLCCCCCCCCLLCCCCCLfLCGGGCLLLLLCCGGG0GLLLfffffffLL");
+            Thread.sleep(80);
+            System.out.println("LLLLLLfLLLLLLLLCLLffLLtttffLLffLCLCGGG@80000GG0GLLL");
+            Thread.sleep(80);
+            System.out.println("LLLLLLfLLLLLCCCLLffffffttffLCLffLLCGGL88888@8@88@88");
+            Thread.sleep(80);
+            System.out.println("LLLLLLLLLLffLLLfffftfLLLffLCCCLffLLGCL88880808808@@");
+            Thread.sleep(80);
+            System.out.println("LLLLLLLLLLLLLLLC08GftfLCCCCCLLffffLCLC888888000G088");
+            Thread.sleep(80);
+            System.out.println("fffLLLLLLCCLCG888880CttttttttttffLLLLG088880800G088");
+            Thread.sleep(80);
+            System.out.println("ffffffLLLLCG888800800LfftttttttffLffCLfLCG0G000G000");
+            Thread.sleep(80);
+            System.out.println("LLLffLLLC08@8000008000CLttffffffffLCCLLLLC00000GG00");
+            Thread.sleep(80);
+            System.out.println("fffLLLC08@880000008880GGCffffffffCGCCGCCGG00000GG00");
+            Thread.sleep(80);
+            System.out.println("LLLLC08@88880000000GCLfLGGCCCCLfCGGGGGCGGG000000GGG");
+            Thread.sleep(80);
+            System.out.println("CCC0888888880000000CCCCLLCCCCCGGCG000GGGGGG00000GGG");
+            Thread.sleep(80);
+            System.out.println("***************************************************");
+            Thread.sleep(80);
+            System.out.println("*                                                 *");
+            Thread.sleep(80);
+            System.out.println("*                                                 *");
+            Thread.sleep(80);
+            System.out.println("*                 Happy Birthday!                 *");
+            Thread.sleep(80);
+            System.out.println("*                                                 *");
+            Thread.sleep(80);
+            System.out.println("*                                                 *");
+            Thread.sleep(80);
+            System.out.println("***************************************************");
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+    }
+}

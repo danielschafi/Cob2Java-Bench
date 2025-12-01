@@ -645,26 +645,26 @@ from converters.cobolToJavaTranslator.baseCobolConverter import BaseCobolConvert
 from converters.cobolToJavaTranslator.astCobolConverter import ASTCobolConverter
 
 # from converters.cobolToJavaTranslator.llm import LLM
-# from utils.llm_anthropic import LLM
-from utils.llm_huggingface import LLM
+from utils.llm_anthropic import LLM
+# from utils.llm_huggingface import LLM
 
 
 def main():
     # If you want to continnue a previous benchmark run (because it was interrupted),
     # set the following variable to the path of the previous conversions dir
-    resume_previous_run = True
+    resume_previous_run = False
     previous_conversions_dir = None
     if resume_previous_run:
         previous_conversions_dir = Path(
-            "/home/schafhdaniel@edu.local/Cob2Java-Bench/conversions/conversions_20251122_140135"
+            # "/home/schafhdaniel@edu.local/Cob2Java-Bench/conversions/conversions_20251122_140135"
         )
 
     # ====================================================
     # ========= 1. Describe the Benchmark Run here =======
     # ====================================================
 
-    run_description = "Running COBOL to Java conversion benchmark using AST Cobol Converter with LLM huggingface Qwen3."
-    converter_description = "ASTCobolConverter huggingface Qwen3"
+    run_description = "Running COBOL to Java conversion benchmark using AST Cobol Converter with LLM Claude Haiku-4.5."
+    converter_description = "ASTCobolConverter Claude Haiku-4.5"
 
     # ====================================================
     # ========= 2. Set Up Your Converter here ============

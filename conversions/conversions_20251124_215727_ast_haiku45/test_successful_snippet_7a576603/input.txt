@@ -1,0 +1,9 @@
+123456Emily Johnson       CSC05
+234567Michael Chen        MAT08
+345678Sarah Williams      PHY12
+456789David Martinez      ENG06
+567890Jennifer Davis      BUS09
+678901Christopher Brown   CSC07
+789012Amanda Rodriguez    MAT04
+890123James Anderson      PHY10
+901234Jessica Thompson    ENG11

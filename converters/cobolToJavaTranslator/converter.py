@@ -1,0 +1,308 @@
+import os
+from dotenv import load_dotenv
+from cobolToJavaTranslator.cobolAstParser import CobolASTParser
+import logging
+from converters.baseConverter import BaseCob2JavaConverter
+
+# Other Imports
+from cobolToJavaTranslator.llm import LLM
+from cobolToJavaTranslator.prompts import (
+    convert_prompt_base,
+    convert_prompt_with_ast,
+    system_prompt,
+)
+
+from pathlib import Path
+from enum import Enum
+import subprocess
+import re
+
+load_dotenv()
+
+# Logging Setup
+
+logger = logging.getLogger(__name__)
+
+
+class ConversionType(Enum):
+    BASE = 0
+    AST = 1
+
+
+class LLMBasedConverter(BaseCob2JavaConverter):
+    def __init__(
+        self,
+        llm: LLM,
+        conversion_type: ConversionType = ConversionType.BASE,
+    ):
+        self.llm = llm
+        self.conversion_type = conversion_type
+        self.system_prompt = system_prompt()
+
+        if self.conversion_type == ConversionType.AST:
+            self.output_dir = Path(os.getcwd()) / "out_dir_ast"
+        elif self.conversion_type == ConversionType.BASE:
+            self.output_dir = Path(os.getcwd()) / "out_dir_base"
+
+    @property
+    def conversion_type(self):
+        return self._conversion_type
+
+    @conversion_type.setter
+    def conversion_type(self, value: ConversionType):
+        self._conversion_type = value
+        if self._conversion_type == ConversionType.AST:
+            self.output_dir = Path(os.getcwd()) / "out_dir_ast"
+        elif self._conversion_type == ConversionType.BASE:
+            self.output_dir = Path(os.getcwd()) / "out_dir_base"
+
+    def _get_conversion_prompt(self, cobol_code: str, ast: str = None) -> str:
+        """
+        Builds the conversion prompt and returns it according to the selected conversion type
+        """
+        if self.conversion_type == ConversionType.BASE:
+            return convert_prompt_base(cobol_code)
+        elif self.conversion_type == ConversionType.AST:
+            return convert_prompt_with_ast(cobol_code, ast)
+
+    def convert(self, cobol_code: str) -> str:
+        """
+        Only converts cobol to java and returns the generated java code as string
+
+        for conversion without ast
+        """
+        if self.conversion_type == ConversionType.AST:
+            ast = self.get_ast(cobol_code)
+
+        if isinstance(cobol_code, Path) or (
+            isinstance(cobol_code, str) and os.path.exists(cobol_code)
+        ):
+            with open(cobol_code, "r") as cobol_file:
+                cob_str = cobol_file.read()
+        else:
+            cob_str = cobol_code
+
+        if ast is not None and (
+            isinstance(ast, Path) or (isinstance(ast, str) and os.path.exists(ast))
+        ):
+            with open(ast, "r") as ast_file:
+                ast_str = ast_file.read()
+        else:
+            ast_str = ast
+
+        self.conversion_prompt = self._get_conversion_prompt(cob_str, ast_str)
+        java_code = self.llm.predict(
+            prompt=self.conversion_prompt, system_prompt=self.system_prompt
+        )
+        logger.info("Conversion cob2Java complete")
+
+    def get_ast(self, cobol_code_path: Path):
+        temp_file = prepare_for_ast_extraction(cobol_code_path)
+        parser = CobolASTParser()
+        ast = parser.parse_cobol_file(temp_file)
+        return ast
+
+    def cob_2_java(self, cobol_code: str | Path, ast: str | Path = None) -> Path:
+        """
+        Converts the cobol code to java using an llm and outputs the resulting java file
+        The conversion is done accoding to the specified ConversionType
+
+        Args:
+            cobol_code (str|Path): the cobol code that is to be converted as string OR the path to the file containing the code
+            ast (str) optional; abstract syntax tree representation of cobol code. Required if ConversionType.AST is set
+        Returns:
+            Path: The path of the generated *.java file
+        """
+        if self.conversion_type == ConversionType.AST:
+            if ast is None:
+                raise ValueError(
+                    "Parameter ast is None. Is required, if conversion_type AST is selected."
+                )
+
+        if isinstance(cobol_code, Path) or (
+            isinstance(cobol_code, str) and os.path.exists(cobol_code)
+        ):
+            with open(cobol_code, "r") as cobol_file:
+                cob_str = cobol_file.read()
+        else:
+            cob_str = cobol_code
+
+        if ast is not None and (
+            isinstance(ast, Path) or (isinstance(ast, str) and os.path.exists(ast))
+        ):
+            with open(ast, "r") as ast_file:
+                ast_str = ast_file.read()
+        else:
+            ast_str = ast
+
+        self.conversion_prompt = self._get_conversion_prompt(cob_str, ast_str)
+        java_code = self.llm.predict(
+            prompt=self.conversion_prompt, system_prompt=self.system_prompt
+        )
+        logger.info("Conversion cob2Java complete")
+
+        # save the generated code
+        os.makedirs(self.output_dir, exist_ok=True)
+        output_filename = self._get_java_class_name(java_code) + ".java"
+        self.java_filepath = Path(self.output_dir) / output_filename
+
+        logger.info(f"Saving the generated java code to: {self.java_filepath}")
+        if os.path.exists(self.java_filepath):
+            logger.info(f"File: {self.java_filepath} already exists. Overwriting...")
+            os.remove(self.java_filepath)
+
+        with open(self.java_filepath, "w") as java_file:
+            java_file.write(java_code)
+
+        if (
+            os.path.exists(self.java_filepath)
+            and os.path.getsize(self.java_filepath) > 1
+        ):
+            logger.info(
+                f"Successfully written generated java code to {self.java_filepath}"
+            )
+        else:
+            raise ValueError(
+                f"Generated java file {self.java_filepath} could not be found or was empty"
+            )
+
+        return self.java_filepath
+
+    def _get_java_class_name(self, java_code: str) -> str:
+        """
+        Extracts the public class name from Java Code snippet.
+
+        Args:
+            java_file (str): the java source code
+
+        Returns:
+            str: Public class name
+        """
+
+        if len(java_code) == 0:
+            raise ValueError(
+                "No Java Code was generated, could not extract class name."
+            )
+
+        # Regex to match 'public class ClassName'
+        match = re.search(r"public\s+class\s+([A-Za-z_][A-Za-z0-9_]*)", java_code)
+
+        if match:
+            return match.group(1)
+        else:
+            raise ValueError(f"No public class found in {java_code}")
+
+    def compile(self, java_filepath: Path) -> Path:
+        """
+        Compiles the .java file at the specified filepath. returns the path of the compiled programm
+
+        Args:
+            java_filepath (Path): path of the .java file that should be compiled
+
+        Returns:
+            Path: Path to the compiled programm
+        """
+        try:
+            logging.info(f"Attempting to compile: {java_filepath}")
+            compile_result = subprocess.run(
+                ["javac", java_filepath], capture_output=True, text=True
+            )
+            if compile_result.returncode != 0:
+                logger.warning(
+                    f"Compilation failed of {java_filepath} \n{compile_result.stderr}"
+                )
+            else:
+                logger.info(f"Compilation of {java_filepath} successfull")
+                return java_filepath.with_suffix("")
+        except Exception as e:
+            logger.error(f"Compilation of {java_filepath} failed: {e}")
+            raise
+
+    def run_java_programm(self, java_prog_path: Path):
+        """
+        runs a Java programm and captures the output
+
+        Args:
+            java_prog_path (Path): _description_
+        """
+        try:
+            logging.info(f"Attempting to run: {java_prog_path}")
+            dir = java_prog_path.parent
+            filename = java_prog_path.stem
+
+            result_programm = subprocess.run(
+                ["java", "-cp", dir, filename], capture_output=True, text=True
+            )
+            print(result_programm.stdout)
+            logging.info(f"Running of {java_prog_path} successful!")
+        except Exception as e:
+            logger.error(f"Running of {java_prog_path} failed: {e}")
+            raise
+
+    def convert_compile_run(self, cobol_code: str | Path, ast: str | Path = None):
+        """
+        Converts COBOL code to Java, compiles it, and runs the resulting program.
+
+        Args:
+            cobol_code (str | Path): The COBOL code to convert.
+            ast (str | Path, optional): The abstract syntax tree (AST) representation of the COBOL code. Defaults to None.
+        """
+        java_filepath = self.cob_2_java(cobol_code, ast=ast)
+        java_programm_path = self.compile(java_filepath)
+        self.run_java_programm(java_programm_path)
+
+
+def prepare_for_ast_extraction(filepath: Path):
+    """
+    The parser is bad at handling comments, before feeding it to the parser, remove all comments from the file
+    and write it to a temp file
+    """
+    temp_file_path = filepath.with_suffix(".temp")
+    with open(filepath, "r") as original_file, open(temp_file_path, "w") as temp_file:
+        for line in original_file:
+            # Remove COBOL comments
+            # Remove lines that start with an asterisk (*) after optional whitespace
+            if re.match(r"^\s*\*", line):
+                continue
+            # Remove lines that are all asterisks (banner comments)
+            if re.match(r"^\s*\*+\s*$", line):
+                continue
+            # Remove lines that are all asterisks and spaces (common COBOL banner)
+            if re.match(r"^\s*\*{2,}\s*$", line):
+                continue
+            # Remove lines that are only spaces and asterisks (sometimes used for block comments)
+            if re.match(r"^\s*[\* ]+\s*$", line):
+                continue
+            line = re.sub(r"\s*EXEC\s+.*?END-EXEC\s*", "", line)
+            temp_file.write(line)
+    return temp_file_path
+
+
+def main():
+    llm = LLM()
+
+    # Base Case
+    # converter = ConverterHelper(llm, ConversionType.BASE)
+    cobol_code_path = Path("/home/schafhdaniel@edu.local/cobolToJava/in_cob_file.cbl")
+    # converter.convert_compile_run(cobol_code_path)
+
+    # AST
+    temp_file = prepare_for_ast_extraction(cobol_code_path)
+    parser = CobolASTParser()
+    ast = parser.parse_cobol_file(temp_file)
+    logger.info(f"AST: {ast}")
+
+    converter = LLMBasedConverter(llm, ConversionType.AST)
+    converter.convert_compile_run(cobol_code_path, ast)
+
+    if temp_file and os.path.exists(temp_file):
+        os.remove(temp_file)
+
+    # converter.convert_compile_run(cobol_code_path, ast=ast)
+    # java_path = Path("/home/schafhdaniel@edu.local/cobolToJava/out_dir/IFPGM.java")
+    # path = converter.compile(java_path)
+    # converter.run_java_programm(path)
+
+
+if __name__ == "__main__":
+    main()

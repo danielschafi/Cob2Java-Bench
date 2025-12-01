@@ -1,0 +1,91 @@
+{
+  "similarity_exact": {
+    "mean": 0.1121,
+    "min": 0.0,
+    "max": 1.0,
+    "std": 0.312
+  },
+  "similarity_cosine": {
+    "mean": 0.5447,
+    "min": 0.0,
+    "max": 1.0,
+    "std": 0.4399
+  },
+  "similarity_levenshtein_distance": {
+    "mean": 946.9598,
+    "min": 0.0,
+    "max": 98514.0,
+    "std": 7465.2466
+  },
+  "similarity_levenshtein_similarity": {
+    "mean": 0.5866,
+    "min": 0.0,
+    "max": 1.0,
+    "std": 0.3713
+  },
+  "similarity_jaccard": {
+    "mean": 0.488,
+    "min": 0.0,
+    "max": 1.0,
+    "std": 0.4188
+  },
+  "static_halstead_volume": {
+    "mean": 1760.9887,
+    "min": 2.0,
+    "max": 6296.4327,
+    "std": 1019.2225
+  },
+  "static_halstead_difficulty": {
+    "mean": 23.1155,
+    "min": 0.0,
+    "max": 55.4766,
+    "std": 9.6619
+  },
+  "static_halstead_effort": {
+    "mean": 46551.6998,
+    "min": 0.0,
+    "max": 287012.3888,
+    "std": 42128.8158
+  },
+  "static_cyclomatic_complexity": {
+    "mean": 15.8128,
+    "min": 1,
+    "max": 64,
+    "std": 9.3872
+  },
+  "static_lines_of_code": {
+    "mean": 82.3743,
+    "min": 4,
+    "max": 172,
+    "std": 36.4247
+  },
+  "static_maintainability_index": {
+    "mean": 35.1343,
+    "min": 18.2426,
+    "max": 84.6244,
+    "std": 8.2811
+  },
+  "generation_success": {
+    "sum": 187,
+    "ratio": 0.7664
+  },
+  "compilation_success": {
+    "sum": 187,
+    "ratio": 0.7664
+  },
+  "run_success": {
+    "sum": 161,
+    "ratio": 0.6598
+  },
+  "conversion_time": {
+    "mean": 34.0792,
+    "min": 3.6557,
+    "max": 257.7245,
+    "std": 34.5833
+  },
+  "total_benchmark_time_seconds": 8460.338849306107,
+  "total_testcases": 244,
+  "benchmark_run_description": "Running COBOL to Java conversion benchmark using AST Cobol Converter with LLM Claude Haiku-4.5.",
+  "converter_used": "ASTCobolConverter Claude Haiku-4.5",
+  "timestamp": "20251124_215727"
+}

@@ -1,0 +1,15 @@
+Looking at this COBOL program, I can see it:
+
+1. Uses `ACCEPT OMITTED` only once at the very end to pause before exit (waits for ENTER key)
+2. Uses `ACCEPT TIME1 FROM TIME` and `ACCEPT TIME2 FROM TIME` which read from the system clock, NOT from SYSIN
+
+The program is a performance testing utility that:
+- Builds lookup tables internally
+- Runs performance tests comparing custom XF4/XF5 procedures vs library calls
+- Only needs user input at the very end to acknowledge completion
+
+Since `ACCEPT FROM TIME` reads the system time (not SYSIN), and the only SYSIN input needed is a single ENTER keypress at the end, the appropriate SYSIN data is:
+
+
+
+(A single blank line representing the ENTER key press to satisfy the `ACCEPT OMITTED` statement at program termination)
