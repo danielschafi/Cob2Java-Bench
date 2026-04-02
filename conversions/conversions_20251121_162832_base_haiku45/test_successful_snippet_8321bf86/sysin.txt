@@ -1,8 +1,0 @@
-AAABBBCCCDDEEEEE                                                                                    
-WWWWWWWWWW                                                                                          
-ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ
-AAAAAAAABBBBBBBBCCCCCCCCDDDDDDDD                                                                    
-XXYYZZ                                                                                              
-MMMMMMMMMMMMMMMMMMMM                                                                                
-QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ
-AAABBBAAABBB

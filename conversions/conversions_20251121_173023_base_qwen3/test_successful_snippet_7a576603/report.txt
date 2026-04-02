@@ -1,5 +1,0 @@
-                     Customer Order Report
-                              PAGE   1
-
-
-Report generation completed.
